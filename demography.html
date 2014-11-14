@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demography Prototype</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<link href="js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<link href="js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<script src="js/summernote/summernote.min.js"></script>
+	<link href="js/summernote/summernote.css" rel="stylesheet">
+	<link href="js/summernote/summernote-bs3.css" rel="stylesheet">
+	<link href="css/reset.css" rel="stylesheet">
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWMxUmWeNkBfkGxiaLBLLWBZSw3pxSNM0">
+    </script>
+  </head>
+  
+  <body>
+	<div id="menu" class="navbar navbar-custom navbar-fixed-top">
+	 <div class="navbar-header"><a class="navbar-brand" href="#"></a>
+		  <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </a>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li class="active"><a href="#">Home</a></li>
+			<li><a href="#">Link</a></li>
+			<li><a href="#">Link</a></li>
+			<li>&nbsp;</li>
+		  </ul>
+		  <form class="navbar-form">
+			<div class="form-group" style="display:inline;">
+			  <div class="input-group">
+				<input id="searchPlace" class="form-control" placeholder="Search for a Place" type="text">
+				<span class="input-group-btn">
+					<button id="searchButton" class="btn btn-default" type="button">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
+			  </div>
+			</div>
+		  </form>
+		</div>
+	</div>
+	<div id="map-canvas"></div>
+	<div id="eventAlert"></div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div id='modalDialog' class="modal-dialog">
+			<div id='modalContent' class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<div class="modal-title">
+						<h4 id="myModalLabel">Create Event</h4>
+						<div class="input-group">
+							<span class="input-group-addon">Title: </span>
+							<input id="eventTitle" type="text" class="form-control" placeholder="Place your title">
+						</div>
+					</div>
+				</div>
+				<div id='modalBody' class="modal-body">
+					<ul id='eventTabs' class="nav nav-tabs" role="tablist">
+					  <li role="presentation" class="active"><a href="#memoir" role="tab" data-toggle="tab">Memoir</a></li>
+					  <li role="presentation"><a href="#article" role="tab" data-toggle="tab">Article</a></li>
+					  <li role="presentation"><a href="#property" role="tab" data-toggle="tab">Property</a></li>
+					  <li role="presentation"><a href="#personal" role="tab" data-toggle="tab">Personal</a></li>
+					</ul>
+
+					<div class="tab-content">
+					  <div role="tabpanel" class="tab-pane fade in active" id="memoir">
+						<br><div id="memoirSummernote"></div>
+					  </div>
+					  <div role="tabpanel" class="tab-pane fade" id="article">
+					  <br>
+						<div class="input-group">
+							<span class="input-group-addon">URL:</span>
+							<input id="URLInput" type="text" placeholder="Place your URL." class="form-control">
+							<span class="input-group-btn">
+								<button onclick="articleEditor();" class="btn btn-default" type="button">
+									<i class="fa fa-file"></i>
+								</button>
+							</span>
+						</div>
+					  </div>
+					  <div role="tabpanel" class="tab-pane fade" id="property">
+						<br>
+					  </div>
+					  <div role="tabpanel" class="tab-pane fade" id="personal">
+						<br>
+					  </div>
+					</div>
+				</div>
+				<div id="modalFooter" class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="postEvent" type="button" class="btn btn-primary">Post Event</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var map;
+		var eventInfo = [{}];
+		
+		function initialize() {
+			var minZoomLevel = 9;
+			
+			var mapOptions = {
+			  center: { lat: 35.142604, lng: 33.405216},
+			  zoom: minZoomLevel,
+			  disableDefaultUI:true
+			};
+					
+			geocoder = new google.maps.Geocoder();
+			
+			var strictBounds = new google.maps.LatLngBounds(
+				new google.maps.LatLng(34.630248, 31.994110),
+				new google.maps.LatLng(35.493534, 33.840351)
+			);
+			
+			map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+			
+			$('#searchButton').on('click',function codeAddress() {
+				var input = document.getElementById('searchPlace');
+				var address = input.value;
+				geocoder.geocode( { 'address': address}, function(results, status) {
+			  
+				if ((status == google.maps.GeocoderStatus.OK)&&(strictBounds.contains(results[0].geometry.location))) {
+				  map.setZoom(13);
+				  map.setCenter(results[0].geometry.location);
+				  var pointMarker = new google.maps.Marker({
+					  map: map,
+					  position: results[0].geometry.location,
+					  icon:'events/markers/searcharrow.png',
+					  draggable: false,
+					  animation: google.maps.Animation.BOUNCE
+				  });
+				  pointMarker.setMap(map);
+				  window.setTimeout(function(){
+					pointMarker.setMap(null);
+					pointMarker = null;
+				},1500);
+				
+				} else 
+				{			
+					var alertDialog = '<div class=" container modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false"><div class="modal-dialog"><div class="alert alert-danger alert-dismissable fade in" role="alert"><button class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button><h4>Oh snap! We have a problem :( </h4>We are so sorry but we can'+"'"+'t find the place you are looking for because of <b>'+ status+'</b> :( .</p><p><button id="alertClose" class="btn btn-danger" data-dismiss="modal" type="button">Got it!</button></p></div></div></div>'
+					
+					$('#eventAlert').html(alertDialog);
+					$('#alertModal').modal('toggle');
+				}
+			  });
+			});
+					
+			google.maps.event.addListener(map, 'drag', function() {
+			 if (strictBounds.contains(map.getCenter())) return;
+
+			 var c = map.getCenter(),
+				 x = c.lng(),
+				 y = c.lat(),
+				 maxX = strictBounds.getNorthEast().lng(),
+				 maxY = strictBounds.getNorthEast().lat(),
+				 minX = strictBounds.getSouthWest().lng(),
+				 minY = strictBounds.getSouthWest().lat();
+
+			 if (x < minX) x = minX;
+			 if (x > maxX) x = maxX;
+			 if (y < minY) y = minY;
+			 if (y > maxY) y = maxY;
+
+			 map.setCenter(new google.maps.LatLng(y, x));
+		});
+			
+			google.maps.event.addListener(map, 'zoom_changed', function() {
+				if (map.getZoom() < minZoomLevel) map.setZoom(minZoomLevel);
+			});
+			
+			eventInfo[eventInfo.length] = {"eventNumber":"00000", "eventType":"Personal", "eventTitle":"My Home", "eventContent":"events/0/myHome.jpg"} ;
+			eventInfo[eventInfo.length]= {"eventNumber":"00001", "eventType":"Personal", "eventTitle":"My Home", "eventContent":"events/1/myHome.jpg"}
+			
+			var marker=new google.maps.Marker({
+				position:{ lat: 35.142604, lng: 33.405217},
+				icon:'events/markers/personal.png'
+			});
+			
+			marker.setMap(map);
+			
+			google.maps.event.addListener(marker, 'mouseover', function() {
+				infowindow.open(map,marker);
+			});
+			
+			google.maps.event.addListener(marker, 'mouseout', function() {
+				window.setTimeout(function(){
+					infowindow.close(map,marker);
+				},500);
+			});
+			
+			google.maps.event.addListener(marker,'click',function() {
+				map.setZoom(10);
+				map.setCenter(marker.getPosition());
+			});
+		
+			var infowindow = new google.maps.InfoWindow({
+			content:"<div><h4>"+eventInfo[1].eventTitle+"</h4><img height='150px' class='img-rounded' width='200px' src='"+eventInfo[1].eventContent+"'></img>"
+		});
+		
+			google.maps.event.addListener(map, 'click', function(event) {
+				$('#myModal').modal('toggle');
+				var location=null;
+				location=event.latLng;
+				var eventType;
+				currentEvent = {};
+				currentEvent["eventNumber"] = parseInt(eventInfo[eventInfo.length-1].eventNumber)+1;
+					
+				$('#postEvent').on('click',function(event){
+					var $tabs = $('#eventTabs');
+					var $activeTab = $tabs.find('.active');
+					eventType = $activeTab.find('a').text();
+					eventType = eventType.toLowerCase();
+					currentEvent["eventType"] = eventType;
+					$('#myModal').modal('hide');
+					
+					currentEvent["eventTitle"] = $('#eventTitle').val();
+					$('#eventTitle').val("");
+  
+					currentEvent["eventContent"] = $('#memoirSummernote').code();
+					$('#memoirSummernote').code("");
+					
+					alert(currentEvent["eventContent"]);
+					currentEvent["eventContent"] = "events/2/1974.jpg"
+					
+					eventInfo[eventInfo.length] = currentEvent;
+					placeMarker(location);
+					location=null;	
+				});				
+			});
+						
+			/* Code for capturing google static map	
+			var w = window,
+			d = document,
+			e = d.documentElement,
+			g = d.getElementsByTagName('body')[0],
+			x = w.innerWidth || e.clientWidth || g.clientWidth,
+			y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+			
+			
+			var staticMap = "https://maps.googleapis.com/maps/api/staticmap?center="+map.getCenter()+"&zoom="+map.getZoom()+"&size="+window.screen.availWidth+"x"+window.screen.availHeight+"&scale=1";
+			window.location.href = staticMap;
+			*/
+	  };
+
+		function placeMarker(location) {
+			var icon;
+			
+			if(eventInfo[eventInfo.length-1].eventType=='personal')
+				icon = 'events/markers/personal.png';
+			else if(eventInfo[eventInfo.length-1].eventType=='property')
+				icon = 'events/markers/property.png';
+			else if(eventInfo[eventInfo.length-1].eventType=='article')
+				icon = 'events/markers/article.png';
+			else if(eventInfo[eventInfo.length-1].eventType=='memoir')
+				icon = 'events/markers/memoir.png';
+										
+				var placeMarker = new google.maps.Marker({
+					position: location,
+					map: map,
+					icon:icon,
+					animation:google.maps.Animation.DROP
+				});
+				
+				var infowindow = new google.maps.InfoWindow({
+				content:"<div><h4>"+eventInfo[eventInfo.length-1].eventTitle+"</h4><img height='150px' class='img-rounded' width='200px' src='"+eventInfo[eventInfo.length-1].eventContent+"'></img>"});
+				
+				placeMarker.setMap(map);
+				
+				google.maps.event.addListener(placeMarker, 'click', function() {
+					map.setCenter(placeMarker.getPosition());
+				});
+				
+				google.maps.event.addListener(placeMarker, 'mouseover', function() {
+					infowindow.open(map,placeMarker);
+				});
+			
+				google.maps.event.addListener(placeMarker,'click',function() {
+					map.setZoom(10);
+					map.setCenter(placeMarker.getPosition());
+				});
+			
+				google.maps.event.addListener(placeMarker, 'mouseout', function() {
+					window.setTimeout(function(){
+						infowindow.close(map,placeMarker);
+					},500);
+				});
+				
+		};
+	  
+		function articleEditor() {
+			var summernoteModal = '<div id="articleEditModal" class="modal fade"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> <h4 class="modal-title">Edit your Article</h4> </div> <div class="modal-body"> <br><div id="summernote"></div> </div> <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> <id="articleSave" onclick="testAlert();" button type="button" class="btn btn-primary">Save changes</button> </div> </div> </div> </div>';
+			
+			$("body").append(summernoteModal);
+			$('#articleEditModal').modal('toggle');
+			$('#summernote').summernote();
+		};
+		
+		$(document).ready(function() {
+			$('#memoirSummernote').summernote();
+		});
+				
+		google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+  </body>
+  
+</html>
