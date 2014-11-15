@@ -49,7 +49,7 @@
 		  </ul>
 		  
 		  <ul class="nav pull-right">
-		  	<li><a href="#"><img id="login" src="man.png" alt="Log In" height="24" width="24"></a></li>
+		  	<li><a href="#"><img id="login" src="assets/imgs/man.png" alt="Log In" height="24" width="24"></a></li>
 		  </ul>
 		  
 		  <form class="navbar-form">
@@ -164,19 +164,29 @@
 		</div>
 	</div>
 	
-	<div class="modal fade">
+	<div id="loginModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title">Modal title</h4>
+					<h3 class="modal-title">Log In</h3>
 				</div>
 				<div class="modal-body">
-				<p>One fine body&hellip;</p>
+				  	<div class="row">
+				  		<div class="column">
+				  			<a href="#"><img id="fb_colored" src="assets/imgs/facebook_colored.png" alt="Facebook" height="64" width="64"></a>
+				  		</div>
+				  		<div class="column">
+				  			<a href="#"><img id="g+_colored" src="assets/imgs/google_colored.png" alt="Google+" height="64" width="64"></a>
+				  		</div>
+				  		<div class="column">
+				  			<a href="#"><img id="t_colored" src="assets/imgs/twitter_colored.png" alt="Twitter" height="64" width="64"></a>
+				  		</div>
+				  	</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
+					<button type="button" class="btn btn-primary">Log In</button>
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
@@ -433,11 +443,16 @@
             info.innerHTML = message;
 			
         }
-						
-		//$('#myModal').modal(options)
-		$('#login').on('click',function logInWindow() {
+        
+        /*
+		document.getElementById('login').addEventListener('click', function(){
+			$('#loginModal').modal(toggle);
+		});
+		*/
+					
 		
-		
+		$('#login').on('click',function(){
+			$('#loginModal').modal('toggle');
 		
 		});				
 						
