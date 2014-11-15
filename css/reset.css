@@ -26,6 +26,10 @@ html, body, #map-canvas {
 	color:grey;
 }
 
+.modal-content {
+	background-color: rgba(184, 184, 184, 0.7);
+}
+
 a {
 	/*color: #428bca;*/
 	color: #3399FF;

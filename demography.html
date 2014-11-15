@@ -164,6 +164,7 @@
 		</div>
 	</div>
 	
+	<!-- Log In Modal -->
 	<div id="loginModal" class="modal fade">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -173,16 +174,41 @@
 				</div>
 				<div class="modal-body">
 				  	<div class="row">
-				  		<div class="column">
+				  	<center>
+				  		<div class="col-md-4 col-xs-6">
 				  			<a href="#"><img id="fb_colored" src="assets/imgs/facebook_colored.png" alt="Facebook" height="64" width="64"></a>
 				  		</div>
-				  		<div class="column">
+				  		<div class="col-md-4 col-xs-6">
 				  			<a href="#"><img id="g+_colored" src="assets/imgs/google_colored.png" alt="Google+" height="64" width="64"></a>
 				  		</div>
-				  		<div class="column">
+				  		<div class="col-md-4 col-xs-6">
 				  			<a href="#"><img id="t_colored" src="assets/imgs/twitter_colored.png" alt="Twitter" height="64" width="64"></a>
 				  		</div>
+				  	</center>
 				  	</div>
+				  	<br>
+				  	<br>
+				  	<div class="row">
+				  		<center>
+				  		<a href="#"><img id="line" src="assets/imgs/line.png" alt="Line" height="32"></a>
+				  		</center>
+				  	</div>
+				  	<br>
+				  	<div class="row">
+				  		<center>
+				  		<p>Don't you have an account? Create one here.</p>
+				  		</center>
+				  	</div>
+				  	<br>
+				  	<div class="input-group" id="usr">
+ 						<span class="input-group-addon">Email:</span>
+						<input type="text" class="form-control" placeholder="">
+					</div>
+				  	<br>
+				  	<div class="input-group" id="pwd">
+ 						<span class="input-group-addon">Password:</span>
+						<input type="text" class="form-control" placeholder="">
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -235,7 +261,7 @@
 				  var pointMarker = new google.maps.Marker({
 					  map: map,
 					  position: results[0].geometry.location,
-					  icon:'events/markers/searcharrow.png',
+					  icon:'assets/markers/searcharrow.png',
 					  draggable: false,
 					  animation: google.maps.Animation.BOUNCE
 				  });
@@ -283,7 +309,7 @@
 			
 			var marker=new google.maps.Marker({
 				position:{ lat: 35.142604, lng: 33.405217},
-				icon:'events/markers/personal.png'
+				icon:'assets/markers/personal.png'
 			});
 			
 			marker.setMap(map);
@@ -372,13 +398,13 @@
 			var icon;
 			
 			if(eventInfo[eventInfo.length-1].eventType=='personal')
-				icon = 'events/markers/personal.png';
+				icon = 'assets/markers/personal.png';
 			else if(eventInfo[eventInfo.length-1].eventType=='property')
-				icon = 'events/markers/property.png';
+				icon = 'assets/markers/property.png';
 			else if(eventInfo[eventInfo.length-1].eventType=='article')
-				icon = 'events/markers/article.png';
+				icon = 'assets/markers/article.png';
 			else if(eventInfo[eventInfo.length-1].eventType=='memoir')
-				icon = 'events/markers/memoir.png';
+				icon = 'assets/markers/memoir.png';
 										
 				var placeMarker = new google.maps.Marker({
 					position: location,
