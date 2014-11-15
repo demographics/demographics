@@ -72,7 +72,7 @@
 	<div id="map-canvas"></div>
 	<div id="eventAlert"></div>
 	
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div id='modalDialog' class="modal-dialog">
 			<div id='modalContent' class="modal-content">
 				<div class="modal-header">
@@ -84,9 +84,9 @@
 							<input id="eventTitle" type="text" class="form-control" placeholder="Place your title">
 						</div>
 						<br>
-						<div class="input-group">
+						<div  class="input-group">
 							<span class="input-group-addon">&nbsp;&nbsp;<i class="fa fa-calendar">&nbsp;&nbsp;</i></span>
-							<input class="form-control" placeholder="Select date" type="text" id="datepicker">
+							<input id="eventDate" class="form-control" placeholder="Select date" type="text">
 						</div>
 					</div>
 				</div>
@@ -100,7 +100,7 @@
 
 					<div class="tab-content">
 					  <div role="tabpanel" class="tab-pane fade in active" id="memoir">
-						<br><input id="memoirContent" type="text" placeholder="Place your memoir" class="form-control">
+						<br><textarea id='memoirContent' placeholder="Place your memoir"></textarea>
 					  </div>
 					  <div role="tabpanel" class="tab-pane fade" id="article">
 					  <br>
@@ -121,7 +121,7 @@
 							<input id="URLInput" type="text" placeholder="Place your property type" class="form-control">
 						</div>
 						<br>
-						<input id="propertyDescription" type="text" placeholder="Place your description" class="form-control">
+						<textarea id='propertyDescription' placeholder="Place your description"></textarea>
 					  </div>
 					  <div role="tabpanel" class="tab-pane fade" id="personal">
 						<br>
@@ -151,7 +151,7 @@
 							</div>
 						</form>	
 						<br>
-						<input id="photoDescription" type="text" placeholder="Place your description" class="form-control">
+						<textarea id='photoDescription' placeholder="Place your description"></textarea>
 					  </div>
 					</div>
 				</div>
@@ -200,7 +200,10 @@
 		
 		$(document).ready(function(){
 			$('#menu').load('navbar.html');
-			$( "#datepicker" ).datepicker();
+			$( "#eventDate" ).datepicker({
+				changeMonth: true,
+				changeYear: true
+			});
 		});
 		
 		function initialize() {
@@ -304,8 +307,9 @@
 			content:"<div><h4>"+eventInfo[1].eventTitle+"</h4><img height='150px' class='img-rounded' width='200px' src='"+eventInfo[1].eventContent+"'></img>"
 		});
 		
-			google.maps.event.addListener(map, 'click', function(event) {
+						google.maps.event.addListener(map, 'click', function(event) {
 				$('#myModal').modal('toggle');
+				
 				var location=null;
 				location=event.latLng;
 				var eventType;
@@ -317,19 +321,34 @@
 					var $activeTab = $tabs.find('.active');
 					eventType = $activeTab.find('a').text();
 					eventType = eventType.toLowerCase();
-					currentEvent["eventType"] = eventType;
-					$('#myModal').modal('hide');
 					
+					currentEvent["eventType"] = eventType;
 					currentEvent["eventTitle"] = $('#eventTitle').val();
 					$('#eventTitle').val("");
   
-					currentEvent["eventContent"] = $('#memoirSummernote').code();
-					$('#memoirSummernote').code("");
+					currentEvent["eventDateTime"] = $('#eventDate').val();
+					if(eventType=="memoir"){
+						currentEvent["eventContent"] = document.getElementById('memoirContent').value
+						$('#memoirContent').val("");
+					}
+					else if(eventType=="personal"){
+						currentEvent["eventContent"] = document.getElementById('memoirContent').value
+						$('#memoirContent').val("");
+					}
+					else if(eventType=="property"){
+					
+					}
+					else if(eventType=="article"){
+					
+					}
+					
+
 					
 					alert(currentEvent["eventContent"]);
 					currentEvent["eventContent"] = "events/2/1974.jpg"
 					
 					eventInfo[eventInfo.length] = currentEvent;
+					$('#myModal').modal('hide');
 					placeMarker(location);
 					location=null;	
 				});				

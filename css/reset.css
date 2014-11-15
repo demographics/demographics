@@ -33,8 +33,15 @@ a {
 	font-size: 14px;
 }
 
+#memoirContent,#photoDescription,#propertyDescription{	
+	min-width:540px;
+	max-width:540px;
+	resize:none;
+	word-wrap: break-word;
+    overflow-wrap: break-word;
+}
 
-#datepicker{
+#eventDate{
 	z-index: 2000;
 
 .tooltip {
