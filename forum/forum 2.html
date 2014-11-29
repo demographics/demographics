@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="el">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Forum</title>
+
+<link href="mystyle.css" rel="stylesheet">
+
+<style>
+img.pos_fixed {
+    position: fixed;
+    top: 120px;
+    right: 11px;
+}
+</style>
+<style>
+table, th, td {
+    border: 1px solid black;
+}
+</style>
+<style> 
+col {
+    -webkit-columns: 100px 3; /* Chrome, Safari, Opera */
+    -moz-columns: 100px 3; /* Firefox */
+    columns: 100px 3;
+}
+</style> 
+<style> 
+border {
+    border: 2px solid;
+    padding: 10px;
+    background: #dddddd;
+    border-bottom-right-radius: 2em;
+}
+</style>
+<style>
+div.forums { padding: 2px 2px 2px 0;  }
+#forum-links { position: relative; width: 700px; height: 40px; }
+#forum-links img {
+	border: 1px solid #ECF3F7;
+	background: #4E7999;
+	padding: 2px;
+	border-radius: 5px;
+	margin-right: 5px;
+	z-index: 1;
+	-webkit-transition: all 0.1s ease-out;
+	-moz-transition: all 0.1s ease-out;
+
+	transition: transform 0.1s ease-out;
+}
+#forum-links:hover img {
+	-webkit-filter: none;
+	filter: none;
+}
+#forum-links a:hover img {
+	-webkit-transform: scale(1.5, 1.5);
+	-moz-transform: scale(1.5, 1.5);
+	transform: scale(1.5, 1.5);
+	-webkit-box-shadow: 0 0 5px 0 #4E7999;
+	-moz-box-shadow: 0 0 5px 0 #4E7999;
+	box-shadow: 0 0 5px 0 #4E7999;
+}
+#forum-links a:hover::after {
+	content: attr(title);
+	position: absolute;
+	left: 350px;
+	top: 2px;
+	font: bold 18px/32px Arial;
+	color: #fff;
+	text-decoration: none;
+}
+img.forum {
+	border: 1px solid #4E7999;
+	background: #4E7999;
+	padding: 2px;
+	border-radius: 5px;
+	display: inline-block;
+}
+img.forum.left {
+	margin-right: 5px;
+	width: 24px;
+	height: 24px;
+	padding: 1px;
+}
+img.forum.right {
+	margin-left: 15px;
+	width: 48px;
+	height: 48px;
+	padding: 1px;
+}
+td img.forum { margin-top: 3px; }
+</style>
+<style>
+body { 
+    background: #4E7999  no-repeat fixed center ; 
+}
+</style>
+
+
+</head>
+
+<body>
+
+
+		  
+<img src="images/back.png" alt="logo" height="80" width="400">
+
+<br>
+<br>
+
+
+<a class="nav pull-right">
+	<a href="#"><img class="pos_fixed" id="theme" src="images/new theme.png" alt="N" height="24" width="70" ></a>
+</a>
+
+<div id="forum-links" >
+
+
+
+<a  title="Επιστήμες"><img src="images/science.jpg" alt="" width="32" height="32">
+</a>
+<a  title="Τεχνολογία"><img src="images/technology.jpg" alt="" width="32" height="32">
+</a>
+<a  title="Ψυχαγωγία-Διασκέδαση"><img src="images/entertainment.jpg" alt="" width="32" height="32">
+</a>
+<a  title="Κοινωνικά-Πολιτικά"><img src="images/politics.jpg" alt="" width="32" height="32">
+</a>
+<a  title="Αθλητικά"><img src="images/athletics.jpg" alt="" width="32" height="32">
+</a>
+<a  title="Προσωπικά"><img src="images/personal.png" alt="" width="32" height="32">
+</a>
+<a title="Γενικά"><img src="images/general.png" alt="" width="32" height="32">
+</a>
+
+
+</div>
+<br>
+
+<div class="datagrid">
+
+
+
+<table>
+
+<thead>
+<tr>
+<th>Forum</th>
+<th>Θέμα</th>
+<th>Συντάκτης</th>
+<th>Αναγνώσεις</th>
+<th>Απαντήσεις</th>
+<th>Τελευταία Απάντηση</th>
+</tr>
+</thead>
+
+<tfoot>
+<tr><td colspan="6"><div id="paging"><ul><li><a href="#"><span>Previous</span></a></li><li><a href="#" class="active"><span>1</span></a></li><li><a href="#"><span>2</span></a></li><li><a href="#"><span>3</span></a></li><li><a href="#"><span>4</span></a></li><li><a href="#"><span>5</span></a></li><li><a href="#"><span>Next</span></a></li></ul></div></tr>
+</tfoot>
+
+
+
+<tbody>
+<tr>
+<td>
+<center>
+<img src="images/science.jpg" alt="" width="32" height="32">
+</center>
+</td>
+<td><a href="" class="">Παράδειγμα</a></td>
+<td>ΕΠΛ361<br>Πεμπ, 27 Νοε. 10:47</td>
+<td>361</td>
+<td>36</td>
+<td>Τζίμης Ανδρέας Παυλίδες<br>1 hours, 1 mins ago</td>
+</tr>
+
+<tr>
+<td>
+<center>
+<img src="images/science.jpg" alt="" width="32" height="32">
+</center>
+</td>
+<td><a href="" class="">Παράδειγμα</a></td>
+<td>ΕΠΛ361<br>Πεμπ, 27 Νοε. 10:47</td>
+<td>361</td>
+<td>36</td>
+<td>Τζίμης Ανδρέας Παυλίδες<br>1 hours, 1 mins ago</td>
+</tr>
+
+
+</tbody>
+</table></div>
+
+<ul>
+<li><a href="javascript:scroll(0,0);">Top</a>
+</li><li><a href="">Home</a>
+</li></ul>
+
+
+
+
+</body>
+
+</html>
+
