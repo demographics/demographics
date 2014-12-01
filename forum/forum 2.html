@@ -3,11 +3,12 @@
 <html lang="el">
 
 <head>
+<link href="mystyle.css" rel="stylesheet">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Forum</title>
 
-<link href="mystyle.css" rel="stylesheet">
+
 
 <style>
 img.pos_fixed {
@@ -19,6 +20,7 @@ img.pos_fixed {
 <style>
 table, th, td {
     border: 1px solid black;
+    background-color: rgb(237, 235, 224, 0.5);
 }
 </style>
 <style> 
@@ -38,10 +40,15 @@ border {
 </style>
 <style>
 div.forums { padding: 2px 2px 2px 0;  }
-#forum-links { position: relative; width: 700px; height: 40px; }
+#forum-links {
+	position: relative;
+	width: 700px;
+	height: 40px;
+	}
+	
 #forum-links img {
 	border: 1px solid #ECF3F7;
-	background: #4E7999;
+	background: #EBEBEB;
 	padding: 2px;
 	border-radius: 5px;
 	margin-right: 5px;
@@ -91,11 +98,12 @@ img.forum.right {
 	height: 48px;
 	padding: 1px;
 }
+
 td img.forum { margin-top: 3px; }
 </style>
 <style>
 body { 
-    background: #4E7999  no-repeat fixed center ; 
+    background-image: url("images/forum_background.jpg");
 }
 </style>
 
@@ -106,7 +114,7 @@ body {
 
 
 		  
-<img src="images/back.png" alt="logo" height="80" width="400">
+<img src="images/back.png" alt="logo" height="140" width="100">
 
 <br>
 <br>
@@ -120,21 +128,14 @@ body {
 
 
 
-<a  title="Επιστήμες"><img src="images/science.jpg" alt="" width="32" height="32">
+<a  title="Discussion"><img src="images/discussion.png" alt="" width="32" height="32">
 </a>
-<a  title="Τεχνολογία"><img src="images/technology.jpg" alt="" width="32" height="32">
+<a  title="Upcoming Events"><img src="images/event.png" alt="" width="32" height="32">
 </a>
-<a  title="Ψυχαγωγία-Διασκέδαση"><img src="images/entertainment.jpg" alt="" width="32" height="32">
+<a  title="News"><img src="images/news.png" alt="" width="32" height="32">
 </a>
-<a  title="Κοινωνικά-Πολιτικά"><img src="images/politics.jpg" alt="" width="32" height="32">
+<a  title="General Info"><img src="images/info.png" alt="" width="32" height="32">
 </a>
-<a  title="Αθλητικά"><img src="images/athletics.jpg" alt="" width="32" height="32">
-</a>
-<a  title="Προσωπικά"><img src="images/personal.png" alt="" width="32" height="32">
-</a>
-<a title="Γενικά"><img src="images/general.png" alt="" width="32" height="32">
-</a>
-
 
 </div>
 <br>
@@ -166,10 +167,10 @@ body {
 <tr>
 <td>
 <center>
-<img src="images/science.jpg" alt="" width="32" height="32">
+<img src="images/discussion.png" alt="" width="32" height="32">
 </center>
 </td>
-<td><a href="" class="">Παράδειγμα</a></td>
+<td><a>Παράδειγμα</a></td>
 <td>ΕΠΛ361<br>Πεμπ, 27 Νοε. 10:47</td>
 <td>361</td>
 <td>36</td>
@@ -179,10 +180,10 @@ body {
 <tr>
 <td>
 <center>
-<img src="images/science.jpg" alt="" width="32" height="32">
+<img src="images/event.png" alt="" width="32" height="32">
 </center>
 </td>
-<td><a href="" class="">Παράδειγμα</a></td>
+<td><a>Παράδειγμα</a></td>
 <td>ΕΠΛ361<br>Πεμπ, 27 Νοε. 10:47</td>
 <td>361</td>
 <td>36</td>
@@ -194,9 +195,8 @@ body {
 </table></div>
 
 <ul>
-<li><a href="javascript:scroll(0,0);">Top</a>
-</li><li><a href="">Home</a>
-</li></ul>
+<a href="javascript:scroll(0,0);"><img src="images/top.png" alt="" width="32" height="32"></a>
+</ul>
 
 
 
