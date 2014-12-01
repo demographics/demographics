@@ -41,7 +41,7 @@ a {
 	font-size: 14px;
 }
 
-#memoirContent,#photoDescription,#propertyDescription{	
+#memoirContent,#photoDescription,#propertyDescription,#commentContent{	
 	min-width:540px;
 	max-width:540px;
 	resize:none;
@@ -78,10 +78,20 @@ a {
 	height:50px;
 }
 
-#eventDate{
+#eventDate,#modalComment,#commentPosted{
 	z-index: 2000;
 	}
 
 .tooltip {
     z-index: 2000;
+}
+
+.iwContent{
+	line-height:1.35;
+	overflow:hidden;
+	white-space:nowrap;
+}
+
+.comment{
+	text-indent:-0.5em;
 }
