@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Demography Prototype</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+	<link href="js/jquery-ui/jquery-ui.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<link href="js/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<script src="js/summernote/summernote.min.js"></script>
+	<link href="js/summernote/summernote.css" rel="stylesheet">
+	<link href="js/summernote/summernote-bs3.css" rel="stylesheet">
+	<link href="bootstrap/input/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+	<script src="bootstrap/input/js/fileinput.js" type="text/javascript"></script>
+	<link href="css/reset.css" rel="stylesheet">
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWMxUmWeNkBfkGxiaLBLLWBZSw3pxSNM0">
+    </script>
+  </head>
+  
+  <body>
+  	
+	
+	<div id="menu" class="navbar navbar-fnt navbar-backgrnd navbar-fixed-top">
+	 <div class="navbar-header"><a class="navbar-brand" href="#"></a>
+		  <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		  </a>
+		</div>
+		<div class="navbar-collapse collapse">
+		  <ul class="nav navbar-nav">
+			<li class="active"><a href="#">Home</a></li>
+			<li><a href="forum/forum.html">Forum</a></li>
+			<li><a id="FilterButton" href="#">Filter</a></li>
+			<li>&nbsp;</li>
+		  </ul>
+		  <ul class="nav pull-right">
+		  	<li><a href="#"><img id="login" src="assets/imgs/man.png" alt="Log In" height="30" width="30"></a></li>
+		  </ul>
+		  <form class="navbar-form">
+			<div class="form-group" style="display:inline;">
+			  <div class="input-group">
+				<input id="searchPlace" class="form-control" placeholder="Search for a Place" type="text">
+				<span class="input-group-btn">
+					<button id="searchButton" class="btn btn-default" type="button">
+						<i class="fa fa-search"></i>
+					</button>
+				</span>
+			  </div>
+			</div>
+		  </form>
+		</div>
+		
+      	<div id="filterNav">
+        	<ul class="nav navbar-nav ">
+          		<li><a id="filterMemoir" href="#">Memoir</a></li>
+				<li><a id="filterArticle" href="#">Article</a></li>
+				<li><a id="filterProperty href="#">Property</a></li>
+				<li><a id="filterPersonal" href="#">Personal</a></li>
+				<li><a id="filterYear" href="#">Year</a></li>
+				<li class="notLink"><input type="text" id="amount" readonly style="border:0; color:#FFFFFF;"></li>
+				<li class="notLink" id="sliderBlock"><div id="slider-range"></div></li>
+				
+			</ul>
+				
+		</div><!--/.nav-collapse -->
+	</div>
+
+<!-- <nav class="navbar navbar-default"> -->
+<!-- class="collapse navbar-collapse" -->
+		
+	<div id="map-canvas"></div>
+	<div id="eventAlert"></div>
+	
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div id='modalDialog' class="modal-dialog">
+			<div id='modalContent' class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<div class="modal-title">
+						<h4 id="myModalLabel">Create Event</h4>
+						<div class="input-group">
+							<span class="input-group-addon">Title: </span>
+							<input id="eventTitle" type="text" class="form-control" placeholder="Place your title">
+						</div>
+						<br>
+						<div  class="input-group">
+							<span class="input-group-addon">&nbsp;&nbsp;<i class="fa fa-calendar">&nbsp;&nbsp;</i></span>
+							<input id="eventDate" class="form-control" placeholder="Select date" type="text">
+						</div>
+					</div>
+				</div>
+				<div id='modalBody' class="modal-body">
+					<ul id='eventTabs' class="nav nav-tabs" role="tablist">
+					  <li role="presentation" class="active"><a href="#memoir" role="tab" data-toggle="tab">Memoir</a></li>
+					  <li role="presentation"><a href="#article" role="tab" data-toggle="tab">Article</a></li>
+					  <li role="presentation"><a href="#property" role="tab" data-toggle="tab">Property</a></li>
+					  <li role="presentation"><a href="#personal" role="tab" data-toggle="tab">Personal</a></li>
+					</ul>
+
+					<div class="tab-content">
+					  <div role="tabpanel" class="tab-pane fade in active" id="memoir">
+						<br><textarea id='memoirContent' placeholder="Place your memoir"></textarea>
+					  </div>
+					  <div role="tabpanel" class="tab-pane fade" id="article">
+					  <br>
+						<div class="input-group">
+							<span class="input-group-addon">URL:</span>
+							<input id="URLInput" type="text" placeholder="Place your URL" class="form-control">
+							<span class="input-group-btn">
+								<button onclick="articleEditor();" class="btn btn-default" type="button">
+									<i class="fa fa-file"></i>
+								</button>
+							</span>
+						</div>
+					  </div>
+					  <div role="tabpanel" class="tab-pane fade" id="property">
+						<br>
+						<div class="input-group">
+							<span class="input-group-addon">Type:</span>
+							<input id="URLInput" type="text" placeholder="Place your property type" class="form-control">
+						</div>
+						<br>
+						<textarea id='propertyDescription' placeholder="Place your description"></textarea>
+					  </div>
+					  <div role="tabpanel" class="tab-pane fade" id="personal">
+						<br>
+						<form id="myform" action="" method="post" enctype="multipart/form-data">
+							<div class="file-input file-input-new">
+								<div class="input-group ">
+									<div class="form-control file-caption data-preview-file-type="any" ">
+										<span class="glyphicon glyphicon-file"></span>
+										<span class="file-caption-name" id="info" title="">Upload your photo</span>
+									</div>
+									<div class="input-group-btn">
+										<button class="btn btn-default fileinput-remove fileinput-remove-button" type="button">
+											<i class="fa fa-times"></i>
+											Remove
+										</button>
+										<button class="btn btn-default" id="upload" type="submit">
+											<i class="fa fa-cloud-upload"></i>
+											Upload
+										</button>
+										<div class="btn btn-primary btn-file">
+											<i class="fa fa-folder-open"></i>
+											Browse … 
+											<input type="file" name="file[]" id="fileInput" multiple="multiple" size="60" onchange="GetFileInfo ()" />
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>	
+						<br>
+						<textarea id='photoDescription' placeholder="Place your description"></textarea>
+					  </div>
+					</div>
+				</div>
+				
+				<div id="modalFooter" class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button id="postEvent" type="button" class="btn btn-primary">Post Event</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- Log In Modal -->
+	<div id="loginModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h3 class="modal-title">Log In</h3>
+				</div>
+				<div class="modal-body">
+				  	<div class="row">
+				  	<center>
+				  		<div class="col-md-4 col-xs-6">
+				  			<a href="#"><img id="fb_colored" src="assets/imgs/facebook_colored.png" alt="Facebook" height="64" width="64"></a>
+				  		</div>
+				  		<div class="col-md-4 col-xs-6">
+				  			<a href="#"><img id="g+_colored" src="assets/imgs/google_colored.png" alt="Google+" height="64" width="64"></a>
+				  		</div>
+				  		<div class="col-md-4 col-xs-6">
+				  			<a href="#"><img id="t_colored" src="assets/imgs/twitter_colored.png" alt="Twitter" height="64" width="64"></a>
+				  		</div>
+				  	</center>
+				  	</div>
+				  	<br>
+				  	<br>
+				  	<div class="row">
+				  		<center>
+				  		<a href="#"><img id="line" src="assets/imgs/line.png" alt="Line" height="32"></a>
+				  		</center>
+				  	</div>
+				  	<br>
+				  	<div class="row">
+						<center>
+							<p>Don't you have an account? Create one 
+								<a href="#" id="signup" data-dismiss="modal" alt="Sign Up">
+									here.
+								</a>
+							</p>
+						</center>
+				  	</div>
+				  	<br>
+				  	<div class="input-group" id="usr">
+ 						<span class="input-group-addon">Email:</span>
+						<input type="text" class="form-control" placeholder="">
+					</div>
+				  	<br>
+				  	<div class="input-group" id="pwd">
+ 						<span class="input-group-addon">Password:</span>
+						<input type="text" class="form-control" placeholder="">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Log In</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+	
+	<!-- Sign Up Modal -->
+	<div id="SignUpModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h3 class="modal-title">Sign Up</h3>
+				</div>
+				<div class="modal-body">
+				  	<div class="input-group" id="usr">
+ 						<span class="input-group-addon">* First Name:</span>
+						<input type="text" class="form-control" placeholder="">
+					</div>
+				  	<br>
+				  	<div class="input-group" id="pwd">
+ 						<span class="input-group-addon">* Last Name:</span>
+						<input type="text" class="form-control" placeholder="">
+					</div>
+					<br>
+				  	<div class="input-group" id="pwd">
+ 						<span class="input-group-addon">* Email:</span>
+						<input type="text" class="form-control" placeholder="">
+					</div>
+				  	<br>
+				  	<div class="input-group" id="pwd">
+ 						<span class="input-group-addon">* Password:</span>
+						<input type="text" class="form-control" placeholder="">
+					</div>
+				  	<br>
+				  	<div class="input-group" id="pwd">
+ 						<span class="input-group-addon">* Confirm Password:</span>
+						<input type="text" class="form-control" placeholder="">
+					</div>
+					<br>
+				  	<div class="input-group" id="pwd">
+ 						<span class="input-group-addon">Place of residence before 1974:</span>
+						<input type="text" class="form-control" placeholder="">
+					</div>
+				  	<br>
+				  	<div class="input-group" id="pwd">
+ 						<span class="input-group-addon">* Place of residence after 1974:</span>
+						<input type="text" class="form-control" placeholder="">
+					</div>
+					<br>
+				  	<p>
+						You must complete the fields with (*)
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Sign Up</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	<div id='commentPosted' class="alert alert-info" role="alert">
+		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<strong>Notification</strong> Your comment has been posted.
+	</div>
+	<div id="modalComment" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Place your comment below</h4>
+      </div>
+      <div class="modal-body">
+        <textarea id='commentContent' placeholder='Place your comment here' ></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id='postComment' type="button" class="btn btn-primary">Post</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+	<div id="modalViewComments" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Comments</h4>
+      </div>
+      <div id='commentList' class="modal-body">
+        <ul class="list-group">
+		  <li class="list-group-item">This is a comment</li>
+		  <li class="list-group-item">This is also a comment</li>
+		  <li class="list-group-item">This is a comment obviously</li>
+		  <li class="list-group-item">Here's another one</li>
+		  <li class="list-group-item">You got it! This is also a comment</li>
+		</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button onclick="showCommentInput()" type="button" class="btn btn-primary"> Comment</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+	<div id="modalComment" class="modal fade">
+	
+	
+	<script type="text/javascript">
+		var map;
+		var eventInfo = [{}];
+		
+		$(document).ready(function(){
+			$('#menu').load('navbar.html');
+			$( "#eventDate" ).datepicker({
+				changeMonth: true,
+				changeYear: true
+			});
+		});
+		
+		function initialize() {
+			var minZoomLevel = 10;
+			
+			var mapOptions = {
+			  center: { lat: 35.142604, lng: 33.405216},
+			  zoom: minZoomLevel,
+			  disableDefaultUI:true
+			};
+					
+			geocoder = new google.maps.Geocoder();
+			
+			var strictBounds = new google.maps.LatLngBounds(
+				new google.maps.LatLng(34.630248, 31.994110),
+				new google.maps.LatLng(35.493534, 33.840351)
+			);
+			
+			map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+			
+			$('#searchButton').on('click',function codeAddress() {
+				var input = document.getElementById('searchPlace');
+				var address = input.value;
+				geocoder.geocode( { 'address': address}, function(results, status) {
+			  
+				if ((status == google.maps.GeocoderStatus.OK)&&(strictBounds.contains(results[0].geometry.location))) {
+				  map.setZoom(13);
+				  map.setCenter(results[0].geometry.location);
+				  var pointMarker = new google.maps.Marker({
+					  map: map,
+					  position: results[0].geometry.location,
+					  icon:'assets/markers/searcharrow.png',
+					  draggable: false,
+					  animation: google.maps.Animation.BOUNCE
+				  });
+				  pointMarker.setMap(map);
+				  window.setTimeout(function(){
+					pointMarker.setMap(null);
+					pointMarker = null;
+				},1500);
+				
+				} else 
+				{			
+					var alertDialog = '<div class=" container modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false"><div class="modal-dialog"><div class="alert alert-danger alert-dismissable fade in" role="alert"><button class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button><h4>Oh snap! We have a problem :( </h4>We are so sorry but we can'+"'"+'t find the place you are looking for because of <b>'+ status+'</b> :( .</p><p><button id="alertClose" class="btn btn-danger" data-dismiss="modal" type="button">Got it!</button></p></div></div></div>'
+					
+					$('#eventAlert').html(alertDialog);
+					$('#alertModal').modal('toggle');
+				}
+			  });
+			});
+					
+			google.maps.event.addListener(map, 'drag', function() {
+			 if (strictBounds.contains(map.getCenter())) return;
+
+			 var c = map.getCenter(),
+				 x = c.lng(),
+				 y = c.lat(),
+				 maxX = strictBounds.getNorthEast().lng(),
+				 maxY = strictBounds.getNorthEast().lat(),
+				 minX = strictBounds.getSouthWest().lng(),
+				 minY = strictBounds.getSouthWest().lat();
+
+			 if (x < minX) x = minX;
+			 if (x > maxX) x = maxX;
+			 if (y < minY) y = minY;
+			 if (y > maxY) y = maxY;
+
+			 map.setCenter(new google.maps.LatLng(y, x));
+		});
+			
+			google.maps.event.addListener(map, 'zoom_changed', function() {
+				if (map.getZoom() < minZoomLevel) map.setZoom(minZoomLevel);
+			});
+			
+			eventInfo[eventInfo.length] = {"eventNumber":"00000", "eventType":"Personal", "eventTitle":"My Home", "eventContent":"events/0/myHome.jpg"} ;
+			eventInfo[eventInfo.length]= {"eventNumber":"00001", "eventType":"Personal", "eventTitle":"My Home", "eventContent":"events/1/myHome.jpg"}
+			
+			var marker=new google.maps.Marker({
+				position:{ lat: 35.142604, lng: 33.405217},
+				icon:'assets/markers/personal.png'
+			});
+			
+			marker.setMap(map);
+			
+			google.maps.event.addListener(marker, 'mouseover', function() {
+				infowindow.open(map,marker);
+			});
+			
+			google.maps.event.addListener(marker, 'mouseout', function() {
+				window.setTimeout(function(){
+					infowindow.close(map,marker);
+				},2000);
+			});
+			
+			google.maps.event.addListener(marker,'click',function() {
+				map.setZoom(10);
+				map.setCenter(marker.getPosition());
+			});
+		
+			var infowindow = new google.maps.InfoWindow({
+				content:"<div class='iwContent'><h4>"+eventInfo[1].eventTitle+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='commentBtn' onclick='showCommentInput();'><i class='fa fa-comment'></i></a></h4><img height='100px' class='img-rounded' width='150px' src='"+eventInfo[1].eventContent+"'></img><br><a onclick='showCommentView();' id='viewCommentA'>view comments</a></div>"
+			});
+		
+						google.maps.event.addListener(map, 'click', function(event) {
+				$('#myModal').modal('toggle');
+				
+				var location=null;
+				location=event.latLng;
+				var eventType;
+				currentEvent = {};
+				currentEvent["eventNumber"] = parseInt(eventInfo[eventInfo.length-1].eventNumber)+1;
+					
+				$('#postEvent').on('click',function(event){
+					var $tabs = $('#eventTabs');
+					var $activeTab = $tabs.find('.active');
+					eventType = $activeTab.find('a').text();
+					eventType = eventType.toLowerCase();
+					
+					currentEvent["eventType"] = eventType;
+					currentEvent["eventTitle"] = $('#eventTitle').val();
+					$('#eventTitle').val("");
+  
+					currentEvent["eventDateTime"] = $('#eventDate').val();
+					if(eventType=="memoir"){
+						currentEvent["eventContent"] = document.getElementById('memoirContent').value
+						$('#memoirContent').val("");
+					}
+					else if(eventType=="personal"){
+						currentEvent["eventContent"] = document.getElementById('memoirContent').value
+						$('#memoirContent').val("");
+					}
+					else if(eventType=="property"){
+					
+					}
+					else if(eventType=="article"){
+					
+					}
+					
+
+					
+					//alert(currentEvent["eventContent"]);
+					currentEvent["eventContent"] = "events/2/1974.jpg"
+					
+					eventInfo[eventInfo.length] = currentEvent;
+					$('#myModal').modal('hide');
+					placeMarker(location);
+					location=null;	
+				});				
+			});
+						
+			/* Code for capturing google static map	
+			var w = window,
+			d = document,
+			e = d.documentElement,
+			g = d.getElementsByTagName('body')[0],
+			x = w.innerWidth || e.clientWidth || g.clientWidth,
+			y = w.innerHeight|| e.clientHeight|| g.clientHeight;
+			
+			
+			var staticMap = "https://maps.googleapis.com/maps/api/staticmap?center="+map.getCenter()+"&zoom="+map.getZoom()+"&size="+window.screen.availWidth+"x"+window.screen.availHeight+"&scale=1";
+			window.location.href = staticMap;
+			*/
+	  };
+
+		function placeMarker(location) {
+			var icon;
+			
+			if(eventInfo[eventInfo.length-1].eventType=='personal')
+				icon = 'assets/markers/personal.png';
+			else if(eventInfo[eventInfo.length-1].eventType=='property')
+				icon = 'assets/markers/property.png';
+			else if(eventInfo[eventInfo.length-1].eventType=='article')
+				icon = 'assets/markers/article.png';
+			else if(eventInfo[eventInfo.length-1].eventType=='memoir')
+				icon = 'assets/markers/memoir.png';
+										
+				var placeMarker = new google.maps.Marker({
+					position: location,
+					map: map,
+					icon:icon,
+					animation:google.maps.Animation.DROP
+				});
+				
+				var infowindow = new google.maps.InfoWindow({
+				content:"<div class='iwContent'><h4>"+eventInfo[eventInfo.length-1].eventTitle+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a id='commentBtn' onclick='showCommentInput();'><i class='fa fa-comment'></i></a></h4><img height='100px' class='img-rounded' width='150px' src='"+eventInfo[1].eventContent+"'></img><br><a onclick='showCommentView();'>view comments</a></div>"});
+				
+				placeMarker.setMap(map);
+				
+				google.maps.event.addListener(placeMarker, 'click', function() {
+					map.setCenter(placeMarker.getPosition());
+				});
+				
+				google.maps.event.addListener(placeMarker, 'mouseover', function() {
+					infowindow.open(map,placeMarker);
+				});
+			
+				google.maps.event.addListener(placeMarker,'click',function() {
+					map.setZoom(10);
+					map.setCenter(placeMarker.getPosition());
+				});
+			
+				google.maps.event.addListener(placeMarker, 'mouseout', function() {
+					window.setTimeout(function(){
+						infowindow.close(map,placeMarker);
+					},2000);
+				});
+				
+		};
+	  
+		function articleEditor() {
+			var summernoteModal = '<div id="articleEditModal" class="modal fade"> <div class="modal-dialog"> <div class="modal-content"> <div class="modal-header"> <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button> <h4 class="modal-title">Edit your Article</h4> </div> <div class="modal-body"> <br><div id="summernote"></div> </div> <div class="modal-footer"> <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> <id="articleSave" type="button" class="btn btn-primary">Save changes</button> </div> </div> </div> </div>';
+			
+			$("body").append(summernoteModal);
+			$('#articleEditModal').modal('toggle');
+			$('#summernote').summernote({
+				toolbar: [
+					['style', ['bold', 'italic', 'underline']],
+					['font', ['strikethrough']],
+					['para', ['ul', 'ol', 'paragraph']],
+					['insert',['link']],
+					['misc',['codeview']]
+				]
+			});
+		};
+						
+		function GetFileInfo () {
+		
+            var fileInput = document.getElementById ("fileInput");
+			var tooltip="";
+            var message = "";
+			
+            if ('files' in fileInput) {
+                if (fileInput.files.length == 0) {
+                    message = "Please browse for one or more files.";
+                } else if (fileInput.files.length <5) {
+                    for (var i = 0; i < fileInput.files.length; i++) {
+                        var file = fileInput.files[i];
+						if(i==0)
+							message=file.name;
+						else
+							message+=", "+file.name;
+                    }
+                } else{
+					message=fileInput.files.length+" files selected.";
+					for (var j = 0; j < fileInput.files.length; j++) {
+						var file = fileInput.files[j];
+						if(j==0)
+							tooltip=file.name;
+						else
+							tooltip+=", "+file.name;
+					}
+				}
+            } 
+			$( "#info" ).tooltip({ content: tooltip });
+            var info = document.getElementById ("info");
+            info.innerHTML = message;
+			
+        }
+        
+		
+		$('#FilterButton').on('click',function(){
+		    if($("#filterNav").css("display")== 'none') {
+		    	$("#filterNav").show();
+		    	}
+		    else {
+		    	$("#filterNav").hide();
+		    	}
+		});		
+		
+		$('#filterYear').on('click',function(){
+			if($("#amount").css("display")== 'none') {
+			    $("#slider-range").show();
+		    	$("#amount").show();
+		    }
+		    else{
+		    	$("#slider-range").hide();
+			    $("#amount").hide();
+			    }
+		});		
+
+		
+		$(function() {
+			$( "#slider-range" ).slider({
+			range: true,
+			min: 1890,
+			max: 2014,
+			values: [ 1910, 1974 ],
+			slide: function( event, ui ) {
+						$( "#amount" ).val(ui.values[ 0 ] + " - " + ui.values[ 1 ] );
+      					}
+    		});
+    		$( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) +" - " + $( "#slider-range" ).slider( "values", 1 ) );
+  			});
+
+		
+		$('#login').on('click',function(){
+			$('#loginModal').modal('toggle');
+		
+		});		
+		
+		$('#signup').on('click',function(){
+			$('#SignUpModal').modal('toggle');		
+			});						
+					
+		function showCommentInput(){
+			$('#modalComment').modal('toggle');
+		};
+		
+		function showCommentView(){
+			$('#modalViewComments').modal('show');
+		};	
+		
+		$('#postComment').on('click',function(){			
+			$('#modalComment').modal('hide');
+			var alertDialog = '<div class=" container modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false"><div class="modal-dialog"><div class="alert alert-info alert-dismissable fade in" role="alert"><button class="close" data-dismiss="modal" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button><h4>Notification</h4>Your comment has been posted successfuly.</div></div></div>'
+					
+			$("#commentList ul").append('<li class="list-group-item" >'+$('#commentContent').val()+'</li>');
+			showCommentView();
+		});
+					
+		google.maps.event.addDomListener(window, 'load', initialize);
+		
+	</script>
+  </body>
+  
+</html>
