@@ -72,7 +72,7 @@ function placeMarker(eventID,location) {
         animation:google.maps.Animation.DROP
     });
     
-    var contents = null;
+    var eventJSON = null;
     
      $.ajax({
         url: "markers/phpsqlajax_getcontents.php",
@@ -82,18 +82,25 @@ function placeMarker(eventID,location) {
         },
         async: false,
         success: function (data) {
-            contents = JSON.parse(data);
+            eventJSON = JSON.parse(data);
         }
     });
     
     var infowindow = new InfoBubble({
-          content: '<div class="info-element"><h4>'+contents.title+'</h4><p>'+contents.content+'</p></div>',
+          content: 
+                    '<div class="info-element">'+
+                        '<div>'+
+                            '<p>'+eventJSON.eventDate+'</p>'+
+                        '</div>'+
+                        '<h4>'+eventJSON.title+'</h4>'+
+                            eventJSON.content +
+                    '</div>',
           minWidth:20,
-          minHeight:40,
+          minHeight:80,
           maxWidth:150,
-          maxHeight:150,
+          maxHeight:180,
           shadowStyle: 1,
-          padding: 5 ,
+          padding: 1 ,
           backgroundColor: '#FFF',
           borderRadius: 5,
           arrowSize: 10,
@@ -117,6 +124,18 @@ function placeMarker(eventID,location) {
     google.maps.event.addListener(placeMarker,'click',function() {
         map.setZoom(12);
         map.setCenter(placeMarker.getPosition());
+        
+        $.ajax({
+            url: "markers/phpsqlajax_views.php",
+            type: "POST",
+            data: {
+                eventID:eventID
+            },
+            async: false
+        });
+        
+        $('#marker-body').html(  '<h2 class="modal-title">'+eventJSON.title+'</h2>'+eventJSON.content);
+        
         $('#marker-view').modal('toggle');
         $('#marker-view').on('hide.bs.modal', function () {            
             map.setZoom(10);

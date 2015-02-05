@@ -77,9 +77,7 @@
     </div>
 </div>
 
-<script>  
-    var progress;
-        
+<script>       
     $(document).ready(function(){   
         $('#event-date-input').datepicker({
             format: 'dd/mm/yyyy',

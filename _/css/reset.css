@@ -23,6 +23,6 @@ html, body, #map-canvas {
     display:none;
 }
 
-.progress{
-    display: none;
+.views{
+    float: right;
 }
