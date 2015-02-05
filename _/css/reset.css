@@ -1,0 +1,28 @@
+
+html, body, #map-canvas { 
+	overflow:0;
+	height: 100%; 
+	margin: 0; 
+	padding: 0;
+}
+
+.tooltip {
+    z-index: 9999;
+}
+
+.modal-body, .modal-footer{
+    padding: 20px;
+}
+
+#photo-container{
+    padding: 20px;
+    margin: auto;
+}
+
+.secret-input{
+    display:none;
+}
+
+.progress{
+    display: none;
+}
