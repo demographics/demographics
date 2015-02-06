@@ -23,6 +23,16 @@ html, body, #map-canvas {
     display:none;
 }
 
-.views{
-    float: right;
+.photo-container{
+    width:100%;
+    height: auto;
+}
+
+.comment-preview{
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+#comment-list li{
+    text-align: left;
 }

@@ -17,13 +17,13 @@
             for($i=0; $i<count($_FILES['file']['name']); $i++) {
                 move_uploaded_file($_FILES["file"]["tmp_name"][$i],
                 "uploads/" . $_FILES["file"]["name"][$i]);
-                $eventContent.='<img class="event-photo" src="uploads/'.$_FILES["file"]["name"][$i].'"/>';
+                $eventContent.='<img class="photo-container" src="uploads/'.$_FILES["file"]["name"][$i].'"></img>';
             }
             
             break;
         
         case "property":
-            $eventContent='Type = '.$_POST['property-type-input'].', Description = '.$_POST['property-description-input'];
+            $eventContent='<p class="property-type">'.$_POST['property-type-input'].'</p><p class="property-description">'.$_POST['property-description-input'].'</p>';
             break;
         
         case "article":
@@ -44,12 +44,6 @@
         $userID=null;
         $eventID=null;
         $connection=mysql_connect ($host, $username, $password);
-        
-//        $email = 'dpasch01@cs.ucy.ac.cy';
-//        $title = 'Test title.';
-//        $type = 'memoir';
-//        $date = '03/02/2015';
-//        $content = 'This is some test content.';
         
         if (!$connection) {
           die('Not connected : ' . mysql_error());

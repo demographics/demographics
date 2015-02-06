@@ -17,13 +17,48 @@
             <div  class="modal-footer">  
                 <div class="row">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Write a comment.">
+                        <input id="comment-input" type="text" class="form-control" placeholder="Write a comment.">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Comment</button>
+                            <button id="comment-post-btn" class="btn btn-default" type="button">Comment</button>
                         </span>
                     </div>
-                </div>                
+                </div>  
+                <div class="row">
+                    <div class="comment-preview">
+                        <ul id="comment-list" class="list-group">
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>   
     </div>
 </div>
+
+<script>
+    function loadComments(){
+        var index=0;
+        jQuery.each(cur_comments, function(key,value) {
+            if(index!=0){
+                $("#comment-list").append('<li class="list-group-item"><p>'+value.content+'</p></li>');
+            }
+            index=index+1;
+        });
+    }
+    
+     $(document).ready(function(){
+         
+        $('#comment-post-btn').on('click',function(){
+            $.ajax({
+                url: "markers/phpsqlajax_comment.php",
+                type: "POST",
+                data: {
+                    eventID:cur_event,
+                    comment:document.getElementById('comment-input').value
+                },
+                async: false
+            });
+            $("#comment-list").append('<li class="list-group-item"><p>'+document.getElementById('comment-input').value+'</p></li>');
+            document.getElementById("comment-input").value = "";
+        });
+     });
+</script>

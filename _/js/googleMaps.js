@@ -1,5 +1,7 @@
 var map=null;
 var cur_location=null;
+var cur_event=null;
+var cur_comments=null;
 
 function initialize() {
 
@@ -73,6 +75,9 @@ function placeMarker(eventID,location) {
     });
     
     var eventJSON = null;
+    var propertyType = null;
+    var photoPath = null;
+    var description = null;
     
      $.ajax({
         url: "markers/phpsqlajax_getcontents.php",
@@ -89,14 +94,10 @@ function placeMarker(eventID,location) {
     var infowindow = new InfoBubble({
           content: 
                     '<div class="info-element">'+
-                        '<div>'+
-                            '<p>'+eventJSON.eventDate+'</p>'+
-                        '</div>'+
-                        '<h4>'+eventJSON.title+'</h4>'+
-                            eventJSON.content +
+                        '<h5>'+eventJSON.title+'</h5>'+
                     '</div>',
-          minWidth:20,
-          minHeight:80,
+          minWidth:50,
+          minHeight:55,
           maxWidth:150,
           maxHeight:180,
           shadowStyle: 1,
@@ -124,6 +125,20 @@ function placeMarker(eventID,location) {
     google.maps.event.addListener(placeMarker,'click',function() {
         map.setZoom(12);
         map.setCenter(placeMarker.getPosition());
+        cur_event = eventID;
+        
+         $.ajax({
+                url: "markers/phpsqlajax_load_comment.php",
+                type: "POST",
+                data: {
+                    eventID:cur_event
+                },
+                success: function (data) {
+                    cur_comments = JSON.parse(data);
+                    loadComments();
+                },
+                async: false
+            });
         
         $.ajax({
             url: "markers/phpsqlajax_views.php",
@@ -134,11 +149,13 @@ function placeMarker(eventID,location) {
             async: false
         });
         
-        $('#marker-body').html(  '<h2 class="modal-title">'+eventJSON.title+'</h2>'+eventJSON.content);
+        $('#marker-body').html( '<h1 class="modal-title"><center>'+eventJSON.title+'</center></h1><br>'+eventJSON.content);
         
         $('#marker-view').modal('toggle');
         $('#marker-view').on('hide.bs.modal', function () {            
             map.setZoom(10);
+            $("#comment-list").html("");
+            document.getElementById("comment-input").value = "";
         });
     });
 

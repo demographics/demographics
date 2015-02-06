@@ -12,25 +12,23 @@
         die ('Can\'t use db : ' . mysql_error());
     }
 
-    $query = "SELECT * FROM EVENT, MEMBER WHERE EVENT.id=$eventID AND EVENT.member = MEMBER.id";
+    $query = "SELECT * FROM COMMENT, MEMBER WHERE COMMENT.event=$eventID AND COMMENT.member=MEMBER.id";
     $result = mysql_query($query);
     if (!$result) {
         die('Invalid query: ' . mysql_error());
     }
 
-    $event[] = null;
+    $comments[] = null;
+    $index = 1;
 
     while ($row = @mysql_fetch_assoc($result)){  
-        $event['title'] = $row['title'];
-        $event['content'] = $row['content'];
-        $event['datePosted'] = $row['datetime'];
-        $event['eventDate'] = $row['date'];
-        $event['views'] = $row['view'];
-        $event['likes'] = $row['like'];
-        $event['type'] = $row['type'];
-        $event['eventID'] = $row['id'];
-        
+        $comment[] = null;
+        $comment['content'] = $row['content'];
+        $comment['datePosted'] = $row['datetime'];
+        $comment['user'] = $row['email']; 
+        $comments[$index] = $comment;
+        $index+=1;
     }
-    echo json_encode($event);
+    echo json_encode($comments);
     
 ?>
