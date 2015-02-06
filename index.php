@@ -21,6 +21,7 @@
         <script src="_/js/googleMaps.js" type="text/javascript"></script>
         <script src="_/js/infobubble.js"></script>
         <script src="_/libs/summernote/summernote.min.js"></script>
+        <script src="_/js/jquery.slimscroll.min.js"></script>
         
         <link rel="icon" type="image/ico" href="_/img/favicon.ico">
         <link href="_/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">

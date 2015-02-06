@@ -31,6 +31,8 @@ html, body, #map-canvas {
 .comment-preview{
     margin-top:10px;
     margin-bottom:10px;
+    max-height: 200px;
+    overflow-y: scroll;
 }
 
 #comment-list li{

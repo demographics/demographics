@@ -8,9 +8,9 @@ function initialize() {
     var minZoomLevel = 10;
 
     var mapOptions = {
-      center: { lat: 35.142604, lng: 33.405216},
-      zoom: minZoomLevel,
-      disableDefaultUI:true
+        center: { lat: 35.142604, lng: 33.405216},
+        zoom: minZoomLevel,
+        disableDefaultUI:true
     };
 
     geocoder = new google.maps.Geocoder();
@@ -68,11 +68,6 @@ function initialize() {
 
 function placeMarker(eventID,location) {
 
-    var placeMarker = new google.maps.Marker({
-        position: location,
-        map: map,
-        animation:google.maps.Animation.DROP
-    });
     
     var eventJSON = null;
     var propertyType = null;
@@ -89,6 +84,29 @@ function placeMarker(eventID,location) {
         success: function (data) {
             eventJSON = JSON.parse(data);
         }
+    });
+
+    var icon = null;
+    switch(eventJSON.type){
+        case 'memoir':
+            icon = "_/img/markers/memoir.png";
+            break;
+        case 'property':
+            icon = "_/img/markers/property.png";
+            break;
+        case 'photo':
+            icon = "_/img/markers/photo.png";
+            break;
+        case 'article':
+            icon = "_/img/markers/article.png";
+            break;
+    }
+    
+     var placeMarker = new google.maps.Marker({
+        position: location,
+        map: map,
+        animation:google.maps.Animation.DROP,
+        icon:icon
     });
     
     var infowindow = new InfoBubble({
@@ -149,7 +167,7 @@ function placeMarker(eventID,location) {
             async: false
         });
         
-        $('#marker-body').html( '<h1 class="modal-title"><center>'+eventJSON.title+'</center></h1><br>'+eventJSON.content);
+        $('#marker-body').html( '<h1 class="modal-title"><center>'+eventJSON.title+'</center></h1><center><p>'+eventJSON.eventDate+'</p></center><br>'+eventJSON.content);
         
         $('#marker-view').modal('toggle');
         $('#marker-view').on('hide.bs.modal', function () {            

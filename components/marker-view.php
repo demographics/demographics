@@ -37,13 +37,20 @@
 <script>
     function loadComments(){
         var index=0;
+        $("#comment-list").html('');
         jQuery.each(cur_comments, function(key,value) {
             if(index!=0){
-                $("#comment-list").append('<li class="list-group-item"><p>'+value.content+'</p></li>');
+                $("#comment-list").append('<li class="list-group-item"><p>'+'<a href="#">'+value.user+'</a>: '+value.content+'</p><p>'+value.datePosted+'</p></li>');
             }
             index=index+1;
         });
     }
+    
+    $(function(){
+        $('.comment-preview').slimScroll({
+            height: '200px'
+        });
+    });
     
      $(document).ready(function(){
          
@@ -57,7 +64,21 @@
                 },
                 async: false
             });
-            $("#comment-list").append('<li class="list-group-item"><p>'+document.getElementById('comment-input').value+'</p></li>');
+            
+                     
+            $.ajax({
+                url: "markers/phpsqlajax_load_comment.php",
+                type: "POST",
+                data: {
+                    eventID:cur_event
+                },
+                success: function (data) {
+                    cur_comments = JSON.parse(data);
+                    loadComments();
+                },
+                async: false
+            }); 
+            
             document.getElementById("comment-input").value = "";
         });
      });
