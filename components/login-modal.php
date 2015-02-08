@@ -29,7 +29,7 @@
                                 <button id="login-btn" name="login-btn"  class="btn btn-primary">Log in</button>
                                 <button id="cancel-btn" name="cancel-btn" data-dismiss="modal" class="btn btn-default">Cancel</button>
                             </div>
-                        </div>   
+                        </div>
                     </div>
                 </fieldset>
             </form>

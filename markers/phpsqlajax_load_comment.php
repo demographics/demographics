@@ -1,4 +1,10 @@
 <?php
+    /*
+       We receive the event ID from the ajax called and match
+       it with the event in the comment table in the database,
+       then we create a json object containing all the comments 
+       of the specified event and return them.
+    */
     require("../phpsqlajax_dbinfo.php");
     $eventID = $_POST['eventID'];
 

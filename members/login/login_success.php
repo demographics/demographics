@@ -1,4 +1,9 @@
 <?php
+    /*
+        If the login was a success, we proceed to the homepage
+        by indicating that the user is logged in, else we simply 
+        return to the homepage.
+    */
     session_start();
     
     if(!isset($_SESSION["logged_in"])){

@@ -30,6 +30,11 @@
 </div>
 
 <script>
+    /*
+        This function reads the contents of the photo input
+        so it can preview the photo throught the photo-preview 
+        element.
+    */
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -44,6 +49,11 @@
         readURL(this);
     });
 
+    /*
+        This function displays the photo information in the 
+        input text field. Its main reasong is for using it 
+        for multiple photos, rather than only one.
+    */
     function GetFileInfo () {
         var fileInput = document.getElementById ("fileInput");
         var tooltip="";

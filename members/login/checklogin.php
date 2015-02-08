@@ -1,4 +1,10 @@
 <?php
+     /*
+        We receive the information from the login form and
+        if we can match a member from the database with the 
+        email and the password, we then start a session with 
+        these information, else we flash.
+    */
     session_start();
 
     require("../../phpsqlajax_dbinfo.php");   

@@ -35,17 +35,20 @@
 </div>
 
 <script>
+    //Function for loading comments for each event
     function loadComments(){
         var index=0;
         $("#comment-list").html('');
         jQuery.each(cur_comments, function(key,value) {
             if(index!=0){
+                //Append li element with comment in comment-list ul
                 $("#comment-list").append('<li class="list-group-item"><p>'+'<a href="#">'+value.user+'</a>: '+value.content+'</p><p>'+value.datePosted+'</p></li>');
             }
             index=index+1;
         });
     }
     
+    //Initialize the slim-scroll on comment list
     $(function(){
         $('.comment-preview').slimScroll({
             height: '200px'
@@ -54,6 +57,13 @@
     
      $(document).ready(function(){
          
+        /*
+            The ajax caller for the comment post function.
+            We call the phpsqlajax_comment.php with the event ID 
+            and the comment content passed through the POST 
+            variable. If the post is succesfull the comments are 
+            added to the specified event's comment list.
+        */
         $('#comment-post-btn').on('click',function(){
             $.ajax({
                 url: "markers/phpsqlajax_comment.php",

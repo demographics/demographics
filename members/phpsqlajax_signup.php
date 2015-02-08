@@ -1,5 +1,10 @@
 <?php
-
+     /*
+        A test page to initialize database's member table
+        so we can test page functionality. We simply state 
+        the additional information and execute the store 
+        query.
+    */
     $firstname='Demetris';
     $lastname='Paschalides';
     $birthdate='13/05/1992';
@@ -23,8 +28,6 @@
     if (!$db_selected) {
       die ('Can\'t use db : ' . mysql_error());
     }
-
-    
 
     $query = "SELECT * from $database.MEMBER WHERE firstname='$firstname'";
     $result = mysql_query($query);

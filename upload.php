@@ -1,6 +1,12 @@
 <?php
- 
+    /*
+        We get all the variables passed via ajax and receives them from
+        _POST variable. From the eventType variable we determine the action
+        to be taken based on the switch statement for each event type.
+        Later we call the _storeEvent() function to store the event in database.
+    */
     session_start();
+
     $eventType = $_POST['event-type-input'];
     $eventTitle = $_POST['event-title-input'];
     $eventDate = $_POST['event-date-input'];
@@ -36,6 +42,13 @@
     
     _storeEvent($eventTitle,$eventType,$eventDate,$eventContent);
         
+    /*
+        We establish a connection with the database and retrieve the 
+        member's ID based on their email from _SESSION variable, then
+        we call the query to insert the event in the database. If 
+        successfull, we return in the ajax caller function the newly
+        stored event's ID.
+    */
     function _storeEvent($title,$type,$date,$content){
         require("phpsqlajax_dbinfo.php");  
         
@@ -72,8 +85,7 @@
             while ($row = @mysql_fetch_assoc($result)){
                $eventID=$row['id'];
             }
-            echo $eventID;
-           // echo 'Event stored successfully';
+            echo $eventID.' is the ID of the newly posted event.';
         }
     }
 ?>

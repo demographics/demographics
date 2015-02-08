@@ -1,8 +1,17 @@
+/*
+    These are the main javascript global variables
+    needed throughout the user's session.
+*/
 var map=null;
 var cur_location=null;
 var cur_event=null;
 var cur_comments=null;
 
+/*
+    This function is called upon the index.php load event.
+    It initializes the google map by binding the events onclick
+    e.t.c. and loads the stored events.
+*/
 function initialize() {
 
     var minZoomLevel = 10;
@@ -66,6 +75,12 @@ function initialize() {
 
 };
 
+/*
+    This function places a marker on the specific location and
+    chooses the corresponding icon based on the type of the event.
+    The type is determined by making an ajax request for the json 
+    object with the information of that event.
+*/
 function placeMarker(eventID,location) {
 
     
@@ -179,6 +194,10 @@ function placeMarker(eventID,location) {
 
 };
 
+/*
+    This function calls the ajax request for storing the
+    marker in the database
+*/
 function saveMarker(eventID,location){
 
     $.ajax({
@@ -195,7 +214,10 @@ function saveMarker(eventID,location){
     });
 
 }
-
+/*
+    This function makes the ajax request to load each events
+    contents.
+*/
 function loadMarkers() {
 
     downloadUrl("markers/phpsqlajax_genxml.php", function(data) {
@@ -215,6 +237,10 @@ function loadMarkers() {
 
 };
 
+/*
+    This function combines all placing, storing 
+    and informing of an event's posting
+*/
 function insertMarker(eventID){
     console.log('lattidute : '+cur_location.lat()+', longitude : '+cur_location.lng());
     placeMarker(eventID,cur_location);	

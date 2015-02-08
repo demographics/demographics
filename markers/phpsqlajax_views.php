@@ -1,4 +1,10 @@
 <?php
+    /*
+        This is a faulty functional way of storing and updating
+        the views of each event. It does not consider whether the 
+        users pressed the specified event more than once. It always 
+        increments the view of the event.
+    */
     require("../phpsqlajax_dbinfo.php");
     $eventID = $_POST['eventID'];
 

@@ -74,7 +74,9 @@
 </div>
 
 <script>       
-    $(document).ready(function(){   
+    $(document).ready(function(){
+        /*Initialize the bootstrap's datepicker
+        for event's date selector.*/
         $('#event-date-input').datepicker({
             format: 'dd/mm/yyyy',
         });
@@ -82,14 +84,18 @@
         var eventForm = document.getElementById("event-form"); 
         var currentTab = 'memoir';
         
+        //Setup the event on form submition
         $("form[name='uploader']").submit(function(e) {
+            //Create formdata to store form's values including photos
             var formData = new FormData($(this)[0]);
             
+            //Send data to upload.php using ajax
             $.ajax({
                 url: "upload.php",
                 type: "POST",
                 data: formData,
                 async: false,
+                //If ajax is successfull execute the followings
                 success: function (data) {
                     console.log(data);
                     $('#marker-modal').modal('hide');
@@ -99,10 +105,11 @@
                 contentType: false,
                 processData: false
             });
-
+            //Prevent the default reaction on form's submit
             e.preventDefault();
         });
             
+        
         $('#marker-modal').on('shown.bs.modal', function () {
             $('#event-title-input').focus();
             eventForm.reset();
@@ -114,6 +121,7 @@
             $('#photo-preview').attr('src', "");
         });
         
+        //
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var eventTitle = document.getElementById("event-title-input").value;       
             var eventDate = document.getElementById("event-date-input").value;  

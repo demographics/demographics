@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,14 +36,17 @@
 
     </head>
 
-    <body> 
+    <body>         
+        <!--This is the main container of the map-->
         <div id="map-canvas"></div>	
+        
+        <!--The main includes for the components-->
         <?php include 'components/marker-modal.php' ?>
         <?php include 'components/login-modal.php' ?>
         <?php include 'components/marker-view.php' ?>
         
+        <!--Setting the flag if logged in-->
         <?php 
-            session_start();
             if(isset($_SESSION['logged_in'])){
                 echo "<script>flag=true;</script>";
             }else{
@@ -52,10 +56,12 @@
         
         
         <script>
+            //If not logged in prompt the user to login on page load
             if(!flag){
                 $('#login-modal').modal('toggle');
             }   
-                        
+             
+            //Initialize article's editor
             $('#summernote').summernote({
                 toolbar: [
                     ['style', ['bold', 'italic', 'underline']],

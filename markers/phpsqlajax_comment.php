@@ -1,4 +1,9 @@
 <?php
+    /*
+        We receive the POST variables from the ajax called and 
+        make a connection with the database so we can store the 
+        comments. 
+    */
     session_start();
     $eventID=$_POST['eventID'];
     $comment=$_POST['comment'];

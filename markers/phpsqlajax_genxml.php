@@ -1,4 +1,10 @@
-<?php
+<?php 
+    /*
+       We generate an XML file containing the markers of the events
+       by executing the query and returning contents of type text/xml. 
+       This is made easier on the server, instead of requesting each marker
+       it requests all of them via the XML file.
+    */
     require("../phpsqlajax_dbinfo.php");
 
     function parseToXML($htmlStr)

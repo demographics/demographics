@@ -1,5 +1,10 @@
 <?php
-    
+    /*
+        A test page to initialize database's community table
+        so we can test page functionality. We simply state 
+        the additional information and execute the store 
+        query.
+    */
     $name='Fterikoudin';
     
     require("../phpsqlajax_dbinfo.php");   

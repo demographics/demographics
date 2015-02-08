@@ -1,4 +1,9 @@
 <?php
+    /*
+        We receive the event's ID from the ajax called and
+        match it in the database so we can get each event's 
+        contents and return them to the map via json objects.
+    */
     require("../phpsqlajax_dbinfo.php");
     $eventID = $_POST['eventID'];
 
