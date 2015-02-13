@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+<?php session_start(); ?> <!-- epianna tt to error: session_start(): Cannot send session cache limiter - headers already sent -->
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -36,17 +36,16 @@
 
     </head>
 
-    <body>         
-        <!--This is the main container of the map-->
-        <div id="map-canvas"></div>	
-        
-        <!--The main includes for the components-->
+    <body>
+	    <?php include 'navbar/navbar.php' ?>
+        <div id="map-canvas"></div>	    
         <?php include 'components/marker-modal.php' ?>
         <?php include 'components/login-modal.php' ?>
         <?php include 'components/marker-view.php' ?>
+
         
-        <!--Setting the flag if logged in-->
         <?php 
+            session_start();
             if(isset($_SESSION['logged_in'])){
                 echo "<script>flag=true;</script>";
             }else{
@@ -56,12 +55,29 @@
         
         
         <script>
-            //If not logged in prompt the user to login on page load
-            if(!flag){
-                $('#login-modal').modal('toggle');
-            }   
+        	$('#LogIn_Button').on('click',function(){
+		    	if(!flag){
+              	  $('#login-modal').modal('toggle');
+            	}  
+			});
+			
+			$('#LogOut_Button').on('click',function(){
+		    	$.ajax({
+		    	// remember to change file's directory
+                url: "/~Panayiotis/demographics/members/login/logout.php",
+                type: "POST",
+                async: false,
+                cache: false,
+            	success: function(data){
+            		alert(data);
+            	},
+                contentType: false,
+                processData: false
+           	 	});
+           	 	flag=false;
+			});
              
-            //Initialize article's editor
+                        
             $('#summernote').summernote({
                 toolbar: [
                     ['style', ['bold', 'italic', 'underline']],
