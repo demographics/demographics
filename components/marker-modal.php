@@ -31,6 +31,13 @@
                             </div>
                         </div>
                         
+                        <div class="form-group">
+                            <div class="input-group">
+                                <span class="input-group-addon">Tags&nbsp;</span>
+                                <input id="event-tags-input" name="event-tags-input" class="form-control" placeholder="Event's tags go here." required="" type="text">
+                            </div>
+                        </div>
+                        
                         <ul id='eventTabs' class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active"><a href="#memoir" role="tab" data-toggle="tab">Memoir</a></li>
                             <li role="presentation"><a href="#article" role="tab" data-toggle="tab">Article</a></li>
@@ -55,7 +62,7 @@
                             <div role="tabpanel" class="tab-pane fade" id="photo">
                                 <?php include 'forms/photo-form.php'?>
                             </div>
-
+                            
                         </div>
         
                     </div>
@@ -64,7 +71,6 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-primary" >Post</button>
                         </div>
-
                     </div>
                 </fieldset>
             </form>
@@ -121,7 +127,7 @@
             $('#photo-preview').attr('src', "");
         });
         
-        //
+        
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var eventTitle = document.getElementById("event-title-input").value;       
             var eventDate = document.getElementById("event-date-input").value;  

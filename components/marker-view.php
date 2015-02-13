@@ -5,12 +5,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <button class="btn btn-default">
-                    <i class="fa fa-thumbs-down"></i>
-                </button>
-                <button class="btn btn-default">
-                    <i class="fa fa-thumbs-up"></i>
-                </button>
+                <div id="marker-header"></div>
             </div>
             <div id="marker-body" class="modal-body">
             </div>
@@ -25,14 +20,22 @@
                 </div>  
                 <div class="row">
                     <div class="comment-preview">
-                        <ul id="comment-list" class="list-group">
-                        </ul>
+                        <ul id="comment-list" class="list-group"></ul>
                     </div>
+                </div>
+                <div class="row">
+                    <button id="report-prompt" class="btn btn-danger">
+                        <i color="#FFF" class="fa fa-thumbs-down"></i>
+                    </button>
+                    <button class="btn btn-primary">
+                        <i color="#FFF" class="fa fa-thumbs-up"></i>
+                    </button>
                 </div>
             </div>
         </div>   
     </div>
 </div>
+<?php include 'report-modal.php' ?>
 
 <script>
     //Function for loading comments for each event
@@ -92,4 +95,10 @@
             document.getElementById("comment-input").value = "";
         });
      });
+    
+    $('#report-prompt').on('click',function(){
+        document.getElementById('event-title-preview').value = cur_JSON.title;
+        document.getElementById('event-user-preview').value = cur_JSON.user;
+        $('#report-modal').modal('toggle');
+    });
 </script>

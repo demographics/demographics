@@ -27,7 +27,7 @@
       die ('Can\'t use db : ' . mysql_error());
     }
 
-    $query = "SELECT * FROM marker WHERE 1";
+    $query = "SELECT * FROM MARKER WHERE 1";
     $result = mysql_query($query);
     if (!$result) {
       die('Invalid query: ' . mysql_error());

@@ -24,3 +24,7 @@ function downloadUrl(url,callback) {
     for the response of the XMLHTTP request sent.
 */
 function idle() {}
+
+function capture(){
+   
+}

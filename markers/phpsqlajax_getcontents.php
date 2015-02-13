@@ -1,4 +1,5 @@
 <?php
+    session_start();
     /*
         We receive the event's ID from the ajax called and
         match it in the database so we can get each event's 
@@ -34,6 +35,7 @@
         $event['likes'] = $row['like'];
         $event['type'] = $row['type'];
         $event['eventID'] = $row['id'];
+        $event['user'] = $_SESSION['email'];
         
     }
     echo json_encode($event);
