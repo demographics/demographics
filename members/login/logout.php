@@ -6,5 +6,6 @@
     session_start();
     session_unset();
     session_destroy();
-    header("location:login_success.php");
+    //header("location:login_success.php");
+    echo "kati";
 ?>

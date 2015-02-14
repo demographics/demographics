@@ -4,11 +4,7 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Log in</h4>
-                <?php 
-                    if(isset($_SESSION['errorLogin']))
-                        echo "<p class='error-message'>Error! Wrong email or password.</p>";
-                        $_SESSION['errorLogin'] = null;
-                ?>
+
             </div>
             <form method="post" name="login-form" action="members/login/checklogin.php" class="form-horizontal">
                 <fieldset>

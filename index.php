@@ -61,23 +61,41 @@
         
         
         <script>
+            var login_error=
+                <?php 
+                    if(isset($_SESSION['errorLogin'] )){
+                        $_SESSION['errorLogin']=null;
+                        echo 1;
+                    }
+                    else{
+                        $_SESSION['errorLogin']=null;
+                        echo 0;
+                    }
+                ?>
+                
+                if(login_error==1){
+                    swal("You are not logged in!", "You have to login to be able to post.","warning");
+                }
             
-            $('#LogIn_Button').on('click',function(){
+            $('#Log_Button').on('click',function(){
 		    	if(!flag){
-              	  $('#login-modal').modal('toggle');
-            	}  
+                    $('#login-modal').modal('toggle');
+                    $('#Log_Button').attr('data-toggle', ""); 
+            	   }
+                else{
+                     $('#Log_Button').attr('data-toggle', "dropdown");  
+                    }
 			});
-			
+
 			$('#LogOut_Button').on('click',function(){
 		    	$.ajax({
-		    	// remember to change file's directory
-                url: "/~Panayiotis/demographics/members/login/logout.php",
+                url: "members/login/logout.php",
                 type: "POST",
                 async: false,
                 cache: false,
-            	success: function(data){
-            		alert(data);
-            	},
+            	//success: function(data){
+            	//	alert(data);
+            	//},
                 contentType: false,
                 processData: false
            	 	});
