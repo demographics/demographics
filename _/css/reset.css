@@ -16,6 +16,11 @@ html, body, #map-canvas {
     padding: 0;
     }
 
+#Log_Button{
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+
 .tooltip {
     z-index: 9999;
 }

@@ -37,18 +37,19 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a id="LogIn_Button" href="#">Log In</a></li>
-        <li><a id="LogOut_Button" href="#">Log Out</a></li>
-        <!-- <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+        <!-- <li><a id="LogIn_Button" href="#">Log In</a></li> -->
+        <!-- <li><a id="LogOut_Button" href="#">Log Out</a></li> -->
+          <!-- <span class="caret"></span> -->
+        <li class="dropdown">
+          <a id="Log_Button" href="#" class="dropdown-toggle" role="button" aria-expanded="false"><img src="_/img/man.png" alt="Log In" height="30" width="30"></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Edit Profile</a></li>
+            <li><a href="#">Something else</a></li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li><a id="LogOut_Button" href="#">Log Out</a></li>
           </ul>
-        </li> -->
+        </li>
+          
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
