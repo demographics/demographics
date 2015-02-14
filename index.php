@@ -26,7 +26,6 @@
         <script src="_/libs/summernote/summernote.min.js"></script>
         <script src="_/js/jquery.slimscroll.min.js"></script>
         <script src="_/libs/bootstrap/tags/bootstrap-tagsinput.min.js"></script>
-        <!--<script src="_/libs/tagmanager/tagmanager.js"></script>-->
         
         <link rel="icon" type="image/ico" href="_/img/favicon.ico">
         <link href="_/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +37,6 @@
         <link href="_/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link href="_/libs/summernote/summernote.css" rel="stylesheet">
         <link href="_/libs/bootstrap/tags/bootstrap-tagsinput.css" rel="stylesheet">
-        <!--<link href="_/libs/tagmanager/tagmanager.css" rel="stylesheet">-->
 
     </head>
 
