@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+
+
+<div class="modal fade" id="TC-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+<fieldset>
+
+<!-- Form Name -->
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="member-name-input">Name:</label>  
+  <div class="col-md-4">
+  <input id="member-name-input" name="member-name-input" placeholder="Insert your name" class="form-control input-md" required="" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="member-surname-input">Surname:</label>  
+  <div class="col-md-4">
+  <input id="member-surname-input" name="member-surname-input" placeholder="Insert your surname" class="form-control input-md" required="" type="text">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="member-date-of-birth-input">Date of Birth:</label>  
+  <div class="col-md-4">
+  <input id="member-date-of-birth-input" name="member-date-of-birth-input" placeholder="" class="form-control input-md" required="" type="text">
+    
+  </div>
+</div>
+
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="member-sex-input">Sex:</label>
+  <div class="col-md-4"> 
+    <label class="radio-inline" for="member-sex-input-0">
+      <input name="member-sex-input" id="member-sex-input-0" value="1" checked="checked" type="radio">
+      Male
+    </label> 
+    <label class="radio-inline" for="member-sex-input-1">
+      <input name="member-sex-input" id="member-sex-input-1" value="2" type="radio">
+      Female
+    </label>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="member-village-b1974-input">Place of living before 1974:</label>
+  <div class="col-md-4">
+    <select id="member-village-b1974-input" name="member-village-b1974-input" class="form-control">
+      <option value="1">Peristerona</option>
+      <option value="2">Pigi</option>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="member-village-a1974-input">Place of living after 1974:</label>
+  <div class="col-md-4">
+    <select id="member-village-a1974-input" name="member-village-a1974-input" class="form-control">
+      <option value="1">Strovolos</option>
+      <option value="2">Egwmi</option>
+    </select>
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="member-email-input">Email:</label>  
+  <div class="col-md-4">
+  <input id="member-email-input" name="member-email-input" placeholder="Insert your e-mail:" class="form-control input-md" required="" type="text">
+    
+  </div>
+</div>
+
+<!-- Password input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="member-password-input">Password:</label>
+  <div class="col-md-4">
+    <input id="member-password-input" name="member-password-input" placeholder="Insert your password" class="form-control input-md" required="" type="password">
+    
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="member-sign-up-btn"></label>
+  <div class="col-md-8">
+    <button id="member-sign-up-btn" name="member-sign-up-btn" class="btn btn-primary">Sign Up:</button>
+    <button id="member-cancel-btn" name="member-cancel-btn" class="btn btn-default">Cancel</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> 
+
+    <nav class="navbar navbar-default navbar-fixed-bottom">
+      <div class="container">
+        <a href="#" id="TC-link"><p style="text-align:right">Terms&Conditions</a></p>
+        <p align="center">All rights reserved © Copyright 2015</p>
+      </div>
+    </nav>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+	$("#TC-link").on("click",function(){
+	    $("#TC-modal").modal("toggle");
+	});
+    </script>
+  </body>
+</html>
