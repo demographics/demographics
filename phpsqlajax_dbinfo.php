@@ -9,4 +9,5 @@
     $password="ty0w?a9i";
     $database="demographics";
 	$host="localhost";
+
 ?>
