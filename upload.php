@@ -40,8 +40,8 @@
         default:
             ;
     }
-    echo $tags;
-    //_storeEvent($eventTitle,$eventType,$eventDate,$eventContent);
+    
+    _storeEvent($eventTitle,$eventType,$eventDate,$eventContent);
         
     /*
         We establish a connection with the database and retrieve the 

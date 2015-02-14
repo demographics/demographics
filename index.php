@@ -1,4 +1,6 @@
-<?php session_start(); ?> <!-- epianna tt to error: session_start(): Cannot send session cache limiter - headers already sent -->
+<?php 
+    session_start(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -15,14 +17,16 @@
         <script src="_/libs/bootstrap/sweetalert/lib/sweet-alert.min.js"></script>
         <script src="_/libs/bootstrap/fileinput/js/fileinput.min.js"></script>
         <script src="_/libs/bootstrap/datepicker/js/bootstrap-datepicker.js"></script>
+        <script src="_/js/demographics.js" type="text/javascript"></script>
         <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWMxUmWeNkBfkGxiaLBLLWBZSw3pxSNM0">
         </script>
-        <script src="_/js/demographics.js" type="text/javascript"></script>
         <script src="_/js/googleMaps.js" type="text/javascript"></script>
         <script src="_/js/infobubble.js"></script>
         <script src="_/libs/summernote/summernote.min.js"></script>
         <script src="_/js/jquery.slimscroll.min.js"></script>
+        <script src="_/libs/bootstrap/tags/bootstrap-tagsinput.min.js"></script>
+        <!--<script src="_/libs/tagmanager/tagmanager.js"></script>-->
         
         <link rel="icon" type="image/ico" href="_/img/favicon.ico">
         <link href="_/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,19 +37,23 @@
         <link href="_/css/reset.css" rel="stylesheet">
         <link href="_/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link href="_/libs/summernote/summernote.css" rel="stylesheet">
+        <link href="_/libs/bootstrap/tags/bootstrap-tagsinput.css" rel="stylesheet">
+        <!--<link href="_/libs/tagmanager/tagmanager.css" rel="stylesheet">-->
 
     </head>
 
-    <body>
-	    <?php include 'navbar/navbar.php' ?>
-        <div id="map-canvas"></div>	    
+    <body>  
+        
+        <!--This is the main container of the map-->
+        <div id="map-canvas"></div>	
+        
+        <!--The main includes for the components-->
         <?php include 'components/marker-modal.php' ?>
         <?php include 'components/login-modal.php' ?>
         <?php include 'components/marker-view.php' ?>
-
         
+        <!--Setting the flag if logged in-->
         <?php 
-            session_start();
             if(isset($_SESSION['logged_in'])){
                 echo "<script>flag=true;</script>";
             }else{
@@ -55,29 +63,12 @@
         
         
         <script>
-        	$('#LogIn_Button').on('click',function(){
-		    	if(!flag){
-              	  $('#login-modal').modal('toggle');
-            	}  
-			});
-			
-			$('#LogOut_Button').on('click',function(){
-		    	$.ajax({
-		    	// remember to change file's directory
-                url: "/~Panayiotis/demographics/members/login/logout.php",
-                type: "POST",
-                async: false,
-                cache: false,
-            	success: function(data){
-            		alert(data);
-            	},
-                contentType: false,
-                processData: false
-           	 	});
-           	 	flag=false;
-			});
+            //If not logged in prompt the user to login on page load
+            if(!flag){
+                $('#login-modal').modal('toggle');
+            }   
              
-                        
+            //Initialize article's editor
             $('#summernote').summernote({
                 toolbar: [
                     ['style', ['bold', 'italic', 'underline']],

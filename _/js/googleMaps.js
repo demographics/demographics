@@ -59,7 +59,9 @@ function initialize() {
         cur_location=event.latLng;
         if(flag){
             $("#marker-modal").modal("toggle");
-        } 
+        }else{
+            swal("You are not logged in!", "You have to login to be able to post.","warning");
+        }
     });			
 
     loadMarkers();

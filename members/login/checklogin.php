@@ -6,7 +6,7 @@
         these information, else we flash.
     */
     session_start();
-
+    
     require("../../phpsqlajax_dbinfo.php");   
 
     $connection=mysql_connect ($host, $username, $password);
@@ -37,9 +37,11 @@
         $_SESSION["email"]=$email;
         $_SESSION["password"]=$user_password;
         $_SESSION["logged_in"]=1;
+        $_SESSION["errorLogin"]=null;
         header("location:login_success.php");
     }else{
-        echo "Wrong email or password.";
+        $_SESSION["errorLogin"]=1;
+        header("location:../../index.php");
     }
     ob_end_flush();
 ?>

@@ -106,7 +106,7 @@
                 success: function (data) {
                     console.log(data);
                     $('#marker-modal').modal('hide');
-                    //insertMarker(data);
+                    insertMarker(data);
                 },
                 cache: false,
                 contentType: false,

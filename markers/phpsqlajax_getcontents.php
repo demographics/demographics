@@ -35,7 +35,7 @@
         $event['likes'] = $row['like'];
         $event['type'] = $row['type'];
         $event['eventID'] = $row['id'];
-        $event['user'] = $_SESSION['email'];
+        $event['user'] = $row['email'];
         
     }
     echo json_encode($event);
