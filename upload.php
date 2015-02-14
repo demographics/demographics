@@ -42,7 +42,7 @@
             ;
     }
     
-    _storeEvent($eventTitle,$eventType,$eventDate,$eventContent);
+    _storeEvent($eventTitle,$eventType,$eventDate,$eventContent, $tags);
         
     /*
         We establish a connection with the database and retrieve the 
@@ -51,11 +51,10 @@
         successfull, we return in the ajax caller function the newly
         stored event's ID.
     */
-    function _storeEvent($title,$type,$date,$content){
+    function _storeEvent($title,$type,$date,$content,$tags){
         require("phpsqlajax_dbinfo.php");  
         
         $email= $_SESSION['email'];
-        $currentDatetime=null;
         $userID=null;
         $eventID=null;
         $connection=mysql_connect ($host, $username, $password);
@@ -75,7 +74,7 @@
             $userID=$row['id'];
         }
 
-        $query = "INSERT INTO $database.event(title,`type`,content,`datetime`,`date`,`view`,`like`,member) VALUES ('$title','$type','$content',NOW(),STR_TO_DATE('$date', '%d/%m/%Y'),0,0,$userID)";
+        $query = "INSERT INTO $database.event(title,`type`,content,`datetime`,`date`,`view`,`like`,member, tags) VALUES ('$title','$type','$content',NOW(),STR_TO_DATE('$date', '%d/%m/%Y'),0,0,'$userID', '$tags')";
         $result = mysql_query($query);        
         
         if (!$result) {

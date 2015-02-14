@@ -102,7 +102,7 @@
                 type: "POST",
                 data: formData,
                 async: false,
-                //If ajax is successfull execute the followings
+                //If ajax is successful, execute the followings
                 success: function (data) {
                     console.log(data);
                     $('#marker-modal').modal('hide');
