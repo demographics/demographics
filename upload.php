@@ -12,6 +12,7 @@
     $eventDate = $_POST['event-date-input'];
     $userEmail =  $_SESSION["email"];
     $eventContent = null;
+    $tags = $_POST['event-tags-input'];
 
     switch($eventType){
         case "memoir":
@@ -39,8 +40,8 @@
         default:
             ;
     }
-    
-    _storeEvent($eventTitle,$eventType,$eventDate,$eventContent);
+    echo $tags;
+    //_storeEvent($eventTitle,$eventType,$eventDate,$eventContent);
         
     /*
         We establish a connection with the database and retrieve the 

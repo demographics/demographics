@@ -30,11 +30,12 @@
                                 <input data-provide="datepicker" id="event-date-input" name="event-date-input" class="form-control" placeholder="Pick the event's date." required="" type="text">
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">Tags&nbsp;</span>
-                                <input id="event-tags-input" name="event-tags-input" class="form-control" placeholder="Event's tags go here." required="" type="text">
+                            <div id="tags-input-group" class="input-group">
+                                <div>
+                                    <input data-role="tagsinput" id="event-tags-input" name="event-tags-input" class="form-control" placeholder="Tags" required="" type="text">
+                                </div>
                             </div>
                         </div>
                         
@@ -105,7 +106,7 @@
                 success: function (data) {
                     console.log(data);
                     $('#marker-modal').modal('hide');
-                    insertMarker(data);
+                    //insertMarker(data);
                 },
                 cache: false,
                 contentType: false,
