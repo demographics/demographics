@@ -5,6 +5,7 @@
         to be taken based on the switch statement for each event type.
         Later we call the _storeEvent() function to store the event in database.
     */
+	
     session_start();
 
     $eventType = $_POST['event-type-input'];
