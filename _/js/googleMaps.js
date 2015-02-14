@@ -6,7 +6,7 @@ var map=null;
 var cur_location=null;
 var cur_event=null;
 var cur_comments=null;
-
+var cur_JSON=null;
 /*
     This function is called upon the index.php load event.
     It initializes the google map by binding the events onclick
@@ -59,16 +59,7 @@ function initialize() {
         cur_location=event.latLng;
         if(flag){
             $("#marker-modal").modal("toggle");
-        }else{
-            swal({
-              title: "You are not logged in.",
-              text: "You have to be logged in to post an event.",
-              type: "warning",
-              showCancelButton: false,
-              confirmButtonClass: 'btn-warning',
-              confirmButtonText: 'Got it!'
-            });
-        }
+        } 
     });			
 
     loadMarkers();
@@ -120,16 +111,17 @@ function placeMarker(eventID,location) {
      var placeMarker = new google.maps.Marker({
         position: location,
         map: map,
-        animation:google.maps.Animation.DROP,
-        icon:icon
+        animation:google.maps.Animation.DROP//,
+        //icon:icon
     });
     
     var infowindow = new InfoBubble({
           content: 
                     '<div class="info-element">'+
-                        '<h5>'+eventJSON.title+'</h5>'+
+                        '<p>'+eventJSON.eventDate+'</p>'+
+                        '<h5>'+eventJSON.title+'</h5>'  +
                     '</div>',
-          minWidth:50,
+          minWidth:100,
           minHeight:55,
           maxWidth:150,
           maxHeight:180,
@@ -138,7 +130,7 @@ function placeMarker(eventID,location) {
           backgroundColor: '#FFF',
           borderRadius: 5,
           arrowSize: 10,
-          borderWidth: 1,
+          borderWidth: 2,
           borderColor: '#FFF',
           disableAutoPan: true,
           hideCloseButton: true,
@@ -182,7 +174,11 @@ function placeMarker(eventID,location) {
             async: false
         });
         
-        $('#marker-body').html( '<h1 class="modal-title"><center>'+eventJSON.title+'</center></h1><center><p>'+eventJSON.eventDate+'</p></center><br>'+eventJSON.content);
+        $('#marker-header').html('<a href="#">'+eventJSON.user+'</a>'+'<p>'+eventJSON.datePosted+'</p>'+
+                                 '<div>Views: '+eventJSON.views+'</div><div>Likes: '+eventJSON.likes+'</div>');
+        $('#marker-body').html( '<h1 class="modal-title"><center>'+eventJSON.title+'</center></h1>'+
+                                '<center><p>'+eventJSON.eventDate+'</p></center>'+
+                                '<br>'+eventJSON.content);
         
         $('#marker-view').modal('toggle');
         $('#marker-view').on('hide.bs.modal', function () {            
@@ -190,6 +186,7 @@ function placeMarker(eventID,location) {
             $("#comment-list").html("");
             document.getElementById("comment-input").value = "";
         });
+    cur_JSON=eventJSON;
     });
 
 };

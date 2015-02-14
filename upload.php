@@ -85,7 +85,7 @@
             while ($row = @mysql_fetch_assoc($result)){
                $eventID=$row['id'];
             }
-            //echo $eventID.' is the ID of the newly posted event.';
+            echo $eventID;
         }
     }
 ?>
