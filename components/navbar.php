@@ -16,7 +16,7 @@
       <ul class="nav navbar-nav">
         <!-- to class active dilwnei oti einai mavrismeno xwris na perasei to mouse apo panw -->
         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li id=forum_Button><a href="http://localhost/~Panayiotis/EPL363/vanilla/index.php">Forum</a></li>
+        <li id=forum_Button><a href="community/vanilla/index.php">Forum</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">

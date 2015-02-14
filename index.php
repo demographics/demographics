@@ -43,7 +43,7 @@
     </head>
 
     <body>  
-        
+        <?php include 'components/navbar.php' ?>
         <!--This is the main container of the map-->
         <div id="map-canvas"></div>	
         
@@ -63,11 +63,30 @@
         
         
         <script>
-            //If not logged in prompt the user to login on page load
-            if(!flag){
-                $('#login-modal').modal('toggle');
-            }   
+            
+            $('#LogIn_Button').on('click',function(){
+		    	if(!flag){
+              	  $('#login-modal').modal('toggle');
+            	}  
+			});
+			
+			$('#LogOut_Button').on('click',function(){
+		    	$.ajax({
+		    	// remember to change file's directory
+                url: "/~Panayiotis/demographics/members/login/logout.php",
+                type: "POST",
+                async: false,
+                cache: false,
+            	success: function(data){
+            		alert(data);
+            	},
+                contentType: false,
+                processData: false
+           	 	});
+           	 	flag=false;
+			});
              
+                 
             //Initialize article's editor
             $('#summernote').summernote({
                 toolbar: [

@@ -6,6 +6,16 @@ html, body, #map-canvas {
 	padding: 0;
 }
 
+#map-canvas{
+    margin-top: 0px;
+    overflow-y:  hidden;
+}
+
+#top_menu{
+    margin: 0;
+    padding: 0;
+    }
+
 .tooltip {
     z-index: 9999;
 }
