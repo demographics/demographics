@@ -6,16 +6,9 @@ html, body, #map-canvas {
 	padding: 0;
 }
 
-#map-canvas{
-    margin-top: 0px;
-    overflow-y:  hidden;
-    height: 90%;
-}
-
 #top_menu{
     margin: 0;
     padding: 0;
-    height: 10%;
 }
 
 #Log_Button{

@@ -7,7 +7,7 @@
     */
     $username="dpasch01";
     $password="ty0w?a9i";
-    $database="demographics";
+    $database="db_demographics";
 	$host="localhost";
 
 ?>

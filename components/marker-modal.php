@@ -87,7 +87,7 @@
         $('#event-date-input').datepicker({
             format: 'dd/mm/yyyy',
         });
-        
+                
         var eventForm = document.getElementById("event-form"); 
         var currentTab = 'memoir';
         
@@ -125,6 +125,7 @@
         $('#marker-modal').on('hide.bs.modal', function () {            
             var info = document.getElementById ("info");
             info.innerHTML = "";
+            $('input[data-role="tagsinput"]').tagsinput('removeAll');
             $('#photo-preview').attr('src', "");
         });
         
