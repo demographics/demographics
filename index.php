@@ -74,7 +74,7 @@
                 ?>
                 
                 if(login_error==1){
-                    swal("You are not logged in!", "You have to login to be able to post.","warning");
+                   alert("Wrong email or password!");
                 }
             
             $('#Log_Button').on('click',function(){

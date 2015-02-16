@@ -4,7 +4,7 @@
     $lastname='Pavlides';
     $birthdate='31/05/1992';
     $email='aa';
-    $user_password='123123';
+    $user_password='121813';
     $user_password = md5($user_password);
     $gender='M';
     $pre74='2';

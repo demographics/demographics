@@ -29,15 +29,25 @@
             $userID=$row['id'];
     }
 
-    $query = "INSERT INTO ".$database.".comment(`event`,content,`datetime`,member) VALUES ($eventID,'$comment',NOW(),$userID)";
-    $result = mysql_query($query);
+    $query = "SELECT * FROM $database.EVENT WHERE EVENT.id=$eventID";
+        $result = mysql_query($query);
+        while ($row = @mysql_fetch_assoc($result)){
+            $ownerID=$row['member'];
+    }
 
+    $query = "INSERT INTO ".$database.".COMMENT(`event`,content,`datetime`,member) VALUES ($eventID,'$comment',NOW(),$userID)";
+    $result = mysql_query($query);
+    
+        
     if (!$result) {
         die('Invalid query: ' . mysql_error());
     }
     else{
+        $query = "INSERT INTO $database.NOTIFICATION(`member`, `owner`, `event`, `type`, `status`, `datetime`) VALUES ($userID, $ownerID, $eventID, 1, 'unseen', NOW())";
+        $result = mysql_query($query);
         echo "Comment successfully.";
     }
 
+    
 
 ?>

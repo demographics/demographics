@@ -5,7 +5,7 @@
         the additional information and execute the store 
         query.
     */
-    $name='Fterikoudin';
+    $name='Nicosia';
     
     require("../phpsqlajax_dbinfo.php");   
     $connection=mysql_connect ($host, $username, $password);
