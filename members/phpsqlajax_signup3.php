@@ -1,10 +1,10 @@
 <?php
 
-    $firstname='Panayiotis';
-    $lastname='Pavlides';
-    $birthdate='31/05/1992';
-    $email='ppana02@cs.ucy.ac.cy';
-    $user_password='ppana02';
+    $firstname='Theodoros';
+    $lastname='Charalambous';
+    $birthdate='10/08/1992';
+    $email='tchara05@cs.ucy.ac.cy';
+    $user_password='tchara05';
     $user_password = md5($user_password);
     $gender='M';
     $pre74='2';

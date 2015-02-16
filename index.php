@@ -89,17 +89,17 @@
 
 			$('#LogOut_Button').on('click',function(){
 		    	$.ajax({
-                url: "members/login/logout.php",
-                type: "POST",
-                async: false,
-                cache: false,
-            	//success: function(data){
-            	//	alert(data);
-            	//},
-                contentType: false,
-                processData: false
-           	 	});
-           	 	flag=false;
+                    url: "members/login/logout.php",
+                    type: "POST",
+                    async: false,
+                    cache: false,
+                    success: function(data){
+                        flag=false;
+                        window.location="index.php";
+                    },
+                    contentType: false,
+                    processData: false
+           	 	});	
 			});
              
                  
@@ -112,6 +112,22 @@
                     ['misc',['codeview']]
                 ]
             });
+            
+            if(flag){
+                $('#sign-up-btn').hide();
+                $.ajax({
+                    url: "notifications/notifications.php",
+                    type: "POST",
+                    async: false,
+                    cache: false,
+                    success: function(data){
+                        if(data>0)
+                            $('#notification-badge').text(data);
+                    },
+                    contentType: false,
+                    processData: false
+                });
+            }
         </script>
 
     </body>

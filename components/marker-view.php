@@ -59,6 +59,10 @@
     });
     
      $(document).ready(function(){
+         if(!flag){
+            $('#comment-post-btn').attr('disabled','true');
+            $('#comment-input').attr('disabled','true');
+         }
          
         /*
             The ajax caller for the comment post function.

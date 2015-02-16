@@ -17,7 +17,8 @@
         <!-- to class active dilwnei oti einai mavrismeno xwris na perasei to mouse apo panw -->
         <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
         <li id=forum_Button><a href="community/vanilla/index.php">Forum</a></li>
-        
+         <li role="presentation"><a href="#">Events
+ <span id="notification-badge" class="badge-info badge"></span></a></li>
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
@@ -30,6 +31,8 @@
         <!-- <li><a id="LogIn_Button" href="#">Log In</a></li> -->
         <!-- <li><a id="LogOut_Button" href="#">Log Out</a></li> -->
           <!-- <span class="caret"></span> -->
+       
+        <li id="sign-up-btn"><a href="#">Sign-up</a></li>  
         <li class="dropdown">
           <a id="Log_Button" href="#" class="dropdown-toggle" role="button" aria-expanded="false"><img src="_/img/man.png" alt="Log In" height="30" width="30"></a>
           <ul class="dropdown-menu" role="menu">
