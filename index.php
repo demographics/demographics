@@ -49,6 +49,8 @@
         <?php include 'components/marker-modal.php' ?>
         <?php include 'components/login-modal.php' ?>
         <?php include 'components/marker-view.php' ?>
+        <?php include 'components/forms/sign-up-form.php' ?>
+        <?php include 'components/footer.php' ?>
         
         <!--Setting the flag if logged in-->
         <?php 
@@ -60,74 +62,87 @@
         ?>
         
         
-        <script>
-            var login_error=
-                <?php 
-                    if(isset($_SESSION['errorLogin'] )){
-                        $_SESSION['errorLogin']=null;
-                        echo 1;
-                    }
-                    else{
-                        $_SESSION['errorLogin']=null;
-                        echo 0;
-                    }
-                ?>
-                
-                if(login_error==1){
-                   alert("Wrong email or password!");
-                }
-            
-            $('#Log_Button').on('click',function(){
-		    	if(!flag){
-                    $('#login-modal').modal('toggle');
-                    $('#Log_Button').attr('data-toggle', ""); 
-            	   }
-                else{
-                     $('#Log_Button').attr('data-toggle', "dropdown");  
-                    }
-			});
+        <script type="text/javascript">
+            $(window).load(function(){
+                $(document).ready(function(){
 
-			$('#LogOut_Button').on('click',function(){
-		    	$.ajax({
-                    url: "members/login/logout.php",
-                    type: "POST",
-                    async: false,
-                    cache: false,
-                    success: function(data){
-                        flag=false;
-                        window.location="index.php";
-                    },
-                    contentType: false,
-                    processData: false
-           	 	});	
-			});
-             
-                 
-            //Initialize article's editor
-            $('#summernote').summernote({
-                toolbar: [
-                    ['style', ['bold', 'italic', 'underline']],
-                    ['font', ['strikethrough']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['misc',['codeview']]
-                ]
-            });
-            
-            if(flag){
-                $('#sign-up-btn').hide();
-                $.ajax({
-                    url: "notifications/notifications.php",
-                    type: "POST",
-                    async: false,
-                    cache: false,
-                    success: function(data){
-                        if(data>0)
-                            $('#notification-badge').text(data);
-                    },
-                    contentType: false,
-                    processData: false
+                    var login_error=
+                        <?php 
+                            if(isset($_SESSION['errorLogin'] )){
+                                $_SESSION['errorLogin']=null;
+                                echo 1;
+                            }
+                            else{
+                                $_SESSION['errorLogin']=null;
+                                echo 0;
+                            }
+                        ?>
+
+                        if(login_error==1){
+                            swal({
+                              title: "Error!",
+                              text: "You have typed wrong email or password.",
+                              type: "error",
+                              showCancelButton: false,
+                              confirmButtonClass: "btn-default",
+                              confirmButtonText: "Got it!",
+                              closeOnConfirm: true
+                            });
+                        }
+
+                    $('#Log_Button').on('click',function(){
+                        if(!flag){
+                            $('#login-modal').modal('toggle');
+                            $('#Log_Button').attr('data-toggle', ""); 
+                           }
+                        else{
+                             $('#Log_Button').attr('data-toggle', "dropdown");  
+                            }
+                    });
+
+                    $('#LogOut_Button').on('click',function(){
+                        $.ajax({
+                            url: "members/login/logout.php",
+                            type: "POST",
+                            async: false,
+                            cache: false,
+                            success: function(data){
+                                flag=false;
+                                window.location="index.php";
+                            },
+                            contentType: false,
+                            processData: false
+                        });	
+                    });
+
+
+                    //Initialize article's editor
+                    $('#summernote').summernote({
+                        toolbar: [
+                            ['style', ['bold', 'italic', 'underline']],
+                            ['font', ['strikethrough']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['misc',['codeview']]
+                        ]
+                    });
+
+                    if(flag){
+                        $('#sign-up-btn').hide();
+                        $.ajax({
+                            url: "notifications/notifications.php",
+                            type: "POST",
+                            async: false,
+                            cache: false,
+                            success: function(data){
+                                if(data>0)
+                                    $('#notification-badge').text(data);
+                            },
+                            contentType: false,
+                            processData: false
+                        });
+                    }
                 });
-            }
+            });
         </script>
 
     </body>
