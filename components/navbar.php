@@ -48,3 +48,42 @@
   </div><!-- /.container-fluid -->
 </nav>
 
+<script>
+    $(document).ready(function(){
+        
+        var searchForm = document.getElementById("search_form"); 
+        
+        $("form[name='searcher']").submit(function(p){
+            
+            var search_word= $("#search_text").val();
+        
+            $.ajax({
+                url: "search.php",
+                type: "POST",
+                data: {
+                    search_text: search_word
+                },
+                async: false,
+                //If ajax is successful, execute the followings
+                success: function (data) {
+                    var allData = JSON.parse(data);
+                   
+                    
+                    jQuery.each(allData, function(key,value) {
+                        if(index!=0){
+                        //Append li element with comment in comment-list ul
+                            console.log(value.title);
+                        
+                        }
+                        index=index+1;
+                        });
+                    
+                    
+                    
+                }
+            });
+            p.preventDefault();
+            });
+        
+        });
+</script>
