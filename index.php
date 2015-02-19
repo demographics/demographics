@@ -63,6 +63,8 @@
         
         
         <script type="text/javascript">
+            var notificationTimer;
+            
             $(window).load(function(){
                 $(document).ready(function(){
 
@@ -108,6 +110,7 @@
                             cache: false,
                             success: function(data){
                                 flag=false;
+                                clearInterval(notificationTimer);
                                 window.location="index.php";
                             },
                             contentType: false,
@@ -126,11 +129,6 @@
                         ]
                     });
 
-                    if(flag){
-                        $('#sign-up-btn').hide();
-                        loadNotifications();
-                    }
-                    
                     function loadNotifications(){
                         $("#notification-list").html("");
                         $.ajax({
@@ -194,6 +192,12 @@
                         });
                     }
                     
+                    if(flag){
+                        $('#sign-up-btn').hide();
+                        var checkNotificationVariable = loadNotifications();
+                        setInterval(loadNotifications, 10000);
+                    }
+                                        
                     $("#notification-list").on('click','a',function(){
                         var notificationEvent = $("p[class='secret-input']",this ).text();
                         var notificationID = $("div[class='secret-input']",this ).text();
