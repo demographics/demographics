@@ -128,19 +128,141 @@
 
                     if(flag){
                         $('#sign-up-btn').hide();
+                        loadNotifications();
+                    }
+                    
+                    function loadNotifications(){
+                        $("#notification-list").html("");
                         $.ajax({
                             url: "notifications/notifications.php",
                             type: "POST",
                             async: false,
                             cache: false,
                             success: function(data){
-                                if(data>0)
-                                    $('#notification-badge').text(data);
-                            },
-                            contentType: false,
-                            processData: false
+ 
+                                var notificationsJSON;
+                                var index;
+                                var unseen = 0;
+                                
+                                if(data==""){
+                                    index=0;
+                                }
+                                else{
+                                    notificationsJSON=JSON.parse(data);
+                                    index=Object.keys(notificationsJSON).length;
+                                }
+                                
+                                if(index>0){
+                                    
+                                    $('#notification-dropdown').attr('data-toggle',"dropdown");
+                                    
+                                    jQuery.each(notificationsJSON, function(key,value) {
+                
+                                        if(value.seen==false){
+                                            unseen++;
+                                            $("#notification-list").append(
+                                                '<li >'+
+                                                    '<a class="unseen" href="#">'+
+                                                        '<p><b>'+value.member+'</b> commented on '+value.eventTitle+'</p>'+
+                                                        '<p>'+value.datePosted+'</p><p class="secret-input">'+value.eventID+'</p>'+
+                                                        '<div class="secret-input">'+value.id+'</div>'+
+                                                    '</a>'+
+                                                '</li>'
+                                            );
+                                        }else{
+                                           $("#notification-list").append(
+                                                '<li >'+
+                                                    '<a class="seen" href="#">'+
+                                                        '<p><b>'+value.member+'</b> commented on '+value.eventTitle+'</p>'+
+                                                        '<p>'+value.datePosted+' <i class="fa fa-check-square-o"></i></p><p class="secret-input">'+value.eventID+'</p>'+
+                                                    '</a>'+
+                                                '</li>'
+                                            ); 
+                                        }
+                                        index-=1;
+                                        if(index!=0)
+                                            $("#notification-list").append('<li class="divider"></li>');
+                                    });
+                                    
+                                    if(unseen>0){
+                                        $('#notification-badge').text(unseen);
+                                    }else{
+                                        $('#notification-badge').text("");
+                                    }
+                                }
+                            }
                         });
                     }
+                    
+                    $("#notification-list").on('click','a',function(){
+                        var notificationEvent = $("p[class='secret-input']",this ).text();
+                        var notificationID = $("div[class='secret-input']",this ).text();
+                        var eventJSON;
+                        
+                         $.ajax({
+                            url: "markers/phpsqlajax_getcontents.php",
+                            type: "POST",
+                            data: {
+                                eventID:notificationEvent
+                            },
+                            async: false,
+                            success: function (data) {
+                                eventJSON = JSON.parse(data);
+                            }
+                        });
+                        
+                        cur_event = notificationEvent;
+        
+                        $.ajax({
+                            url: "markers/phpsqlajax_load_comment.php",
+                            type: "POST",
+                            data: {
+                                eventID:cur_event
+                            },
+                            success: function (data) {
+                                cur_comments = JSON.parse(data);
+                                loadComments();
+                            },
+                            async: false
+                        });
+
+                        $.ajax({
+                            url: "markers/phpsqlajax_views.php",
+                            type: "POST",
+                            data: {
+                                eventID:notificationEvent
+                            },
+                            async: false
+                        });
+
+                        $('#marker-header').html('<a href="#">'+eventJSON.user+'</a>'+'<p>'+eventJSON.datePosted+'</p>'+
+                                                 '<div>Views: '+eventJSON.views+'</div><div>Likes: '+eventJSON.likes+'</div>');
+                        $('#marker-body').html( '<h1 class="modal-title"><center>'+eventJSON.title+'</center></h1>'+
+                                                '<center><p>'+eventJSON.eventDate+'</p></center>'+
+                                                '<br>'+eventJSON.content);
+
+                        $('#marker-view').modal('toggle');
+                        $('#marker-view').on('hide.bs.modal', function () {            
+                            map.setZoom(10);
+                            $("#comment-list").html("");
+                            document.getElementById("comment-input").value = "";
+                        });
+                        
+                        cur_JSON=eventJSON;
+                        if($(this).hasClass("unseen")){
+                             $.ajax({
+                                url: "notifications/update-notifications.php",
+                                type: "POST",
+                                data: {
+                                    notificationID:notificationID
+                                }, 
+                                 success: function (data) {
+                                   loadNotifications();
+                                },
+                                async: false
+                            });
+                        }
+                    });
                 });
             });
         </script>

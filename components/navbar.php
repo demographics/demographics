@@ -17,8 +17,13 @@
         <!-- to class active dilwnei oti einai mavrismeno xwris na perasei to mouse apo panw -->
         <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
         <li id=forum_Button><a href="community/vanilla/index.php">Forum</a></li>
-         <li role="presentation"><a href="#">Events
- <span id="notification-badge" class="badge-info badge"></span></a></li>
+
+        <li class="dropdown">
+          <a href="#" id="notification-dropdown" role="button" aria-expanded="false">Notifications<span id="notification-badge" class="badge-info badge"></span></a>
+          <ul id="notification-list" class="dropdown-menu" role="menu">
+          </ul>
+        </li>
+          
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
