@@ -1,6 +1,7 @@
 <?php 
    
     $search_query=$_POST['search_text'];
+    //$markers=json_decode($_POST['jsondata']);
     
     _searchEvent($search_query);
 
@@ -19,7 +20,9 @@
           die ('Can\'t use db : ' . mysql_error());
         }
     
-        $query = "SELECT * FROM $database.`event` WHERE MATCH (title, tags) AGAINST ('$search_query_text' IN boolean MODE)";
+        //$query = "SELECT * FROM $database.`event` WHERE MATCH (title, tags) AGAINST ('$search_query_text' IN boolean MODE)";
+        $query = "SELECT $database.MARKER.lat, $database.MARKER.lng FROM ($database.`event`, $database.MARKER) WHERE $database.`event`.id NOT IN (SELECT $database.`event`.id FROM $database.`event` WHERE MATCH (title, tags) AGAINST ('$search_query_text' IN boolean MODE)) AND ($database.`event`.id = $database.MARKER.EVENT)";
+
         $result = mysql_query($query);
         $results=array();
         if (!$result) {
@@ -30,7 +33,7 @@
             $results[] = $row; 
             }
         
-        
+        //print_r($results);
         echo json_encode($results);
     
     }

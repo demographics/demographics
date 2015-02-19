@@ -68,21 +68,32 @@
                 type: "POST",
                 data: {
                     search_text: search_word
-                },
+                    //JSON.stringify(allMarkers)
+                      },
                 async: false,
                 //If ajax is successful, execute the followings
                 success: function (data) {
+                    
                     //console.log(data);
                     
                     allData=JSON.parse(data);
+                    //console.log(allData);
+                    //console.log(allMarkers[1].position.k);
+                    
                     jQuery.each(allData, function(key,value) {
-                        console.log(value.id);
+                        //console.log(allData);
+                        for (var i = 0; i < allMarkers.length; i++) {
+                            if(allMarkers[i].position.k==value.lat){
+                                allMarkers[i].setVisible(false); 
+                                }
+                        }
                         });
                     
-                    
+                    /*
                     for (var i = 0; i < allMarkers.length; i++) {
+                        console.log(allMarkers[i]);
                         allMarkers[i].setVisible(false); 
-                        }                        
+                        }*/                        
 
                 },
             });
