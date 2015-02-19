@@ -78,7 +78,11 @@
                     jQuery.each(allData, function(key,value) {
                         console.log(value.id);
                         });
-                        
+                    
+                    
+                    for (var i = 0; i < allMarkers.length; i++) {
+                        allMarkers[i].setVisible(false); 
+                        }                        
 
                 },
             });
