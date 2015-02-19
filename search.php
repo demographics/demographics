@@ -1,10 +1,9 @@
 <?php 
-    //session_start();
    
     $search_query=$_POST['search_text'];
+    echo("ok");
     
-    
-    _searchEvent($search_query);
+    //_searchEvent($search_query);
 
     function _searchEvent($search_query_text){
         require("phpsqlajax_dbinfo.php");
@@ -32,7 +31,7 @@
             $results[] = $row; 
             }
         
-        echo json_encode($results);
+        //echo json_encode($results);
     
     }
 
