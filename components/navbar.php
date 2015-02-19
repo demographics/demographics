@@ -61,7 +61,7 @@
             $("form[name='searcher']").submit(function(p) {
             
             var search_word= $("#search_text").val();
-            
+            var allData=null;
             //Send data to upload.php using ajax
             $.ajax({
                 url: "search.php",
@@ -72,7 +72,13 @@
                 async: false,
                 //If ajax is successful, execute the followings
                 success: function (data) {
-                    console.log(data);
+                    //console.log(data);
+                    
+                    allData=JSON.parse(data);
+                    jQuery.each(allData, function(key,value) {
+                        console.log(value.id);
+                        });
+                        
 
                 },
             });
