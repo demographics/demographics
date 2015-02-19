@@ -1,8 +1,6 @@
 <?php 
-    //session_start();
    
     $search_query=$_POST['search_text'];
-    
     
     _searchEvent($search_query);
 
@@ -31,6 +29,7 @@
         while ($row = @mysql_fetch_assoc($result)){
             $results[] = $row; 
             }
+        //print_r($results);
         
         echo json_encode($results);
     

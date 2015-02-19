@@ -7,6 +7,7 @@ var cur_location=null;
 var cur_event=null;
 var cur_comments=null;
 var cur_JSON=null;
+var allMarkers=[];
 /*
     This function is called upon the index.php load event.
     It initializes the google map by binding the events onclick
@@ -116,6 +117,8 @@ function placeMarker(eventID,location) {
         animation:google.maps.Animation.DROP//,
         //icon:icon
     });
+    
+    allMarkers.push(placeMarker);
     
     var infowindow = new InfoBubble({
           content: 

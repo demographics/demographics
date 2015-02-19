@@ -25,11 +25,11 @@
         </li>
           
       </ul>
-      <form class="navbar-form navbar-left" role="search">
+       <form id="search_form" name='searcher' action="search.php" method="post" class="navbar-form navbar-left" role="search">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
+          <input id="search_text" type="text" class="form-control" placeholder="Search">
         </div>
-        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>
+        <button id="submit_button" type="submit" class="btn btn-default"><i class="fa fa-search"></i>
 </button>
       </form>
       <ul class="nav navbar-nav navbar-right">
@@ -57,11 +57,12 @@
     $(document).ready(function(){
         
         var searchForm = document.getElementById("search_form"); 
-        
-        $("form[name='searcher']").submit(function(p){
+            
+            $("form[name='searcher']").submit(function(p) {
             
             var search_word= $("#search_text").val();
-        
+            var allData=null;
+            //Send data to upload.php using ajax
             $.ajax({
                 url: "search.php",
                 type: "POST",
@@ -71,24 +72,26 @@
                 async: false,
                 //If ajax is successful, execute the followings
                 success: function (data) {
-                    var allData = JSON.parse(data);
-                   
+                    //console.log(data);
                     
+                    allData=JSON.parse(data);
                     jQuery.each(allData, function(key,value) {
-                        if(index!=0){
-                        //Append li element with comment in comment-list ul
-                            console.log(value.title);
-                        
-                        }
-                        index=index+1;
+                        console.log(value.id);
                         });
                     
                     
-                    
-                }
+                    for (var i = 0; i < allMarkers.length; i++) {
+                        allMarkers[i].setVisible(false); 
+                        }                        
+
+                },
             });
+            //Prevent the default reaction on form's submit
             p.preventDefault();
-            });
-        
         });
+    
+    
+    });
+        
+        
 </script>
