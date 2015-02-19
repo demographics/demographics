@@ -50,6 +50,7 @@
         <?php include 'components/login-modal.php' ?>
         <?php include 'components/marker-view.php' ?>
         <?php include 'components/forms/sign-up-form.php' ?>
+        <?php include 'components/forms/edit-profile-form.php' ?>
         <?php include 'components/footer.php' ?>
         
         <!--Setting the flag if logged in-->
@@ -110,7 +111,6 @@
                             cache: false,
                             success: function(data){
                                 flag=false;
-                                clearInterval(notificationTimer);
                                 window.location="index.php";
                             },
                             contentType: false,

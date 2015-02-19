@@ -41,7 +41,7 @@
         <li class="dropdown">
           <a id="Log_Button" href="#" class="dropdown-toggle" role="button" aria-expanded="false"><img src="_/img/man.png" alt="Log In" height="30" width="30"></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Edit Profile</a></li>
+            <li><a id="edit-pr-btn" href="#">Edit Profile</a></li>
             <li><a href="#">Something else</a></li>
             <li class="divider"></li>
             <li><a id="LogOut_Button" href="#">Log Out</a></li>
