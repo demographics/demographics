@@ -62,6 +62,7 @@
               <option value="2">Egwmi</option>
             </select>
           </div>
+            <p style="color:red" id="edit-post74-error" class="secret-combination" >* You already live here.</p>
         </div>
 
         <div class="form-group">
@@ -94,7 +95,7 @@
             type: "POST",
             async: false,
             success: function (data) {
-                console.log(data);
+         
                 var form_data = JSON.parse(data);
                 var bday = new Date(form_data.birthday);
          
@@ -119,6 +120,7 @@
         var formData = new FormData($(this)[0]);
         
         $("#edit-email-error").addClass("secret-combination");
+        $("#edit-post74-error").addClass("secret-combination");
         
         $.ajax({
             url: "members/phpsqlajax_update.php",
@@ -128,6 +130,8 @@
             success: function (data) {
                 if (data==1){
                     $("#edit-email-error").removeClass("secret-combination");
+                }else if(data==2){
+                    $("#edit-post74-error").removeClass("secret-combination");
                 }
                 else{
                     swal({

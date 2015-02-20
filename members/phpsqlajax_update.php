@@ -42,8 +42,16 @@
             return;
         }
     }else{
-        $query = "UPDATE $database.MEMBER SET post74='$post74' WHERE email='$user_email'";
+        $query = "SELECT * FROM $database.MEMBER WHERE email='$user_email' AND post74=$post74";
         $result = mysql_query($query);
-        echo "Your profile has been edited.";
+        
+        if(mysql_num_rows($result)==0){
+            $query = "UPDATE $database.MEMBER SET post74='$post74' WHERE email='$user_email'";
+            $result = mysql_query($query);
+            echo "Your profile has been edited.";
+        }else{
+            echo "2";
+            return;
+        }
     }
 ?>
