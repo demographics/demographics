@@ -12,14 +12,14 @@
         <div class="form-group">
           <label class="control-label" for="member-name-input">Name:</label>  
           <div class="">
-          <input id="member_name_input" name="member_name_input" placeholder="Type your name" class="form-control input-md" required="" type="text">
+          <input id="member_name_input" pattern="[A-Za-z]" name="member_name_input" placeholder="Type your name" class="form-control input-md" required="" type="text">
           </div>
         </div>
 
         <div class="form-group">
           <label class=" control-label" for="member-surname-input">Surname:</label>  
           <div class="">
-          <input id="member-surname-input" name="member-surname-input" placeholder="Type your surname" class="form-control input-md" required="" type="text">
+          <input id="member-surname-input" pattern="[A-Za-z]" name="member-surname-input" style="-webkit-appearance:none" placeholder="Type your surname" class="form-control input-md" required="" type="text">
           </div>
         </div>
 
@@ -67,7 +67,7 @@
         <div class="form-group">
           <label class=" control-label" for="member-email-input">Email:</label>  
           <div class="">
-          <input id="member-email-input" name="member-email-input" placeholder="Type your e-mail:" class="form-control input-md" required="" type="text">
+          <input id="member-email-input" name="member-email-input" placeholder="Type your e-mail:" class="form-control input-md" required="" type="email">
           <p style="color:red" id="email-error" class="secret-combination" >* This email is already stored in the system.</p>
         </div>
         </div>

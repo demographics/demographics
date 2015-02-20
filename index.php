@@ -50,6 +50,7 @@
         <?php include 'components/login-modal.php' ?>
         <?php include 'components/marker-view.php' ?>
         <?php include 'components/forms/sign-up-form.php' ?>
+        <?php include 'components/forms/change-password-form.php' ?>
         <?php include 'components/forms/edit-profile-form.php' ?>
         <?php include 'components/footer.php' ?>
         

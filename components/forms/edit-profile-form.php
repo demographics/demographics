@@ -68,7 +68,7 @@
         <div class="form-group">
           <label class=" control-label" for="edit-email-input">Email:</label>  
           <div class="">
-          <input id="edit-email-input" name="edit-email-input" placeholder="Type your e-mail:" class="form-control input-md" required="" type="text">
+          <input id="edit-email-input" name="edit-email-input" placeholder="Type your e-mail:" class="form-control input-md" required="" type="email">
           <p style="color:red" id="edit-email-error" class="secret-combination" >* This email is already stored in the system.</p>
         </div>
         </div>
@@ -97,12 +97,19 @@
             success: function (data) {
          
                 var form_data = JSON.parse(data);
-                var bday = new Date(form_data.birthday);
-         
+                
                 $('#edit_name_input').val(form_data.firstname);
                 $('#edit-surname').val(form_data.lastname);
-                          
-                $('#edit-date-of-birth-input').val(bday);
+                
+                
+                var bday=(form_data.birthday);
+                
+                var xronia=bday.substring(0,4);
+                var minas=bday.substring(4,8);
+                var mera=bday.substring(8,10);
+                
+                $('#edit-date-of-birth-input').val(mera+minas+xronia);
+                
                 if(form_data.gender == 'M')
                     $('#edit-sex-input-0').attr('checked',"checked");
                 else
