@@ -249,4 +249,14 @@ function insertMarker(eventID){
     saveMarker(eventID,cur_location);
 }
 
+/*
+    This function is useful when the user searches in our database.
+    Once a search is done, we must reload the content of the map.
+*/
+function displayAllMarkers(){
+    for (var i=0; i<allMarkers.length; i++){
+        allMarkers[i].setVisible(true);
+        }
+    }
+
 google.maps.event.addDomListener(window, 'load', initialize);

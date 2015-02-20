@@ -74,26 +74,24 @@
                 //If ajax is successful, execute the followings
                 success: function (data) {
                     
-                    //console.log(data);
+                    displayAllMarkers();
                     
                     allData=JSON.parse(data);
-                    //console.log(allData);
-                    //console.log(allMarkers[1].position.k);
                     
-                    jQuery.each(allData, function(key,value) {
-                        //console.log(allData);
-                        for (var i = 0; i < allMarkers.length; i++) {
-                            if(allMarkers[i].position.k==value.lat){
-                                allMarkers[i].setVisible(false); 
+                    if (allData.length != allMarkers.length){
+                    
+                        jQuery.each(allData, function(key,value) {
+                        
+                            for (var i = 0; i < allMarkers.length; i++) {
+                            
+                                var lng=allMarkers[i].position.D.toFixed(6);
+                        
+                                if(allMarkers[i].position.k==value.lat && lng==value.lng){
+                                    allMarkers[i].setVisible(false); 
+                                    }
                                 }
+                            });
                         }
-                        });
-                    
-                    /*
-                    for (var i = 0; i < allMarkers.length; i++) {
-                        console.log(allMarkers[i]);
-                        allMarkers[i].setVisible(false); 
-                        }*/                        
 
                 },
             });
