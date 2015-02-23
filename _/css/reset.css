@@ -109,6 +109,7 @@ html, body, #map-canvas {
     padding:10px; 
 }
 
+
 #legend{
     margin-left: 26px;
     margin-bottom: 30px;
@@ -149,3 +150,7 @@ html, body, #map-canvas {
 .grey {
     background: #7F7F7F;
     }
+
+#change-password-form{
+    padding: 10px;
+}
