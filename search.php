@@ -1,7 +1,7 @@
 <?php 
    
     $search_query=$_POST['search_text'];
-    //$markers=json_decode($_POST['jsondata']);
+    
     
     _searchEvent($search_query);
 

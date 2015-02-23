@@ -8,6 +8,7 @@ var cur_event=null;
 var cur_comments=null;
 var cur_JSON=null;
 var allMarkers=[];
+
 /*
     This function is called upon the index.php load event.
     It initializes the google map by binding the events onclick
@@ -68,6 +69,7 @@ function initialize() {
     loadMarkers();
 
 };
+
 
 /*
     This function places a marker on the specific location and

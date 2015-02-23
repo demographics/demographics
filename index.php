@@ -22,6 +22,7 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWMxUmWeNkBfkGxiaLBLLWBZSw3pxSNM0">
         </script>
         <script src="_/js/googleMaps.js" type="text/javascript"></script>
+        <script src="_/js/search-functions.js" type="text/javascript"></script>
         <script src="_/js/infobubble.js"></script>
         <script src="_/libs/summernote/summernote.min.js"></script>
         <script src="_/js/jquery.slimscroll.min.js"></script>
@@ -50,6 +51,7 @@
         <?php include 'components/login-modal.php' ?>
         <?php include 'components/marker-view.php' ?>
         <?php include 'components/forms/sign-up-form.php' ?>
+        <?php include 'components/forms/change-password-form.php' ?>
         <?php include 'components/forms/edit-profile-form.php' ?>
         <?php include 'components/footer.php' ?>
         
