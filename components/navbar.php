@@ -76,7 +76,7 @@
                 success: function (data) {
                     
                     displayAllMarkers();
-                    console.log("erffs");
+                    
                     allData=JSON.parse(data);
                     
                     if (allData.length != allMarkers.length){
@@ -92,19 +92,22 @@
                                     }
                                 }
                             });
-                        addLegend();
+                        addLegendUL();
                         
                         $( "#filter_memo" ).click(function() {
-                            alert( "Handler for memo called." );
+                            console.log( "Handler for memo called." );
                             });
                         $( "#filter_article" ).click(function() {
-                            alert( "Handler for .art called." );
+                            console.log( "Handler for .art called." );
                             });
                         $( "#filter_property" ).click(function() {
-                            alert( "Handler for .prop() called." );
+                            console.log( "Handler for .prop() called." );
                             });
                         $( "#filter_photo" ).click(function() {
-                            alert( "Handler for .photo() called." );
+                            console.log( "Handler for .photo() called." );
+                            });
+                        $( "#filter_date" ).click(function() {
+                            console.log( "Handler for .photo() called." );
                             });
                         
                         
