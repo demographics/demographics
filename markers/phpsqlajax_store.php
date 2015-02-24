@@ -28,7 +28,7 @@
         die('Invalid query: ' . mysql_error());
     }
     else{
-        echo "Marker stored successfully.";
+        return;
     }
 
 

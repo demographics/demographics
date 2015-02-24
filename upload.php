@@ -35,7 +35,7 @@
             break;
         
         case "article":
-            $eventContent=$_POST['article-input'];
+            $eventContent=$_POST['summernote'];
             break;
         
         default:
