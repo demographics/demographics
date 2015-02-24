@@ -255,9 +255,9 @@ function insertMarker(eventID){
     This function is useful when the user searches in our database.
     Once a search is done, we must reload the content of the map.
 */
-function displayAllMarkers(){
+function removeAllMarkers(){
     for (var i=0; i<allMarkers.length; i++){
-        allMarkers[i].setVisible(true);
+        allMarkers[i].setVisible(false);
         }
     }
 
