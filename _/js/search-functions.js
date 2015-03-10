@@ -1,27 +1,13 @@
 
 
+
 // Create the legend and display on the map
 function addLegend(){
     var legend = document.createElement('div');
     legend.id = 'legend';
     var content = [];
-    content.push('<h3>Events*</h3>');
-    content.push('<p><div id="#filter_memo" class="color red"></div>Memorandum</p>');
-    content.push('<p><div id="#filter_article" class="color yellow"></div>Photo</p>');
-    content.push('<p><div id="#filter_property" class="color green"></div>Article</p>');
-    content.push('<p><div id="#filter_photo" class="color blue"></div>Historic Event</p>');
-    //content.push('<p><div id="#filter_memo" class="color grey"></div>Something else</p>');
-    legend.innerHTML = content.join('');
-    legend.index = 1;
-    map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
-}
-
-// Create the legend and display on the map
-function addLegendUL(){
-    var legend = document.createElement('div');
-    legend.id = 'legend';
-    var content = [];
-    content.push('<h3>Events.</h3>');
+    content.push('<h3 id"filter_all">Events.</h3>');
+    content.push('<a class="boxclose" id="boxclose"></a>');
     content.push('<div id="filter_memo"><p><div class="color red"></div>Memorandum</p></div>');
     content.push('<div id="filter_photo"><p><div class="color yellow"></div>Photo</p></div>');
     content.push('<div id="filter_article"><p><div class="color green"></div>Article</p></div>');
@@ -29,18 +15,23 @@ function addLegendUL(){
     content.push('<div id="filter_date"><p><div class="color grey"></div>Date</p></div>');
     legend.innerHTML = content.join('');
     legend.index = 1;
-    map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 }
 
-function filter(events, allData, type){
-    
-    
+
+function addDateLegend(){
+    var dateLegend = document.createElement('div');
+    dateLegend.id = 'dateLegend';
+    var content = [];
+    content.push('<b>1900</b>');
+    content.push('<input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/>');
+    content.push('<b>2015</b>');
+    dateLegend.innerHTML = content.join('');
+    dateLegend.index=1;
+    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(dateLegend);
+    $("#ex2").slider({});
 }
 
-//    using a href
-//    content.push('<a href="#" id="filter_memo"><p><div class="color red"></div>Memorandum</p></a>');
-//    content.push('<a href="#" id="filter_article"><p><div class="color yellow"></div>Photo</p></a>');
-//    content.push('<a href="#" id="filter_property"><p><div class="color green"></div>Article</p>');
-//    content.push('<a href="#" id="filter_photo"><p><div class="color blue"></div>Historic Event</p>');
-//    content.push('<p><div id="filter_date" class="color grey"></div>Date</p>');
-    
+
+
+ 
