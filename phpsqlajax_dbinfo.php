@@ -6,12 +6,7 @@
         we have access on them.
     */
     $username="root";
-<<<<<<< HEAD
     $password="";
     $database="db_demographics";
-=======
-    $password="uj2?ah9r";
-    $database="demographics_schema";
->>>>>>> 4800b31e8b637b22321cbe75eb12c6d0a2790caf
 	$host="localhost";
 ?>
