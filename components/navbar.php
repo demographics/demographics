@@ -75,10 +75,10 @@
                 //If ajax is successful, execute the followings
                 success: function (data) {
                     
-                    displayAllMarkers();
+                    removeAllMarkers();
                     
                     allData=JSON.parse(data);
-                    
+                    var results = [];
                     if (allData.length != allMarkers.length){
                     
                         jQuery.each(allData, function(key,value) {
@@ -88,12 +88,49 @@
                                 var lng=allMarkers[i].position.D.toFixed(6);
                         
                                 if(allMarkers[i].position.k==value.lat && lng==value.lng){
-                                    allMarkers[i].setVisible(false); 
+                                    allMarkers[i].setVisible(true);
+                                    results.push(allMarkers[i]);
                                     }
                                 }
                             });
+                        
+                        addLegendUL();
+                        
+                        
+                        $( "#legend" ).click(function(e) {
+                            removeAllMarkers();
+                            var str2;
+                            switch (e.target.id) {
+                                case "filter_memo":
+                                    str2 = "memoir";
+                                    break;
+                                case "filter_photo":
+                                    str2 = "photo";
+                                    break;
+                                case "filter_article":
+                                    str2 = "article";
+                                    break;
+                                case "filter_property":
+                                    str2 = "property";
+                                    break;
+                                case "filter_date":
+                                    str2 = "date";
+                                    break;
+                                }
+                            jQuery.each(allData, function(key,value) {
+                                for (var i = 0; i < results.length; i++) {
+                                    var lng=results[i].position.D.toFixed(6);
+                                    var str1=value.type;
+                                    if(results[i].position.k==value.lat && lng==value.lng && (str1.localeCompare(str2)==0)){
+                                        results[i].setVisible(true);
+                                        }
+                                    }   
+                                });
+                            });
+                        
+                        
+                        
                         }
-
                 },
             });
             //Prevent the default reaction on form's submit

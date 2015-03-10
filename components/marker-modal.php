@@ -13,28 +13,28 @@
                          <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Title&nbsp;</span>
-                                <input id="event-title-input" name="event-title-input" class="form-control" placeholder="Event's title goes here." required="" type="text">
+                                <input pattern="[A-Za-z ]{1,30}" id="event-title-input" name="event-title-input" class="form-control" placeholder="Event's title goes here." type="text">
                             </div>
                         </div>
                         
-                        <div class="secret-input form-group">
-                            <div class="input-group">
-                                <span class="input-group-addon">Type&nbsp;</span>
-                                <input id="event-type-input" name="event-type-input" class="form-control" value="memoir" placeholder="Event's type goes here." required="" type="text">
+                        <div class="form-group">
+                            <div class="input-group secret-input">
+                                <span class="input-group-addon">Type</span>
+                                <input id="event-type-input" name="event-type-input" class="form-control" value="memoir" type="text">
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Date</span>
-                                <input data-provide="datepicker" id="event-date-input" name="event-date-input" class="form-control" placeholder="Pick the event's date." required="" type="text">
+                                <input data-provide="datepicker" pattern="[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]" id="event-date-input" name="event-date-input" class="form-control" placeholder="Pick the event's date." type="text">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div id="tags-input-group" class="input-group">
                                 <div>
-                                    <input data-role="tagsinput" id="event-tags-input" name="event-tags-input" class="form-control" placeholder="Tags" required="" type="text">
+                                    <input data-role="tagsinput" id="event-tags-input" name="event-tags-input" class="form-control" placeholder="Tags" type="text">
                                 </div>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
         $("form[name='uploader']").submit(function(e) {
             //Create formdata to store form's values including photos
             var formData = new FormData($(this)[0]);
-            
+            formData.append('summernote',$('#summernote').code());
             //Send data to upload.php using ajax
             $.ajax({
                 url: "upload.php",
@@ -104,7 +104,6 @@
                 async: false,
                 //If ajax is successful, execute the followings
                 success: function (data) {
-                    console.log(data);
                     $('#marker-modal').modal('hide');
                     insertMarker(data);
                 },
