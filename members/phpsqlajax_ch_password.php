@@ -9,7 +9,22 @@
 
     $email=$_SESSION["email"];
     $password1 = $_POST['password1'];
-    $password2 = $_POST[];
+    $password3 = $_POST['password2'];    
+    $password2 = md5($password3);    
+   
+    $pre_input = $_POST['previous'];
+    $password_vasis=$_SESSION["password"];
+    $pre_input_md5 = md5($pre_input);                          
+      
+    if (strcmp("$pre_input_md5","$password_vasis")!=0){
+        echo "3";
+        return;
+    }
+
+    if (strcmp("$password1","$password3")!=0){
+        echo "2";
+        return;
+    }
 
     require("../phpsqlajax_dbinfo.php");   
 
@@ -23,11 +38,10 @@
 
     if (!$db_selected) {
       die ('Can\'t use db : ' . mysql_error());
-    }
-
-
+    }    
+    
     $query = "UPDATE $database.MEMBER SET password='$password2' WHERE email='$email'";
     $result = mysql_query($query);
+    $_SESSION['password']=$password2;
 
-        
 ?>

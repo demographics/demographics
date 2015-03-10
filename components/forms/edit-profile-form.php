@@ -68,7 +68,7 @@
         <div class="form-group">
           <label class=" control-label" for="edit-email-input">Email:</label>  
           <div class="">
-          <input id="edit-email-input" name="edit-email-input" placeholder="Type your e-mail:" class="form-control input-md" required="" type="email">
+          <input id="edit-email-input" name="edit-email-input" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" placeholder="Type your e-mail:" class="form-control input-md" required="" type="email">
           <p style="color:red" id="edit-email-error" class="secret-combination" >* This email is already stored in the system.</p>
         </div>
         </div>

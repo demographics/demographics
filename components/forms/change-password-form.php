@@ -10,17 +10,22 @@
         <fieldset> 
          
         <div class="form-group">
-          <label class=" control-label" for="change-password-input">Password:</label>
+          <label class="control-label" for="pre-password-input">Previous Password:</label>
+          <div class="">
+            <input id="pre-password-input" name="pre-password-input" placeholder="Type your previous password" class="form-control input-md" required="" type="password">
+              <p style="color:red" id="password-pre" class="secret-combination" >* The input does not match with your password.</p>
+          </div>
+        </div>    
+        <div class="form-group">
+          <label class="control-label" for="change-password-input">New Password:</label>
           <div class="">
             <input id="change-password-input" name="change-password-input" placeholder="Type your password" class="form-control input-md" required="" type="password">
-
           </div>
         </div>
-            
         <div class="form-group">
           <div class="">
             <input id="change-password-input-again" name="change-password-input-again" placeholder="Retype your password" class="form-control input-md" required="" type="password">
-            <p style="color:red" id="password-error" class="secret-combination" >* The password does not match with the first one.</p>
+            <p style="color:red" id="password-error1" class="secret-combination" >* The password does not match with the first one.</p>
         </div>
         </div>         
          
@@ -37,34 +42,45 @@
   </div>
 </div> 
 
+    
+    
 <script>
     $("#change-password-btn").on("click",function(){
         $("#change-password-modal").modal("toggle");
     });
-       
-        $("#password-error").addClass("secret-combination");
-        $("#email-error").addClass("secret-combination");
         
-     $("form[name='change-password-form']").submit(function(e) {
-        var formData = new FormData($(this)[0]);
+    $('#change-password-modal').on('hide.bs.modal', function () { 
+        var changePasswordForm = document.getElementById("change-password-form");
+        changePasswordForm.reset();
+        $("#password-error1").addClass("secret-combination");
+         $("#password-pre").addClass("secret-combination");
+    });
+    
+       $("form[name='change-password-form']").submit(function(e) {
+        var formData = new FormData($(this)[0]);        
+         
+        $("#password-error1").addClass("secret-combination");
+         $("#password-pre").addClass("secret-combination");
         
-        $("#password-error").addClass("secret-combination");
-        
-$.ajax({
+         $.ajax({
             url: "members/phpsqlajax_ch_password.php",
             type: "POST",
             data: formData,
             async: false,
             data:{
-                password1:$('#').val,
-                password2:$('#').val
+                previous:$('#pre-password-input').val(),
+                password1:$('#change-password-input').val(),
+                password2:$('#change-password-input-again').val()
             },
             success: function (data) {
                 if (data==2){
-                    $("#password-error").removeClass("secret-combination");
+                    $("#password-error1").removeClass("secret-combination");
+                }
+                else if (data==3){
+                    $("#password-pre").removeClass("secret-combination");
                 }
                 else{
-                    swal({
+                    swal({                     
                       title: "Success!",
                       text: "Your password change done succesfully!",
                       type: "success",
@@ -80,10 +96,7 @@ $.ajax({
 
 
         e.preventDefault();
-    });
-
-    
+    });    
         
 
 </script>
-
