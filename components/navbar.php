@@ -14,8 +14,6 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <!-- to class active dilwnei oti einai mavrismeno xwris na perasei to mouse apo panw -->
-        <!-- <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li> -->
         <li id=forum_Button><a href="community/vanilla/index.php">Forum</a></li>
 
         <li class="dropdown">
@@ -33,9 +31,6 @@
 </button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <!-- <li><a id="LogIn_Button" href="#">Log In</a></li> -->
-        <!-- <li><a id="LogOut_Button" href="#">Log Out</a></li> -->
-          <!-- <span class="caret"></span> -->
        
         <li id="sign-up-btn"><a href="#">Sign-up</a></li>  
         <li class="dropdown">
@@ -69,14 +64,13 @@
                 type: "POST",
                 data: {
                     search_text: search_word
-                    //JSON.stringify(allMarkers)
                       },
                 async: false,
                 //If ajax is successful, execute the followings
                 success: function (data) {
                     
                     removeAllMarkers();
-                    
+                    //Get data from JSON
                     allData=JSON.parse(data);
                     var results = [];
                     if (allData.length != allMarkers.length){
@@ -94,9 +88,11 @@
                                 }
                             });
                         
-                        addLegendUL();
+                        if ($("#legend").length == 0){
+                            addLegend();
+                        }
                         
-                        
+
                         $( "#legend" ).click(function(e) {
                             removeAllMarkers();
                             var str2;
@@ -114,31 +110,48 @@
                                     str2 = "property";
                                     break;
                                 case "filter_date":
-                                    str2 = "date";
+                                    addDateLegend();
                                     break;
+                                case "boxclose":
+                                    str2 = 1;
+                                    break;
+                                default:
+                                    str2= "showALL";
                                 }
-                            jQuery.each(allData, function(key,value) {
-                                for (var i = 0; i < results.length; i++) {
-                                    var lng=results[i].position.D.toFixed(6);
-                                    var str1=value.type;
-                                    if(results[i].position.k==value.lat && lng==value.lng && (str1.localeCompare(str2)==0)){
-                                        results[i].setVisible(true);
+                            
+                            if (str2!=1){
+                                jQuery.each(allData, function(key,value) {
+                                    for (var i = 0; i < results.length; i++) {
+                                        var lng=results[i].position.D.toFixed(6);
+                                        var str1=value.type;
+                                        if(results[i].position.k==value.lat && lng==value.lng && (str2.localeCompare("showALL")==0)){
+                                            results[i].setVisible(true);
+                                            }
+                                        else if(results[i].position.k==value.lat && lng==value.lng && (str1.localeCompare(str2)==0)){
+                                            results[i].setVisible(true);
+                                            }
+
                                         }
-                                    }   
-                                });
+                                    });
+                                }
+                            else{
+                                displayAllMarkers();
+                                $("#search_text").val("");
+                                $("#legend").remove();
+                                }
+                            
                             });
-                        
-                        
-                        
+                         
                         }
-                },
+                }
             });
             //Prevent the default reaction on form's submit
             p.preventDefault();
         });
     
-    
+     //   $("#ex2").slider({});
     });
         
         
 </script>
+

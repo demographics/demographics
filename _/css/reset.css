@@ -111,8 +111,8 @@ html, body, #map-canvas {
 
 
 #legend{
-    margin-left: 26px;
-    margin-bottom: 30px;
+    margin-right: 12px;
+    margin-bottom: 45px;
     height: 200px;
     width: 130px;
     padding-left: 5px;
@@ -120,6 +120,7 @@ html, body, #map-canvas {
     border: 3px solid;
     box-shadow: -5px 5px 5px #888888;
     background-color: rgba(241, 239, 233, 0.8);
+    cursor:pointer;
 }
 
 .color {
@@ -152,4 +153,28 @@ html, body, #map-canvas {
 
 #change-password-form{
     padding: 10px;
+    }
+
+a.boxclose{
+    float:right;
+    width:26px;
+    height:26px;
+    background:transparent url(http://tympanus.net/Tutorials/CSSOverlay/images/cancel.png) repeat top left;
+    margin-top:-72px;
+    margin-right:-20px;
+    cursor:pointer;
+    }
+
+#dateLegend{
+    margin-right: 145px;
+    margin-bottom: -200px;
+    height: 45px;
+    width: 300px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 3px solid;
+    box-shadow: -5px 5px 5px #888888;
+    background-color: rgba(241, 239, 233, 0.8);
+    cursor:pointer;
 }
+

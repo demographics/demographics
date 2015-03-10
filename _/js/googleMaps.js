@@ -261,4 +261,10 @@ function removeAllMarkers(){
         }
     }
 
+function displayAllMarkers(){
+    for (var i=0; i<allMarkers.length; i++){
+        allMarkers[i].setVisible(true);
+        }
+    }
+
 google.maps.event.addDomListener(window, 'load', initialize);
