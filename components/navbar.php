@@ -68,7 +68,7 @@
                 async: false,
                 //If ajax is successful, execute the followings
                 success: function (data) {
-                    
+                    alert(data);
                     removeAllMarkers();
                     //Get data from JSON
                     allData=JSON.parse(data);
