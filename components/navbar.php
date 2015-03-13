@@ -51,7 +51,7 @@
 
 <script>
     $(document).ready(function(){
-        
+//den ilopoiithike o elegxos ean kanei search defteri fora me ta idia dedomena
         var searchForm = document.getElementById("search_form"); 
             
             $("form[name='searcher']").submit(function(p) {
@@ -67,33 +67,31 @@
                       },
                 async: false,
                 //If ajax is successful, execute the followings
-                success: function (data) {
-                    alert(data);
-                    removeAllMarkers();
-                    //Get data from JSON
+                success: function (data){
+
                     allData=JSON.parse(data);
                     var results = [];
-                    if (allData.length != allMarkers.length){
-                    
-                        jQuery.each(allData, function(key,value) {
-                        
+
+                    //Check whether the user has pressed search without entering text
+                    if (allData.length != 0) {
+                        removeAllMarkers();
+                        jQuery.each(allData, function (key, value) {
                             for (var i = 0; i < allMarkers.length; i++) {
-                            
-                                var lng=allMarkers[i].position.D.toFixed(6);
-                        
-                                if(allMarkers[i].position.k==value.lat && lng==value.lng){
+
+                                var lng = allMarkers[i].position.D.toFixed(6);
+
+                                if (allMarkers[i].position.k == value.lat && lng == value.lng) {
                                     allMarkers[i].setVisible(true);
                                     results.push(allMarkers[i]);
-                                    }
                                 }
-                            });
-                        
+                            }
+                        });
+
                         if ($("#legend").length == 0){
                             addLegend();
                         }
-                        
 
-                        $( "#legend" ).click(function(e) {
+                        $("#legend").click(function (e){
                             removeAllMarkers();
                             var str2;
                             switch (e.target.id) {
@@ -110,15 +108,15 @@
                                     str2 = "property";
                                     break;
                                 case "filter_date":
-                                    addDateLegend();
+                                    //addDateLegend();
                                     break;
                                 case "boxclose":
                                     str2 = 1;
                                     break;
                                 default:
                                     str2= "showALL";
-                                }
-                            
+                            }
+
                             if (str2!=1){
                                 jQuery.each(allData, function(key,value) {
                                     for (var i = 0; i < results.length; i++) {
@@ -126,32 +124,32 @@
                                         var str1=value.type;
                                         if(results[i].position.k==value.lat && lng==value.lng && (str2.localeCompare("showALL")==0)){
                                             results[i].setVisible(true);
-                                            }
+                                        }
                                         else if(results[i].position.k==value.lat && lng==value.lng && (str1.localeCompare(str2)==0)){
                                             results[i].setVisible(true);
-                                            }
-
                                         }
-                                    });
-                                }
+
+                                    }
+                                });
+                            }
                             else{
                                 displayAllMarkers();
                                 $("#search_text").val("");
                                 $("#legend").remove();
-                                }
-                            
-                            });
-                         
-                        }
+                            }
+
+                        });
+
+
+                    }
                 }
+
             });
             //Prevent the default reaction on form's submit
             p.preventDefault();
         });
-    
-     //   $("#ex2").slider({});
+
     });
         
         
 </script>
-
