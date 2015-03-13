@@ -6,9 +6,15 @@
                 <button class="close" aria-label="Close" data-dismiss="modal" type="button">
                     <span aria-hidden="true">×</span>
                 </button>
-                <h4 id="myLargeModalLabel" class="modal-title">Large modal</h4>
+                <h4 id="myLargeModalLabel" class="modal-title">Timeline</h4>
             </div>
             <div class="modal-body"> <?php include 'timeline_contents.php'?> </div>
+            <div class="modal-footer">
+                <div class="form-group">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" onclick="insertEntry()" class="btn btn-primary" >Append</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
