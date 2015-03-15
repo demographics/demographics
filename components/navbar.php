@@ -74,13 +74,18 @@
 
                     //Check whether the user has pressed search without entering text
                     if (allData.length != 0) {
+
+
                         removeAllMarkers();
                         jQuery.each(allData, function (key, value) {
                             for (var i = 0; i < allMarkers.length; i++) {
 
+
                                 var lng = allMarkers[i].position.D.toFixed(6);
 
                                 if (allMarkers[i].position.k == value.lat && lng == value.lng) {
+                                    console.log(value.lat+" "+value.lng);
+                                    console.log("allMarkers "+allMarkers[i].position.k+" "+lng);
                                     allMarkers[i].setVisible(true);
                                     results.push(allMarkers[i]);
                                 }
