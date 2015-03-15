@@ -1,9 +1,5 @@
 
-<div id="timeline_div">
-    <ul class="timeline">
-        
-    </ul>
-</div>
+<div id="timeline_div"><ul class="timeline"></ul></div>
 
 <script>
     function insertEntry(json_tml_obj){
