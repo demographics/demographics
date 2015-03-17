@@ -12,7 +12,7 @@
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>       
         <script src="_/libs/bootstrap/js/bootstrap.min.js"></script>
-
+        <script src="_/libs/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
         <script src="_/libs/bootstrap/loading/dist/spin.js"></script>
         <script src="_/libs/bootstrap/loading/dist/ladda.min.js"></script>
         <script src="_/libs/bootstrap/sweetalert/lib/sweet-alert.min.js"></script>
@@ -33,7 +33,7 @@
         
         <link rel="icon" type="image/ico" href="_/img/favicon.ico">
         <link href="_/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+        <link href="_/libs/bootstrap-slider/css/bootstrap-slider.css" rel="stylesheet">
         <link href="_/libs/bootstrap/loading/dist/ladda-themeless.min.css" rel="stylesheet">
         <link href="_/libs/bootstrap/fileinput/css/fileinput.min.css" rel="stylesheet">
         <link href="_/libs/bootstrap/sweetalert/lib/sweet-alert.css" rel="stylesheet">
@@ -58,6 +58,7 @@
         <?php include 'components/forms/change-password-form.php' ?>
         <?php include 'components/forms/edit-profile-form.php' ?>
         <?php include 'components/footer.php' ?>
+
         
         <!--Setting the flag if logged in-->
         <?php 

@@ -70,6 +70,7 @@
                 success: function (data){
 
                     allData=JSON.parse(data);
+
                     var results = [];
 
                     //Check whether the user has pressed search without entering text
@@ -80,12 +81,11 @@
                         jQuery.each(allData, function (key, value) {
                             for (var i = 0; i < allMarkers.length; i++) {
 
-
                                 var lng = allMarkers[i].position.D.toFixed(6);
 
                                 if (allMarkers[i].position.k == value.lat && lng == value.lng) {
-                                    console.log(value.lat+" "+value.lng);
-                                    console.log("allMarkers "+allMarkers[i].position.k+" "+lng);
+//                                    console.log(value.lat+" "+value.lng);
+//                                    console.log("allMarkers "+allMarkers[i].position.k+" "+lng);
                                     allMarkers[i].setVisible(true);
                                     results.push(allMarkers[i]);
                                 }
@@ -113,7 +113,16 @@
                                     str2 = "property";
                                     break;
                                 case "filter_date":
-                                    //addDateLegend();
+                                    $('#filter_date').on('click',function(){
+                                        if($("#alignRight").css("display")== 'none') {
+                                            $("#alignRight").show();
+                                        }
+                                        else {
+                                            $("#alignRight").hide();
+                                        }
+                                    });
+                                    str2=2;
+
                                     break;
                                 case "boxclose":
                                     str2 = 1;
@@ -122,7 +131,7 @@
                                     str2= "showALL";
                             }
 
-                            if (str2!=1){
+                            if (str2!=1 && str2!=2){
                                 jQuery.each(allData, function(key,value) {
                                     for (var i = 0; i < results.length; i++) {
                                         var lng=results[i].position.D.toFixed(6);
@@ -133,8 +142,41 @@
                                         else if(results[i].position.k==value.lat && lng==value.lng && (str1.localeCompare(str2)==0)){
                                             results[i].setVisible(true);
                                         }
-
                                     }
+                                });
+                            }
+                            else if (str2==2) {
+
+
+                                $("#ex2").on("change", function(slideEvt) {
+                                    //removeAllMarkers();
+
+                                    var selectedDate=SL.slider('getValue');
+//                                    console.log(selectedDate);
+//                                    var y1=selectedDate[0];
+//                                    console.log(y1);
+
+                                    jQuery.each(allData, function(key,value) {
+                                        var queryDate=value.date;
+                                        var year=queryDate.split("-", 1);
+
+
+                                        for (var i=0; i < results.length; i++){
+
+                                            var lng = allMarkers[i].position.D.toFixed(6);
+                                            if (allMarkers[i].position.k == value.lat && lng == value.lng && year>=selectedDate[0] && year<=selectedDate[1]) {
+                                                console.log("Shialamalisha ", allMarkers[i]);
+                                                allMarkers[i].setVisible(true);
+
+                                            }
+                                        }
+
+
+                                    });
+
+
+
+
                                 });
                             }
                             else{

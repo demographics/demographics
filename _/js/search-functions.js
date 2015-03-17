@@ -17,21 +17,3 @@ function addLegend(){
     legend.index = 1;
     map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
 }
-
-
-function addDateLegend(){
-    var dateLegend = document.createElement('div');
-    dateLegend.id = 'dateLegend';
-    var content = [];
-    content.push('<b>1900</b>');
-    content.push('<input id="ex2" type="text" class="span2" value="" data-slider-min="10" data-slider-max="1000" data-slider-step="5" data-slider-value="[250,450]"/>');
-    content.push('<b>2015</b>');
-    dateLegend.innerHTML = content.join('');
-    dateLegend.index=1;
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(dateLegend);
-    $("#ex2").slider({});
-}
-
-
-
- 

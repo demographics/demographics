@@ -1,5 +1,5 @@
 
-html, body, #map-canvas { 
+html, body, #map-canvas {
 	overflow:0;
 	height: 100%; 
 	margin: 0; 
@@ -178,3 +178,46 @@ a.boxclose{
     cursor:pointer;
 }
 
+
+#progress-bar-background {
+    position:fixed;
+    width:100%;
+    height:24px;
+    left:0;
+    bottom:0;
+    background:rgb(248, 248, 248);
+    z-index:98;
+}
+
+#alignRight{
+    display: none;
+    background: rgba(0, 0, 0, 0);
+    float: right;
+    margin-right: 156px;
+    bottom: 40px;
+    z-index: 999;
+
+}
+
+
+.slider-handle.custom {
+    background:#87D69B;
+
+    text-align:center;
+    height:55px;
+    width:90px;
+    cursor: pointer;
+    /* You can customize the handle and set a background image */
+}
+
+/* Or display content like unicode characters or fontawesome icons */
+.slider-handle.custom::before {
+    line-height: 20px;
+    font-size: 20px;
+    content: '\2605'; /*unicode star character*/
+    color: #726204;
+}
+
+.slider-selection {
+    background: #b3d1ff;
+}
