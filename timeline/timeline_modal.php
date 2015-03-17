@@ -1,4 +1,4 @@
-<div id="timeline_modal" class="modal fade bs-example-modal-lg in" aria-hidden="false" aria-labelledby="myLargeModalLabel" role="dialog" tabindex="-1" style="display: block; padding-right: 17px;">
+<div id="timeline_modal" class="modal fade">
     <div class="modal-backdrop fade in" style="height: 609px;"></div>
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -9,12 +9,6 @@
                 <h4 id="myLargeModalLabel" class="modal-title">Timeline</h4>
             </div>
             <div class="modal-body"> <?php include 'timeline_contents.php'?> </div>
-            <div class="modal-footer">
-                <div class="form-group">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" onclick="insertEntry()" class="btn btn-primary" >Append</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>
@@ -22,7 +16,7 @@
 <script>
 $(function(){
     $('.modal .modal-body').slimScroll({
-        height: '500px'
+        height: '450px'
     });
 });
 </script>

@@ -14,7 +14,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li id=forum_Button><a href="community/vanilla/index.php">Forum</a></li>
+        <li id=forum_Button><a href="forum.php">Forum</a></li>
 
         <li class="dropdown">
           <a href="#" id="notification-dropdown" role="button" aria-expanded="false">Notifications<span id="notification-badge" class="badge-info badge"></span></a>

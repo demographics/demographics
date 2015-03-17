@@ -69,7 +69,6 @@
             }
         ?>
         
-        
         <script type="text/javascript">
             var notificationTimer;
             
