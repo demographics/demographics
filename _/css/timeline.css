@@ -117,24 +117,26 @@
     right: auto;
 }
 
-.timeline-badge.primary {
-    background-color: #2e6da4 !important;
+.timeline-badge.memoir-badge{
+    background-color: red !important;
 }
 
-.timeline-badge.success {
-    background-color: #3f903f !important;
+.timeline-badge.photo-badge{
+    background-color: yellow !important;
 }
 
-.timeline-badge.warning {
-    background-color: #f0ad4e !important;
+
+.timeline-badge.article-badge{
+    background-color: green !important;
 }
 
-.timeline-badge.danger {
-    background-color: #d9534f !important;
+
+.timeline-badge.property-badge{
+    background-color: blue !important;
 }
 
-.timeline-badge.info {
-    background-color: #5bc0de !important;
+.timeline-badge a{
+    color:#FFFFFF;
 }
 
 .timeline-title {

@@ -201,7 +201,7 @@
                     if(flag){
                         $('#sign-up-btn').hide();
                         var checkNotificationVariable = loadNotifications();
-                        setInterval(loadNotifications, 10000);
+                        //setInterval(loadNotifications, 10000);
                     }
                                         
                     $("#notification-list").on('click','a',function(){

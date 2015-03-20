@@ -11,7 +11,7 @@
       die ('Can\'t use db : ' . mysql_error());
     }
 
-    $query = "SELECT * FROM $database.EVENT ORDER BY datetime DESC;";
+    $query = "SELECT * FROM $database.EVENT,$database.MARKER WHERE EVENT.id=MARKER.event ORDER BY date DESC;";
     $result = mysql_query($query);
     $rows = array();
     while($row = mysql_fetch_assoc($result)) {
