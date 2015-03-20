@@ -58,7 +58,7 @@
         <?php include 'components/forms/change-password-form.php' ?>
         <?php include 'components/forms/edit-profile-form.php' ?>
         <?php include 'components/footer.php' ?>
-
+        <?php include 'timeline/timeline_modal.php'?>
         
         <!--Setting the flag if logged in-->
         <?php 
@@ -276,6 +276,26 @@
                 });
             });
         </script>
-
+        <script src="_/js/timeline.js"></script>
+        <link href="_/css/timeline.css" rel="stylesheet">
+        <script>
+            function show_timeline(){
+                 $.ajax({
+                    url: "timeline/ajaxsqlphp_timeline.php",
+                    type: "POST",
+                    async: false,
+                    cache: false,
+                    success: function(data){
+                        var timeline_events=JSON.parse(data);
+                        jQuery.each(timeline_events, function(key,value) {
+                            insertEntry(value);
+                        });
+                        $("#timeline_modal").modal('toggle');
+                    },
+                    contentType: false,
+                    processData: false
+                });     	   
+            }  
+        </script>
     </body>
 </html>
