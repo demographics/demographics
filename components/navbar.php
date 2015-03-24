@@ -84,8 +84,6 @@
                                 var lng = allMarkers[i].position.D.toFixed(6);
 
                                 if (allMarkers[i].position.k == value.lat && lng == value.lng) {
-//                                    console.log(value.lat+" "+value.lng);
-//                                    console.log("allMarkers "+allMarkers[i].position.k+" "+lng);
                                     allMarkers[i].setVisible(true);
                                     results.push(allMarkers[i]);
                                 }
@@ -95,10 +93,11 @@
                         if ($("#legend").length == 0){
                             addLegend();
                         }
-
+                        var str2;
                         $("#legend").click(function (e){
                             removeAllMarkers();
-                            var str2;
+
+                            var filterFlag=false;
                             switch (e.target.id) {
                                 case "filter_memo":
                                     str2 = "memoir";
@@ -121,17 +120,17 @@
                                             $("#alignRight").hide();
                                         }
                                     });
-                                    str2=2;
-
+                                    str2="showALL";
+                                    filterFlag=true;
                                     break;
                                 case "boxclose":
-                                    str2 = 1;
+                                    // str2 = 1;
                                     break;
                                 default:
                                     str2= "showALL";
                             }
 
-                            if (str2!=1 && str2!=2){
+                            if (filterFlag==false){
                                 jQuery.each(allData, function(key,value) {
                                     for (var i = 0; i < results.length; i++) {
                                         var lng=results[i].position.D.toFixed(6);
@@ -145,49 +144,32 @@
                                     }
                                 });
                             }
-                            else if (str2==2) {
+                            else if (filterFlag) {
 
 
                                 $("#ex2").on("change", function(slideEvt) {
                                     removeAllMarkers();
 
                                     var selectedDate=SL.slider('getValue');
-//                                    console.log("############ allData ##########");
-//                                    console.log(allData);
-//                                    console.log("############ allMarkers ##########");
-//                                    console.log(results);
-//                                    console.log("\n\n");
 
 
-                                    var counter1=0;
                                     jQuery.each(allData, function(key,value) {
                                         var queryDate=value.date;
                                         var year=queryDate.split("-", 1);
-//                                        console.log("Year from query: "+year);
-//                                        console.log("Year from slider: "+selectedDate[0]+" and "+ selectedDate[1]);
 
                                         for (var i=0; i < results.length; i++){
 
-
                                             var lng = results[i].position.D.toFixed(6);
 
-//                                            console.log(allMarkers[i].position.k == value.lat);
-//                                            console.log(allMarkers[i].position.k+" == "+value.lat);
-//
-//                                            console.log(lng == value.lng);
-//                                            console.log(lng+" == "+value.lng);
-//
-//                                            console.log(year>=selectedDate[0]);
-//                                            console.log(year+" >= "+selectedDate[0]);
-//
-//                                            console.log(year<=selectedDate[1]);
-//                                            console.log(year+" <= "+selectedDate[1]);
+                                            var str1=value.type;
 
-                                            if ((results[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1])) {
+                                            if ((results[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1]) && (str2.localeCompare("showALL")==0)) {
+                                                results[i].setVisible(true);
+                                            }
+                                            else if ((results[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1]) && (str1.localeCompare(str2)==0)){
                                                 results[i].setVisible(true);
                                             }
                                         }
-                                        counter1+=1;
 
                                     });
 

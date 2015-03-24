@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64ad4794-ae5c-429c-8a00-60d1fce13ac0" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/_/libs/slider" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/navbar.php" afterPath="$PROJECT_DIR$/components/navbar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpsqlajax_dbinfo.php" afterPath="$PROJECT_DIR$/phpsqlajax_dbinfo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="EPL363.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,8 +40,8 @@
       <file leaf-file-name="navbar.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/navbar.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4674221" vertical-offset="2205" max-vertical-offset="3300">
-              <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.51133144" vertical-offset="584" max-vertical-offset="3030">
+              <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -531,13 +528,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_/js/googleMaps.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29503545" vertical-offset="1622" max-vertical-offset="4125">
-          <caret line="122" column="33" selection-start-line="122" selection-start-column="33" selection-end-line="122" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/_/prototype.epl361/demography.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.826087" vertical-offset="8864" max-vertical-offset="10125">
@@ -622,10 +612,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/_/js/googleMaps.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1212938" vertical-offset="0" max-vertical-offset="4080">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/components/navbar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4674221" vertical-offset="2205" max-vertical-offset="3300">
-          <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.51133144" vertical-offset="584" max-vertical-offset="3030">
+          <caret line="63" column="29" selection-start-line="63" selection-start-column="29" selection-end-line="63" selection-end-column="29" />
           <folding />
         </state>
       </provider>
