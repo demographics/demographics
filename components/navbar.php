@@ -149,47 +149,47 @@
 
 
                                 $("#ex2").on("change", function(slideEvt) {
-                                    //removeAllMarkers();
-                                    console.log("#################");
+                                    removeAllMarkers();
+
                                     var selectedDate=SL.slider('getValue');
-//                                    console.log(selectedDate);
-//                                    var y1=selectedDate[0];
-//                                    console.log(y1);
+//                                    console.log("############ allData ##########");
+//                                    console.log(allData);
+//                                    console.log("############ allMarkers ##########");
+//                                    console.log(results);
+//                                    console.log("\n\n");
 
+
+                                    var counter1=0;
                                     jQuery.each(allData, function(key,value) {
-
                                         var queryDate=value.date;
                                         var year=queryDate.split("-", 1);
-                                        console.log("Year from query: "+year);
-                                        console.log("Year from slider: "+selectedDate[0]+" and "+ selectedDate[1]);
+//                                        console.log("Year from query: "+year);
+//                                        console.log("Year from slider: "+selectedDate[0]+" and "+ selectedDate[1]);
 
                                         for (var i=0; i < results.length; i++){
 
-                                            var lng = allMarkers[i].position.D.toFixed(6);
 
-                                            console.log(allMarkers[i].position.k == value.lat);
-                                            console.log(allMarkers[i].position.k+" == "+value.lat);
+                                            var lng = results[i].position.D.toFixed(6);
 
-                                            console.log(lng == value.lng);
-                                            console.log(lng+" == "+value.lng);
+//                                            console.log(allMarkers[i].position.k == value.lat);
+//                                            console.log(allMarkers[i].position.k+" == "+value.lat);
+//
+//                                            console.log(lng == value.lng);
+//                                            console.log(lng+" == "+value.lng);
+//
+//                                            console.log(year>=selectedDate[0]);
+//                                            console.log(year+" >= "+selectedDate[0]);
+//
+//                                            console.log(year<=selectedDate[1]);
+//                                            console.log(year+" <= "+selectedDate[1]);
 
-                                            console.log(year>=selectedDate[0]);
-                                            console.log(year+" >= "+selectedDate[0]);
-
-                                            console.log(year<=selectedDate[1]);
-                                            console.log(year+" <= "+selectedDate[1]);
-                                            if ((allMarkers[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1])) {
-
-                                                allMarkers[i].setVisible(true);
-
+                                            if ((results[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1])) {
+                                                results[i].setVisible(true);
                                             }
                                         }
-
+                                        counter1+=1;
 
                                     });
-
-
-
 
                                 });
                             }
@@ -200,7 +200,6 @@
                             }
 
                         });
-
 
                     }
                 }

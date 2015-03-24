@@ -5,8 +5,9 @@
         just type "require("phpsqlajax_dbinfo.php")" and
         we have access on them.
     */
+
     $username="root";
-    $password="";
-    $database="demographics";
-	$host="localhost";
+    $password="uj2?ah9r";
+    $database="demographics_schema";
+    $host="localhost";
 ?>
