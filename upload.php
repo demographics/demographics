@@ -24,8 +24,8 @@
             $eventContent='<p class="photo-description">'.$_POST['photo-description-input'].'</p>';
             for($i=0; $i<count($_FILES['file']['name']); $i++) {
                 move_uploaded_file($_FILES["file"]["tmp_name"][$i],
-                "uploads/" . $_FILES["file"]["name"][$i]);
-                $eventContent.='<img class="photo-container" src="uploads/'.$_FILES["file"]["name"][$i].'"></img>';
+                "markers/events/" . $_FILES["file"]["name"][$i]);
+                $eventContent.='<img class="photo-container" src="markers/events/'.$_FILES["file"]["name"][$i].'"></img>';
             }
             
             break;
