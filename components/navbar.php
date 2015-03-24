@@ -150,22 +150,36 @@
 
                                 $("#ex2").on("change", function(slideEvt) {
                                     //removeAllMarkers();
-
+                                    console.log("#################");
                                     var selectedDate=SL.slider('getValue');
 //                                    console.log(selectedDate);
 //                                    var y1=selectedDate[0];
 //                                    console.log(y1);
 
                                     jQuery.each(allData, function(key,value) {
+
                                         var queryDate=value.date;
                                         var year=queryDate.split("-", 1);
-
+                                        console.log("Year from query: "+year);
+                                        console.log("Year from slider: "+selectedDate[0]+" and "+ selectedDate[1]);
 
                                         for (var i=0; i < results.length; i++){
 
                                             var lng = allMarkers[i].position.D.toFixed(6);
-                                            if (allMarkers[i].position.k == value.lat && lng == value.lng && year>=selectedDate[0] && year<=selectedDate[1]) {
-                                                console.log("Shialamalisha ", allMarkers[i]);
+
+                                            console.log(allMarkers[i].position.k == value.lat);
+                                            console.log(allMarkers[i].position.k+" == "+value.lat);
+
+                                            console.log(lng == value.lng);
+                                            console.log(lng+" == "+value.lng);
+
+                                            console.log(year>=selectedDate[0]);
+                                            console.log(year+" >= "+selectedDate[0]);
+
+                                            console.log(year<=selectedDate[1]);
+                                            console.log(year+" <= "+selectedDate[1]);
+                                            if ((allMarkers[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1])) {
+
                                                 allMarkers[i].setVisible(true);
 
                                             }
