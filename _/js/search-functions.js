@@ -15,5 +15,6 @@ function addLegend(){
     content.push('<div id="filter_date"><p><div class="color grey"></div>Date</p></div>');
     legend.innerHTML = content.join('');
     legend.index = 1;
-    map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(legend);
+    map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
+
 }

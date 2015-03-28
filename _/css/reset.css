@@ -111,7 +111,7 @@ html, body, #map-canvas {
 
 
 #legend{
-    margin-right: 12px;
+    margin-left: 18px;
     margin-bottom: 45px;
     height: 200px;
     width: 130px;
@@ -121,6 +121,7 @@ html, body, #map-canvas {
     box-shadow: -5px 5px 5px #888888;
     background-color: rgba(241, 239, 233, 0.8);
     cursor:pointer;
+
 }
 
 .color {
@@ -128,7 +129,8 @@ html, body, #map-canvas {
     height: 12px;
     width: 12px;
     margin-right: 3px;
-    float: left;
+    float: right;
+    text-align: right;
     }
 
 .red {
@@ -156,12 +158,12 @@ html, body, #map-canvas {
     }
 
 a.boxclose{
-    float:right;
+    float:left;
     width:26px;
     height:26px;
     background:transparent url(http://tympanus.net/Tutorials/CSSOverlay/images/cancel.png) repeat top left;
     margin-top:-72px;
-    margin-right:-20px;
+    margin-left:-19px;
     cursor:pointer;
     }
 
@@ -192,11 +194,15 @@ a.boxclose{
 #alignRight{
     display: none;
     background: rgba(0, 0, 0, 0);
-    float: right;
-    margin-right: 156px;
-    bottom: 40px;
+    position: fixed;
+    left:160px;
+    bottom: 95px;
     z-index: 999;
 
+
+    /*float: right;*/
+    /*margin-right: 156px;*/
+    /*bottom: 40px;*/
 }
 
 

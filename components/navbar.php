@@ -124,7 +124,10 @@
                                     filterFlag=true;
                                     break;
                                 case "boxclose":
-                                    // str2 = 1;
+                                    displayAllMarkers();
+                                    $("#search_text").val("");
+                                    $("#legend").remove();
+                                    $("#alignRight").hide();
                                     break;
                                 default:
                                     str2= "showALL";
