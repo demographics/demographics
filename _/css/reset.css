@@ -134,23 +134,23 @@ html, body, #map-canvas {
     }
 
 .red {
-    background: #F05B47;
+    background: rgba(240, 91, 71, 1);
     }
 
 .yellow {
-    background: #FDE65C;
+    background: rgba(253, 230, 92, 1);
     }
 
 .green {
-    background: #1FDA9A;
+    background: rgba(31, 218, 154, 1);
     }
 
 .blue {
-    background: #28ABE3;
+    background: rgba(40, 171, 227, 1);
     }
 
 .grey {
-    background: #7F7F7F;
+    background: rgba(127, 127, 127, 1);
     }
 
 #change-password-form{
