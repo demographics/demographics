@@ -8,7 +8,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
-        <title>Demography</title>
+        <title>Demography-roads</title>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>       
         <script src="_/libs/bootstrap/js/bootstrap.min.js"></script>
@@ -22,15 +22,14 @@
         <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWMxUmWeNkBfkGxiaLBLLWBZSw3pxSNM0">
         </script>
-        <script src="_/js/googleMaps.js" type="text/javascript"></script>
+        <script src="_/js/googleMaps-road.js" type="text/javascript"></script>
+        <script src="_/js/elabel.js" type="text/javascript"></script>
         <script src="_/js/search-functions.js" type="text/javascript"></script>
         <script src="_/js/infobubble.js"></script>
         <script src="_/libs/summernote/summernote.min.js"></script>
         <script src="_/js/jquery.slimscroll.min.js"></script>
         <script src="_/libs/bootstrap/tags/bootstrap-tagsinput.min.js"></script>
 
-
-        
         <link rel="icon" type="image/ico" href="_/img/favicon.ico">
         <link href="_/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="_/libs/bootstrap-slider/css/bootstrap-slider.css" rel="stylesheet">
