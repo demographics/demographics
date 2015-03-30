@@ -98,10 +98,12 @@
                             //$("div.color.red").css("background", "#000000");
 
                         }
-                        var str2;
+                        var str2; //must be removed
                         $("#legend").click(function (e){
                             removeAllMarkers();
+                            console.log(checkBox);
                             if (checkBox==0){
+                                options = ["", "", "", ""];
                                 $("div.color.red").css("background", "rgba(240, 91, 71, 0)");
                                 $("div.color.yellow").css("background", "rgba(253, 230, 92, 0)");
                                 $("div.color.green").css("background", "rgba(31, 218, 154, 0)");
@@ -109,7 +111,7 @@
                                 $("div.color.grey").css("background", "rgba(127, 127, 127, 0)");
                                 checkBox++;
                             }
-
+                            console.log(checkBox);
                             var filterFlag=false;
                             switch (e.target.id) {
                                 case "filter_memo":
@@ -159,9 +161,11 @@
                                 case "filter_date":
                                     $('#filter_date').on('click',function(){
                                         if($("#alignRight").css("display")== 'none') {
+                                            $("div.color.grey").css("background", "rgba(127, 127, 127, 1)");
                                             $("#alignRight").show();
                                         }
                                         else {
+                                            $("div.color.grey").css("background", "rgba(127, 127, 127, 0)");
                                             $("#alignRight").hide();
                                         }
                                     });
@@ -221,11 +225,14 @@
 
                                             var str1=value.type;
 
-                                            if ((results[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1]) && (str2.localeCompare("showALL")==0)) {
-                                                results[i].setVisible(true);
-                                            }
-                                            else if ((results[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1]) && (str1.localeCompare(str2)==0)){
-                                                results[i].setVisible(true);
+                                            if ((results[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1])) {
+                                                for (var j=0; j<options.length; j++){
+                                                    if(str1.localeCompare(options[j])==0){
+//                                                    console.log("options: "+options[j]);
+//                                                    console.log("marker: "+ str1);
+                                                        results[i].setVisible(true);
+                                                    }
+                                                }
                                             }
                                         }
 

@@ -16,5 +16,5 @@ function addLegend(){
     legend.innerHTML = content.join('');
     legend.index = 1;
     map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
-
 }
+
