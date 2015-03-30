@@ -1,7 +1,9 @@
 var poly = null;
 var map = null;
 var previousPosition = null;
+var roadName=null;
 var road = {'markers':[]};
+var actualMarker = {'markers':[]};
 var listeners={'listeners':[]};
 
 function initialize() {
@@ -61,7 +63,6 @@ function initialize() {
         cur_location=event.latLng;
         if(flag){
             addLatLng(event);
-            //$("#road-modal").modal("toggle");
         }else{
             swal("You are not logged in!", "You have to login to be able to post.","warning");
         }
@@ -86,7 +87,6 @@ function addLatLng(event) {
         var x = ((x1 + x2) / 2);
         var y = ((y1 + y2) / 2);
         
-        var roadName="Foo";
         var label = new ELabel({
             latlng: new google.maps.LatLng(x,y),
             label: roadName,
@@ -97,7 +97,7 @@ function addLatLng(event) {
             clicktarget: false
         });
 
-        label.setMap(map);
+        //label.setMap(map);
         previousPosition = event.latLng;
     }
     
@@ -126,12 +126,12 @@ function addLatLng(event) {
             google.maps.event.removeListener(value);
         });
         
-        saveRoad(road,roadName);
+        $("#road-modal").modal("toggle");
         
-        road={'markers':[]};
     });
                         
     road.markers.push(roadMarker);
+    actualMarker.markers.push(marker);
     listeners.listeners.push(clickListener);
 }
 

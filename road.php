@@ -51,9 +51,8 @@
         <div id="map-canvas"></div>	
         
         <!--The main includes for the components-->
-        <?php include 'components/marker-modal.php' ?>
+        <?php include 'components/road-modal.php' ?>
         <?php include 'components/login-modal.php' ?>
-        <?php include 'components/marker-view.php' ?>
         <?php include 'components/forms/sign-up-form.php' ?>
         <?php include 'components/forms/change-password-form.php' ?>
         <?php include 'components/forms/edit-profile-form.php' ?>
