@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="64ad4794-ae5c-429c-8a00-60d1fce13ac0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/navbar.php" afterPath="$PROJECT_DIR$/components/navbar.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpsqlajax_dbinfo.php" afterPath="$PROJECT_DIR$/phpsqlajax_dbinfo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_/js/search-functions.js" afterPath="$PROJECT_DIR$/_/js/search-functions.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="EPL363.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,8 +40,8 @@
       <file leaf-file-name="navbar.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/navbar.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46958983" vertical-offset="1408" max-vertical-offset="4005">
-              <caret line="116" column="51" selection-start-line="116" selection-start-column="51" selection-end-line="116" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.46958983" vertical-offset="1438" max-vertical-offset="4020">
+              <caret line="118" column="51" selection-start-line="118" selection-start-column="51" selection-end-line="118" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -99,8 +96,8 @@
         <option value="$PROJECT_DIR$/search.php" />
         <option value="$PROJECT_DIR$/_/css/reset.css" />
         <option value="$PROJECT_DIR$/_/js/search-functions.js" />
-        <option value="$PROJECT_DIR$/components/navbar.php" />
         <option value="$PROJECT_DIR$/phpsqlajax_dbinfo.php" />
+        <option value="$PROJECT_DIR$/components/navbar.php" />
       </list>
     </option>
   </component>
@@ -706,8 +703,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/navbar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46958983" vertical-offset="1408" max-vertical-offset="4005">
-          <caret line="116" column="51" selection-start-line="116" selection-start-column="51" selection-end-line="116" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.46958983" vertical-offset="1438" max-vertical-offset="4020">
+          <caret line="118" column="51" selection-start-line="118" selection-start-column="51" selection-end-line="118" selection-end-column="51" />
           <folding />
         </state>
       </provider>
