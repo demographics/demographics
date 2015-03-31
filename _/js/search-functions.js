@@ -33,3 +33,4 @@ function colorBoxes(){
     $("div.color.green").css("background", "rgba(31, 218, 154, 1)");
     $("div.color.blue").css("background", "rgba(40, 171, 227, 1)");
 }
+
