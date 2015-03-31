@@ -32,12 +32,23 @@
 
     $query = "SELECT * from $database.MEMBER WHERE email='$email' AND password='$user_password'";
     $result = mysql_query($query);
+    $mple=0;
+    $prasino=0;
+    $poios=-1;
+    while ($row = mysql_fetch_assoc($result)) {
+        $mple=$row['pre74'];
+        $prasino=$row['post74'];
+        $poios=$row['id'];
+    }
 
     if(mysql_num_rows($result)==1){
         $_SESSION["email"]=$email;
         $_SESSION["password"]=$user_password;
         $_SESSION["logged_in"]=1;
         $_SESSION["errorLogin"]=null;
+        $_SESSION["pre74"]=$mple;
+        $_SESSION["post74"]=$prasino;
+        $_SESSION["member"]=$poios;
         header("location:login_success.php");
     }else{
         $_SESSION["errorLogin"]=1;
