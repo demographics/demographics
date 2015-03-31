@@ -74,9 +74,48 @@
                     allData=JSON.parse(data);
 
                     var results = [];
-                    var checkBox=0;
+                    var applyFilterFirst=0;   //If the value of this var is greater than 0, then the filter is applied first
+                    var dateSearch=false; // This checks if the slider has been used
+                    var filterFlag=false;
 
+                    function filter(){
+                        jQuery.each(allData, function(key,value) {
+                            for (var i = 0; i < results.length; i++) {
+                                var lng=results[i].position.D.toFixed(6);
+                                var str1=value.type;
+                                if(results[i].position.k==value.lat && lng==value.lng){
+                                    for (var j=0; j<options.length; j++){
+                                        if(str1.localeCompare(options[j])==0){
+                                            results[i].setVisible(true);
+                                        }
+                                    }
+                                }
+                            }
+                        });
+                    }
 
+                    function filterWithDate(){
+                        var selectedDate=SL.slider('getValue');
+                        jQuery.each(allData, function(key,value) {
+                            var queryDate=value.date;
+                            var year=queryDate.split("-", 1);
+
+                            for (var i=0; i < results.length; i++){
+                                var lng = results[i].position.D.toFixed(6);
+
+                                var str1=value.type;
+
+                                if ((results[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1])) {
+                                    for (var j=0; j<options.length; j++){
+                                        if(str1.localeCompare(options[j])==0){
+                                            results[i].setVisible(true);
+                                        }
+                                    }
+                                }
+                            }
+
+                        });
+                    }
 
                     //Check whether the user has pressed search without entering text
                     if (allData.length != 0) {
@@ -96,22 +135,14 @@
 
                         if ($("#legend").length == 0){
                             addLegend();
-                            //$("div.color.red").css("background", "#000000");
-
-                        }
-                        var str2;
-                        $("#legend").click(function (e){
-                            removeAllMarkers();
-                            if (checkBox==0){
-                                $("div.color.red").css("background", "rgba(240, 91, 71, 0)");
-                                $("div.color.yellow").css("background", "rgba(253, 230, 92, 0)");
-                                $("div.color.green").css("background", "rgba(31, 218, 154, 0)");
-                                $("div.color.blue").css("background", "rgba(40, 171, 227, 0)");
-                                $("div.color.grey").css("background", "rgba(127, 127, 127, 0)");
-                                checkBox++;
                             }
 
-                            var filterFlag=false;
+                        $("#legend").click(function (e){
+                            removeAllMarkers();
+                            if (applyFilterFirst==0){
+                                emptyBoxes();
+                                applyFilterFirst++;
+                            }
                             switch (e.target.id) {
                                 case "filter_memo":
                                     if(!options[0]){
@@ -122,7 +153,6 @@
                                         $("div.color.red").css("background", "rgba(240, 91, 71, 0)");
                                         options[0]="";
                                     }
-                                    str2 = "memoir";
                                     break;
                                 case "filter_photo":
                                     if(!options[1]){
@@ -133,7 +163,6 @@
                                         $("div.color.yellow").css("background", "rgba(253, 230, 92, 0)");
                                         options[1]="";
                                     }
-                                    str2 = "photo";
                                     break;
                                 case "filter_article":
                                     if(!options[2]){
@@ -144,9 +173,11 @@
                                         $("div.color.green").css("background", "rgba(31, 218, 154, 0)");
                                         options[2]="";
                                     }
-                                    str2 = "article";
+
+
                                     break;
                                 case "filter_property":
+
                                     if(!options[3]){
                                         $("div.color.blue").css("background", "rgba(40, 171, 227, 1)");
                                         options[3]="property";
@@ -155,82 +186,70 @@
                                         $("div.color.blue").css("background", "rgba(40, 171, 227, 0)");
                                         options[3]="";
                                     }
-                                    str2 = "property";
+
+
                                     break;
                                 case "filter_date":
-                                    $('#filter_date').on('click',function(){
-                                        if($("#alignRight").css("display")== 'none') {
-                                            $("#alignRight").show();
-                                        }
-                                        else {
-                                            $("#alignRight").hide();
-                                        }
-                                    });
-                                    str2="showALL";
-                                    filterFlag=true;
+                                    console.log("date");
+
+                                    if($("#alignRight").css("display")== 'none') {
+                                        $("div.color.grey").css("background", "rgba(127, 127, 127, 1)");
+                                        $("#alignRight").show();
+                                        filterFlag=true;
+                                    }
+                                    else {
+                                        $("div.color.grey").css("background", "rgba(127, 127, 127, 0)");
+                                        $("#alignRight").hide();
+                                        dateSearch=false;
+                                        filterFlag=false;
+                                    }
+
+
                                     break;
                                 case "boxclose":
                                     displayAllMarkers();
                                     $("#search_text").val("");
                                     $("#legend").remove();
                                     $("#alignRight").hide();
+                                    applyFilterFirst=0;
+                                    options = ["", "", "", ""];
                                     break;
                                 default:
                                     options = ["memoir", "photo", "article", "property"];
-                                    $("div.color.red").css("background", "rgba(240, 91, 71, 1)");
-                                    $("div.color.yellow").css("background", "rgba(253, 230, 92, 1)");
-                                    $("div.color.green").css("background", "rgba(31, 218, 154, 1)");
-                                    $("div.color.blue").css("background", "rgba(40, 171, 227, 1)");
-                                    $("div.color.grey").css("background", "rgba(127, 127, 127, 1)");
-                                    checkBox=0;
-                                    str2= "showALL";
+                                    colorBoxes();
+                                    if (dateSearch){
+                                        applyFilterFirst=0;
+                                    }
+
                             }
 
                             if (filterFlag==false){
-                                jQuery.each(allData, function(key,value) {
-                                    for (var i = 0; i < results.length; i++) {
-                                        var lng=results[i].position.D.toFixed(6);
-                                        var str1=value.type;
-                                        if(results[i].position.k==value.lat && lng==value.lng){
-                                            for (var j=0; j<options.length; j++){
-                                                if(str1.localeCompare(options[j])==0){
-//                                                    console.log("options: "+options[j]);
-//                                                    console.log("marker: "+ str1);
-                                                    results[i].setVisible(true);
-                                                }
-                                            }
-                                        }
-                                    }
-                                });
+                                filter();
                             }
                             else if (filterFlag) {
 
+                                //This must be executed only the first time when the Date option is selected.
+
+                                if (!dateSearch){
+                                    if (applyFilterFirst==0){
+//                                        var optionsAlt = ["memoir", "photo", "article", "property"];
+                                        $("div.color.red").css("background", "rgba(240, 91, 71, 1)");
+                                        $("div.color.yellow").css("background", "rgba(253, 230, 92, 1)");
+                                        $("div.color.green").css("background", "rgba(31, 218, 154, 1)");
+                                        $("div.color.blue").css("background", "rgba(40, 171, 227, 1)");
+                                    }
+
+
+                                    //filterWithDate();
+                                }
+
+                                filterWithDate();
 
                                 $("#ex2").on("change", function(slideEvt) {
+                                    dateSearch=true;
                                     removeAllMarkers();
+                                    filterWithDate();
 
-                                    var selectedDate=SL.slider('getValue');
-
-
-                                    jQuery.each(allData, function(key,value) {
-                                        var queryDate=value.date;
-                                        var year=queryDate.split("-", 1);
-
-                                        for (var i=0; i < results.length; i++){
-
-                                            var lng = results[i].position.D.toFixed(6);
-
-                                            var str1=value.type;
-
-                                            if ((results[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1]) && (str2.localeCompare("showALL")==0)) {
-                                                results[i].setVisible(true);
-                                            }
-                                            else if ((results[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1]) && (str1.localeCompare(str2)==0)){
-                                                results[i].setVisible(true);
-                                            }
-                                        }
-
-                                    });
 
                                 });
                             }

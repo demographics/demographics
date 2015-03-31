@@ -1,6 +1,37 @@
 <?php 
-    $vill_name="Peristeronopigi"; 
-    session_start(); 
+
+     session_start(); 
+
+    require("phpsqlajax_dbinfo.php");
+
+    $connection=mysql_connect ($host, $username, $password);
+    if (!$connection) {
+        die('Not connected : ' . mysql_error());
+    }
+
+    $db_selected = mysql_select_db($database, $connection);
+    if (!$db_selected) {
+        die ('Can\'t use db : ' . mysql_error());
+    }
+
+    $query = "SELECT * FROM $database.COMMUNITY WHERE id=".$_SESSION['pre74'];
+    $result = mysql_query($query);
+    if (!$result) {
+        die('Invalid query: ' . mysql_error());
+    }
+
+    $vill_name="";
+
+    while ($row = @mysql_fetch_assoc($result)){  
+        $vill_name=$row['name'];
+    }
+
+    $query = "SELECT * FROM $database.SUBJECT WHERE community=".$_SESSION['pre74'];
+    $result = mysql_query($query);
+    if (!$result) {
+        die('Invalid query: ' . mysql_error());
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +63,7 @@
         <div class="container">
             <h2>Demographics Forum</h2>
             <hr>
-            <h3>Forum for <?php echo "$vill_name"?> Village</h3>
+            <h3>Forum for <?= "$vill_name"?> Village</h3>
             <br>
                 <nav class="navbar navbar-default">
                     
@@ -49,11 +80,6 @@
                 </nav>
             
             <div id="b" class="list-group">
-                <a href="#" class="list-group-item">Visit Church of Archangel Michael</a>                
-                <a href="#" class="list-group-item">Collect money for poor families</a>
-                <a href="#" class="list-group-item">Festival for Saint Anastasios</a>
-                <a href="#" class="list-group-item">Meeting for our Village</a>
-                <a href="#" class="list-group-item">Visit our Village</a>
             </div>
             
         </div>
@@ -62,72 +88,34 @@
 </html>
 
 <script>
- 
+    <?php
+        while ($row = @mysql_fetch_assoc($result)){ 
+            $temp_title=$row['title'];
+            
+            $temp_time=$row['datetime'];
+            $query="SELECT * FROM $database.MEMBER WHERE id=".$row['member'];
+            $result2=mysql_query($query);
+            $temp_email="";
+            while ($row2 = @mysql_fetch_assoc($result2)){
+            $temp_email=$row2['email'];
+            }
+            echo "add_theme('$temp_title','$temp_email','$temp_time');"; 
+        }
+    ?>
     
     $("#forum-add-btn").on("click",function(){
         $("#add-theme-modal").modal("toggle");
     });
     
-            function add_theme(){
-                var a=document.createElement('a');
-                a.setAttribute('href','#');
-                a.setAttribute('class','list-group-item');
-                var kume = document.getElementById('b');
-                a.innerHTML= document.getElementById("event-title-input").value;
-                kume.appendChild(a);
+    function add_theme(t,k,l){
+        var a=document.createElement('a');
+        a.setAttribute('href','#');
+        a.setAttribute('class','list-group-item');
+        var kume = document.getElementById('b');
+        a.innerHTML="<div class='row'><div class='col-md-10'><h4>"+t+"</h4></div><div class='col-md-2'><p>"+k+"<br>"+l+"</p></div></div>";
+        kume.appendChild(a);
+    }
                 
-
-            }
-        
-   /*     
-    $('#change-password-modal').on('hide.bs.modal', function () { 
-        var changePasswordForm = document.getElementById("change-password-form");
-        changePasswordForm.reset();
-        $("#password-error1").addClass("secret-combination");
-         $("#password-pre").addClass("secret-combination");
-    });
     
-       $("form[name='change-password-form']").submit(function(e) {
-        var formData = new FormData($(this)[0]);        
-         
-        $("#password-error1").addClass("secret-combination");
-         $("#password-pre").addClass("secret-combination");
-        
-         $.ajax({
-            url: "members/phpsqlajax_ch_password.php",
-            type: "POST",
-            data: formData,
-            async: false,
-            data:{
-                previous:$('#pre-password-input').val(),
-                password1:$('#change-password-input').val(),
-                password2:$('#change-password-input-again').val()
-            },
-            success: function (data) {
-                if (data==2){
-                    $("#password-error1").removeClass("secret-combination");
-                }
-                else if (data==3){
-                    $("#password-pre").removeClass("secret-combination");
-                }
-                else{
-                    swal({                     
-                      title: "Success!",
-                      text: "Your password change done succesfully!",
-                      type: "success",
-                      showCancelButton: false,
-                      confirmButtonClass: "btn-success",
-                      confirmButtonText: "Ok",
-                      closeOnConfirm: true
-                    });
-                    $("#change-password-modal").modal('toggle');
-                }
-            }
-        });
-
-
-        e.preventDefault();
-    });    */
-        
-
+       
 </script>

@@ -8,6 +8,6 @@
 
     $username="root";
     $password="";
-    $database="demographics";
+    $database="db_demographics";
     $host="localhost";
 ?>

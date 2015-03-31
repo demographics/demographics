@@ -12,6 +12,10 @@
     $email=$_POST['member-email-input'];
     $user_password_again=$_POST['member-password-input-again'];
     $user_password=$_POST['member-password-input'];
+
+//    $p=$_POST['member-village-b1974-input'];
+//    session_start();
+//    $_SESSION["p_vill"]=$p;
     
     if (strcmp("$user_password_again","$user_password")!=0){
         echo "2";
@@ -29,6 +33,9 @@
 
     $pre74=$_POST['member-village-b1974-input'];
     $post74=$_POST['member-village-a1974-input'];
+
+    $_SESSION["p_vill"]=$pre74;
+    $_SESSION["n_vill"]=$post74;
       
     require("../phpsqlajax_dbinfo.php");   
     
