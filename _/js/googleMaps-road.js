@@ -124,22 +124,7 @@ function addLatLng(event) {
             google.maps.event.removeListener(value);
         });
         
-        var STATIC_URL='https://maps.googleapis.com/maps/api/staticmap?';
-        var CENTER="center="; 
-        var ZOOM="zoom=10";
-        var SIZE="size=550x350";
-        var SCALE="scale=1";
-        var FORMAT="format=PNG";
-        var MAPTYPE="maptype=roadmap";
-        var PATH="path=color:0x0000ff|weight:5";
-      
-        $.each(road.markers,function(key,value){
-            PATH+="|"+value.lat+","+value.lng;
-        });
-        
-        STATIC_URL+=CENTER+"&"+ZOOM+"&"+SIZE+"&"+SCALE+"&"+FORMAT+"&"+MAPTYPE+"&"+PATH;
-        
-        $('.road-preview').attr('src',STATIC_URL);
+        $('#road-modal .road-preview').attr('src',createStaticURL(road));
         $("#road-modal").modal("toggle");
         
     });
@@ -147,6 +132,24 @@ function addLatLng(event) {
     road.markers.push(roadMarker);
     actualMarker.markers.push(marker);
     listeners.listeners.push(clickListener);
+}
+
+function createStaticURL(road){
+    var STATIC_URL='https://maps.googleapis.com/maps/api/staticmap?';
+    var CENTER=""; 
+    var ZOOM="zoom=10";
+    var SIZE="size=550x350";
+    var SCALE="scale=1";
+    var FORMAT="format=PNG";
+    var MAPTYPE="maptype=roadmap";
+    var PATH="path=color:0x0000ff|weight:5";
+
+    $.each(road.markers,function(key,value){
+        PATH+="|"+value.lat+","+value.lng;
+    });
+
+    STATIC_URL+=ZOOM+"&"+SIZE+"&"+SCALE+"&"+FORMAT+"&"+MAPTYPE+"&"+PATH;
+    return STATIC_URL;
 }
 
 function saveRoad(roadPath,roadName){
@@ -198,9 +201,15 @@ function insertRoad(roadPath,roadName){
     });
 
     google.maps.event.addListener(polyPath, 'click', function(e){
-            polyPath.getPath().forEach(function(routePoint, index){
-                console.log(routePoint.lat()+" "+routePoint.lng());
-            });
+        var temp_road = {'markers':[]};
+        polyPath.getPath().forEach(function(routePoint, index){
+            var roadMarker = {'lat':routePoint.lat(),'lng':routePoint.lng()};
+            temp_road.markers.push(roadMarker);
+        });
+        $('#road-body').html("");
+        $('#road-body').append("<img alt='Road path on map.' height='350px' width='550px' class='road-preview'/>");
+        $('#road-view .road-preview').attr('src',createStaticURL(temp_road));
+        $('#road-view').modal('toggle');
     });
     
     polyPath.setMap(map);
