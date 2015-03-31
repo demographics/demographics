@@ -150,7 +150,7 @@ html, body, #map-canvas {
     }
 
 .grey {
-    background: rgba(127, 127, 127, 1);
+    background: rgba(127, 127, 127, 0);
     }
 
 #change-password-form{

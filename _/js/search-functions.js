@@ -18,3 +18,18 @@ function addLegend(){
     map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(legend);
 }
 
+function emptyBoxes(){
+    //options = ["", "", "", ""];
+    $("div.color.red").css("background", "rgba(240, 91, 71, 0)");
+    $("div.color.yellow").css("background", "rgba(253, 230, 92, 0)");
+    $("div.color.green").css("background", "rgba(31, 218, 154, 0)");
+    $("div.color.blue").css("background", "rgba(40, 171, 227, 0)");
+}
+
+function colorBoxes(){
+   // var optionsAlt = ["memoir", "photo", "article", "property"];
+    $("div.color.red").css("background", "rgba(240, 91, 71, 1)");
+    $("div.color.yellow").css("background", "rgba(253, 230, 92, 1)");
+    $("div.color.green").css("background", "rgba(31, 218, 154, 1)");
+    $("div.color.blue").css("background", "rgba(40, 171, 227, 1)");
+}
