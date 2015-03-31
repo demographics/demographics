@@ -97,7 +97,6 @@ function addLatLng(event) {
             clicktarget: false
         });
 
-        //label.setMap(map);
         previousPosition = event.latLng;
     }
     
@@ -110,7 +109,6 @@ function addLatLng(event) {
     });
     
     var clickListener = google.maps.event.addListener(marker,'click',function() {
-        console.log(road);
         
         var polyOptions = {
             strokeColor: '#555555',
@@ -126,6 +124,22 @@ function addLatLng(event) {
             google.maps.event.removeListener(value);
         });
         
+        var STATIC_URL='https://maps.googleapis.com/maps/api/staticmap?';
+        var CENTER="center="; 
+        var ZOOM="zoom=10";
+        var SIZE="size=550x350";
+        var SCALE="scale=1";
+        var FORMAT="format=PNG";
+        var MAPTYPE="maptype=roadmap";
+        var PATH="path=color:0x0000ff|weight:5";
+      
+        $.each(road.markers,function(key,value){
+            PATH+="|"+value.lat+","+value.lng;
+        });
+        
+        STATIC_URL+=CENTER+"&"+ZOOM+"&"+SIZE+"&"+SCALE+"&"+FORMAT+"&"+MAPTYPE+"&"+PATH;
+        
+        $('.road-preview').attr('src',STATIC_URL);
         $("#road-modal").modal("toggle");
         
     });
@@ -183,8 +197,13 @@ function insertRoad(roadPath,roadName){
         strokeWeight: 2
     });
 
+    google.maps.event.addListener(polyPath, 'click', function(e){
+            polyPath.getPath().forEach(function(routePoint, index){
+                console.log(routePoint.lat()+" "+routePoint.lng());
+            });
+    });
+    
     polyPath.setMap(map);
-
 }
 
 function loadRoads(){
