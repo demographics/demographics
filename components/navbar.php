@@ -75,7 +75,6 @@
 
                     var results = [];
                     var applyFilterFirst=0;   //If the value of this var is greater than 0, then the filter is applied first
-                    //var dateSearch=false; // This checks if the slider has been used
                     var filterFlag=false;
 
                     function filter(){
@@ -196,8 +195,6 @@
                                         $("div.color.blue").css("background", "rgba(40, 171, 227, 0)");
                                         options[3]="";
                                     }
-
-
                                     break;
                                 case "filter_date":
                                     console.log("date");
@@ -210,7 +207,6 @@
                                     else {
                                         $("div.color.grey").css("background", "rgba(127, 127, 127, 0)");
                                         $("#alignRight").hide();
-                                        //dateSearch=false;
                                         filterFlag=false;
                                     }
 
@@ -227,11 +223,10 @@
                                 default:
                                     options = ["memoir", "photo", "article", "property"];
                                     colorBoxes();
-//                                  if (dateSearch){}
+                                    //check this
                                     if (filterFlag==false){
                                         applyFilterFirst=0;
                                     }
-
 
                             }
 
@@ -241,11 +236,7 @@
                             else if (filterFlag) {
 
                                 //This must be executed only the first time when the Date option is selected.
-
-//                                if (!dateSearch){
                                 if (applyFilterFirst==0){
-//                                        var optionsAlt = ["memoir", "photo", "article", "property"];
-                                       // options = ["memoir", "photo", "article", "property"];
                                     $("div.color.red").css("background", "rgba(240, 91, 71, 1)");
                                     $("div.color.yellow").css("background", "rgba(253, 230, 92, 1)");
                                     $("div.color.green").css("background", "rgba(31, 218, 154, 1)");
@@ -258,18 +249,10 @@
                                 else{
                                     filterWithDate();
                                 }
-
-
-                                    //filterWithDate();
-//                                }
-
-                                filterWithDate();
-
+                                
                                 $("#ex2").on("change", function(slideEvt) {
-                                   // dateSearch=true;
                                     removeAllMarkers();
                                     filterWithDate();
-
                                 });
                             }
                             else{
