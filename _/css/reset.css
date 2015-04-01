@@ -57,6 +57,10 @@ html, body, #map-canvas {
     text-align: left;
 }
 
+#road-comment-list li{
+    text-align: left;
+}
+
 .label {
     font-size:10px; 
     text-align:center; 

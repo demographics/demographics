@@ -52,37 +52,24 @@
          }
          
         $('#road-comment-post-btn').on('click',function(){
-//            $.ajax({
-//                url: "markers/phpsqlajax_comment.php",
-//                type: "POST",
-//                data: {
-//                    eventID:cur_event,
-//                    comment:document.getElementById('comment-input').value
-//                },
-//                async: false
-//            });
-//            
-//                     
-//            $.ajax({
-//                url: "markers/phpsqlajax_load_comment.php",
-//                type: "POST",
-//                data: {
-//                    eventID:cur_event
-//                },
-//                success: function (data) {
-//                    cur_comments = JSON.parse(data);
-//                    loadComments();
-//                },
-//                async: false
-//            }); 
-            
+            $.ajax({
+                url: "roads/phpsqlajax_comment.php",
+                type: "POST",
+                data: {
+                    roadID:currentRoad.id,
+                    comment:document.getElementById('road-comment-input').value
+                },
+                async: false
+            });
+//            '<li class="list-group-item"><p><a href="#">'+<?=$_SESSION['email']?>+'</a>: '+comment_content+'</p><p>'+<?= date('d-m-Y H:i:s')?>+'</p></li>'
+            loadComments(currentRoad.id);
             document.getElementById("road-comment-input").value = "";
         });
      });
     
     $('#report-prompt').on('click',function(){
-        document.getElementById('event-title-preview').value = "road name";
-        document.getElementById('event-user-preview').value = "road user";
+        document.getElementById('event-title-preview').value = currentRoad.roadName;
+        document.getElementById('event-user-preview').value = currentRoad.email;
         $('#report-modal').modal('toggle');
     });
 </script>

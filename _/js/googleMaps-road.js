@@ -6,6 +6,8 @@ var road = {'markers':[]};
 var actualMarker = {'markers':[]};
 var listeners={'listeners':[]};
 
+var currentRoad;
+
 function initialize() {
     var minZoomLevel = 10;
     
@@ -153,7 +155,20 @@ function createStaticURL(road){
 }
 
 function saveRoad(roadPath,roadName){
-
+    var nextID;
+    var email;
+    
+    $.ajax({
+        url: 'roads/getNextID.php',
+        type: 'post',
+        success: function(data) {
+            console.log(data);
+            data=JSON.parse(data);
+            nextID=data.id;
+            email=data.email;
+        }
+    });
+        
     $.ajax({
         url: 'roads/phpsqlajax_store.php',
         type: 'post',
@@ -163,14 +178,13 @@ function saveRoad(roadPath,roadName){
         },
         success: function(output) {
             console.log(roadName+":\n"+output);
-            insertRoad(JSON.parse(output),roadName);
+            insertRoad(nextID,JSON.parse(output),roadName,email);
         }
     });
 
 }
 
-function insertRoad(roadPath,roadName){
-    
+function insertRoad(id,roadPath,roadName,email){
     var roadPathCoordinates = [];
     var pr=null;
     
@@ -200,12 +214,18 @@ function insertRoad(roadPath,roadName){
         strokeWeight: 2
     });
 
+    
     google.maps.event.addListener(polyPath, 'click', function(e){
         var temp_road = {'markers':[]};
         polyPath.getPath().forEach(function(routePoint, index){
             var roadMarker = {'lat':routePoint.lat(),'lng':routePoint.lng()};
             temp_road.markers.push(roadMarker);
         });
+        
+        loadComments(id);
+        currentRoad=JSON.parse('{"id":'+id+',"roadName":"'+roadName+'","email":"'+email+'"}');
+                
+        $('#road-header').html("<h1 id='"+id+"'>"+roadName+"</h1><p><a href='#'>"+email+"</a></p>");
         $('#road-body').html("");
         $('#road-body').append("<img alt='Road path on map.' height='350px' width='550px' class='road-preview'/>");
         $('#road-view .road-preview').attr('src',createStaticURL(temp_road));
@@ -215,13 +235,42 @@ function insertRoad(roadPath,roadName){
     polyPath.setMap(map);
 }
 
+function loadComments(roadID){
+    var comments;
+    
+    $.ajax({
+        url: "roads/phpsqlajax_load_comment.php",
+        type: "POST",
+        data: {
+            roadID:roadID
+        },
+        success: function (data) {
+            console.log(data);
+            comments=JSON.parse(data);
+        },
+        async: false
+    });
+    
+    $("#road-comment-list").html('');
+    
+        var index=0;
+    
+        jQuery.each(comments, function(key,value) {
+            if(index!=0){
+                //Append li element with comment in comment-list ul
+                $("#road-comment-list").append('<li class="list-group-item"><p>'+'<a href="#">'+value.user+'</a>: '+value.content+'</p><p>'+value.datePosted+'</p></li>');
+            }
+            index=index+1;
+        });
+}
+
 function loadRoads(){
     $.ajax({
         url: 'roads/phpsqlajax_load.php',
         type: 'post',
         success: function(output) {
            $.each(JSON.parse(output),function(key,value){
-                insertRoad(value.path,value.name);
+                insertRoad(value.id,value.path,value.name,value.member);
            });
         }
     });
@@ -229,3 +278,4 @@ function loadRoads(){
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
+    

@@ -1,4 +1,5 @@
 <?php
+    session_start();
     /*
        We receive the lattidute and longitude as well as the event's ID 
        and store them in the markers table of the database.
@@ -20,7 +21,9 @@
       die ('Can\'t use db : ' . mysql_error());
     }
 
-    $query = "INSERT INTO ".$database.".ROAD(name,path) VALUES ('$roadName','$path')";
+    $memberID=$_SESSION["member"];
+
+    $query = "INSERT INTO ".$database.".ROAD(name,path,member) VALUES ('$roadName','$path',$memberID)";
     $result = mysql_query($query);
 
     if (!$result) {
