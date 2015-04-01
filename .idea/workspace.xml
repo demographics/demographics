@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64ad4794-ae5c-429c-8a00-60d1fce13ac0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roads/getNextID.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roads/phpsqlajax_comment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/roads/phpsqlajax_load_comment.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/components/road-view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/queries/create-queries.sql" afterPath="$PROJECT_DIR$/database/queries/create-queries.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_/js/googleMaps-road.js" afterPath="$PROJECT_DIR$/_/js/googleMaps-road.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpsqlajax_dbinfo.php" afterPath="$PROJECT_DIR$/phpsqlajax_dbinfo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roads/phpsqlajax_load.php" afterPath="$PROJECT_DIR$/roads/phpsqlajax_load.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/roads/phpsqlajax_store.php" afterPath="$PROJECT_DIR$/roads/phpsqlajax_store.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_/css/reset.css" afterPath="$PROJECT_DIR$/_/css/reset.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/road-modal.php" afterPath="$PROJECT_DIR$/components/road-modal.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/road.php" afterPath="$PROJECT_DIR$/road.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/components/navbar.php" afterPath="$PROJECT_DIR$/components/navbar.php" />
     </list>
     <ignored path="EPL363.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -50,21 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="navbar.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="navbar.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/navbar.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-20.347826" vertical-offset="2817" max-vertical-offset="4470">
-              <caret line="219" column="10" selection-start-line="219" selection-start-column="10" selection-end-line="219" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="phpsqlajax_dbinfo.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/phpsqlajax_dbinfo.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.062413316" vertical-offset="0" max-vertical-offset="721">
-              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.5976505" vertical-offset="2353" max-vertical-offset="4485">
+              <caret line="184" column="42" selection-start-line="184" selection-start-column="42" selection-end-line="184" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -128,8 +107,8 @@
         <option value="$PROJECT_DIR$/components/add-theme-form.php" />
         <option value="$PROJECT_DIR$/forum/ajax_add_theme.php" />
         <option value="$PROJECT_DIR$/search.php" />
-        <option value="$PROJECT_DIR$/components/navbar.php" />
         <option value="$PROJECT_DIR$/phpsqlajax_dbinfo.php" />
+        <option value="$PROJECT_DIR$/components/navbar.php" />
       </list>
     </option>
   </component>
@@ -711,18 +690,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/navbar.php">
+    <entry file="file://$PROJECT_DIR$/phpsqlajax_dbinfo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.347826" vertical-offset="2817" max-vertical-offset="4470">
-          <caret line="219" column="10" selection-start-line="219" selection-start-column="10" selection-end-line="219" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.14563107" vertical-offset="0" max-vertical-offset="721">
+          <caret line="12" column="2" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="2" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/phpsqlajax_dbinfo.php">
+    <entry file="file://$PROJECT_DIR$/components/navbar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.062413316" vertical-offset="0" max-vertical-offset="721">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.5976505" vertical-offset="2353" max-vertical-offset="4485">
+          <caret line="184" column="42" selection-start-line="184" selection-start-column="42" selection-end-line="184" selection-end-column="42" />
           <folding />
         </state>
       </provider>

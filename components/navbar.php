@@ -75,7 +75,7 @@
 
                     var results = [];
                     var applyFilterFirst=0;   //If the value of this var is greater than 0, then the filter is applied first
-                    var dateSearch=false; // This checks if the slider has been used
+                    //var dateSearch=false; // This checks if the slider has been used
                     var filterFlag=false;
 
                     function filter(){
@@ -182,8 +182,6 @@
                                         $("div.color.green").css("background", "rgba(31, 218, 154, 0)");
                                         options[2]="";
                                     }
-
-
                                     break;
                                 case "filter_property":
                                     if (applyFilterFirst==0){
@@ -212,7 +210,7 @@
                                     else {
                                         $("div.color.grey").css("background", "rgba(127, 127, 127, 0)");
                                         $("#alignRight").hide();
-                                        dateSearch=false;
+                                        //dateSearch=false;
                                         filterFlag=false;
                                     }
 
@@ -229,9 +227,11 @@
                                 default:
                                     options = ["memoir", "photo", "article", "property"];
                                     colorBoxes();
-                                    if (dateSearch){
+//                                  if (dateSearch){}
+                                    if (filterFlag==false){
                                         applyFilterFirst=0;
                                     }
+
 
                             }
 
@@ -253,6 +253,7 @@
 
                                     options = ["memoir", "photo", "article", "property"];
                                     filterWithDate();
+                                    applyFilterFirst++;
                                 }
                                 else{
                                     filterWithDate();
@@ -265,7 +266,7 @@
                                 filterWithDate();
 
                                 $("#ex2").on("change", function(slideEvt) {
-                                    dateSearch=true;
+                                   // dateSearch=true;
                                     removeAllMarkers();
                                     filterWithDate();
 
