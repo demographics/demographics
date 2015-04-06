@@ -46,6 +46,7 @@
     <body>  
         <?php include 'components/navbar.php' ?>
         <div id="timeline-embed"></div>
+        <?php include 'chatroom/chatbox.php' ?>
         <!--This is the main container of the map-->
         <div id="map-canvas"></div>	
         

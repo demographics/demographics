@@ -141,6 +141,7 @@ function placeMarker(eventID,location,ajaxIndex) {
                     source:     timelineJSON,
                     embed_id:   'timeline-embed'
                 });
+                $('.slider-item .photo-container').addClass('slide-img');
             }
         }
     });

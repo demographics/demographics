@@ -103,7 +103,7 @@ var chat = {
 		
 		// Logging the user out:
 		
-		$('a.logoutButton').live('click',function(){
+		$('a.logoutButton').on('click',function(){
 			
 			$('#chatTopBar > span').fadeOut(function(){
 				$(this).remove();
@@ -344,11 +344,11 @@ var chat = {
 // Custom GET & POST wrappers:
 
 $.tzPOST = function(action,data,callback){
-	$.post('php/ajax.php?action='+action,data,callback,'json');
+	$.post('chatroom/php/ajax.php?action='+action,data,callback,'json');
 }
 
 $.tzGET = function(action,data,callback){
-	$.get('php/ajax.php?action='+action,data,callback,'json');
+	$.get('chatroom/php/ajax.php?action='+action,data,callback,'json');
 }
 
 // A custom jQuery method for placeholder text:

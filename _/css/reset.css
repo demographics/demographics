@@ -250,3 +250,37 @@ a.boxclose{
 .timenav-interval-background,.slider-container-mask{
     background-color:rgba(248, 248, 248, 0.6) !important; 
 }
+
+#chatbox.panel{
+    display: none;
+    height: 350px !important;
+    margin: 0;
+    padding: 0;
+    position: fixed !important;
+    bottom: 40px !important;
+    width: 300px !important;
+    z-index: 1000000 !important;
+    right: 0px;
+    border-radius: 0px;
+}
+
+.inner-chatbox{
+    height: 100%;
+}
+
+#chatbox .panel-footer{
+    height: 13%;
+}
+
+#chatbox .panel-body{
+    height: 77% !important;
+    padding: 5px;
+}
+
+#chatbox .panel-heading{
+    height: 10%;
+}
+
+#chat-button{
+    font-size: 20pt;
+}
