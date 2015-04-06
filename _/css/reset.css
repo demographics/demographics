@@ -239,3 +239,14 @@ a.boxclose{
 .road-preview{
     margin-bottom: 10px;
 }
+
+#timeline-embed{
+    position: absolute;
+    top: 40px;
+    background-color:rgba(248, 248, 248, 0.6) !important; 
+    display:none;
+}
+
+.timenav-interval-background,.slider-container-mask{
+    background-color:rgba(248, 248, 248, 0.6) !important; 
+}

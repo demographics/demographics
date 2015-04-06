@@ -20,7 +20,7 @@
         <script src="_/libs/bootstrap/datepicker/js/bootstrap-datepicker.js"></script>
         <script src="_/js/demographics.js" type="text/javascript"></script>
         <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWMxUmWeNkBfkGxiaLBLLWBZSw3pxSNM0">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Q4goEGgtL02AA7wa-ZJEKc14qrAoSmU">
         </script>
         <script src="_/js/googleMaps.js" type="text/javascript"></script>
         <script src="_/js/search-functions.js" type="text/javascript"></script>
@@ -29,8 +29,6 @@
         <script src="_/js/jquery.slimscroll.min.js"></script>
         <script src="_/libs/bootstrap/tags/bootstrap-tagsinput.min.js"></script>
 
-
-        
         <link rel="icon" type="image/ico" href="_/img/favicon.ico">
         <link href="_/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="_/libs/bootstrap-slider/css/bootstrap-slider.css" rel="stylesheet">
@@ -47,7 +45,7 @@
 
     <body>  
         <?php include 'components/navbar.php' ?>
-        
+        <div id="timeline-embed"></div>
         <!--This is the main container of the map-->
         <div id="map-canvas"></div>	
         
@@ -280,23 +278,22 @@
         <script src="_/js/timeline.js"></script>
         <link href="_/css/timeline.css" rel="stylesheet">
         <script>
-            function show_timeline(){
-                 $.ajax({
-                    url: "timeline/ajaxsqlphp_timeline.php",
-                    type: "POST",
-                    async: false,
-                    cache: false,
-                    success: function(data){
-                        var timeline_events=JSON.parse(data);
-                        jQuery.each(timeline_events, function(key,value) {
-                            insertEntry(value);
-                        });
-                        $("#timeline_modal").modal('toggle');
-                    },
-                    contentType: false,
-                    processData: false
-                });     	   
-            }  
+            $( "#show_timeline" ).click(function () {
+                if ( $( "#timeline-embed" ).is( ":hidden" ) ) {
+                    $( "#timeline-embed" ).slideDown( "slow" );
+                } else {
+                    $( "#timeline-embed" ).slideUp("fast");
+                }
+            });
         </script>
+        
+        <script type="text/javascript">
+            var timeline_config = {
+                width: "100%",
+                height: "400",
+                source: 'timeline/example_json.json'
+            }
+        </script>
+        <script src="_/libs/timelinejs/build/js/storyjs-embed.js"></script>
     </body>
 </html>

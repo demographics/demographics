@@ -15,7 +15,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li id=forum_Button><a href="forum.php">Forum</a></li>
-                <li><a onclick="show_timeline();" href="#">Timeline</a></li>
+                <li><a id="show_timeline" href="#">Timeline</a></li>
                 <li><a  href="road.php">Roads</a></li>
                 <li class="dropdown">
                     <a href="#" id="notification-dropdown" role="button" aria-expanded="false">Notifications<span id="notification-badge" class="badge-info badge"></span></a>
