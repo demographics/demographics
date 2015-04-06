@@ -24,6 +24,7 @@
 
         $result = mysql_query($query);
         $results=array();
+
         if (!$result) {
             die('Invalid query: ' . mysql_error());
         }

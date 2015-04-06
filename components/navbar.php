@@ -75,7 +75,6 @@
 
                     var results = [];
                     var applyFilterFirst=0;   //If the value of this var is greater than 0, then the filter is applied first
-                    var dateSearch=false; // This checks if the slider has been used
                     var filterFlag=false;
 
                     function filter(){
@@ -139,12 +138,13 @@
 
                         $("#legend").click(function (e){
                             removeAllMarkers();
-                            if (applyFilterFirst==0){
-                                emptyBoxes();
-                                applyFilterFirst++;
-                            }
+
                             switch (e.target.id) {
                                 case "filter_memo":
+                                    if (applyFilterFirst==0){
+                                        emptyBoxes();
+                                        applyFilterFirst++;
+                                    }
                                     if(!options[0]){
                                         $("div.color.red").css("background", "rgba(240, 91, 71, 1)");
                                         options[0]="memoir";
@@ -155,6 +155,10 @@
                                     }
                                     break;
                                 case "filter_photo":
+                                    if (applyFilterFirst==0){
+                                        emptyBoxes();
+                                        applyFilterFirst++;
+                                    }
                                     if(!options[1]){
                                         $("div.color.yellow").css("background", "rgba(253, 230, 92, 1)");
                                         options[1]="photo";
@@ -165,6 +169,10 @@
                                     }
                                     break;
                                 case "filter_article":
+                                    if (applyFilterFirst==0){
+                                        emptyBoxes();
+                                        applyFilterFirst++;
+                                    }
                                     if(!options[2]){
                                         $("div.color.green").css("background", "rgba(31, 218, 154, 1)");
                                         options[2]="article";
@@ -173,11 +181,12 @@
                                         $("div.color.green").css("background", "rgba(31, 218, 154, 0)");
                                         options[2]="";
                                     }
-
-
                                     break;
                                 case "filter_property":
-
+                                    if (applyFilterFirst==0){
+                                        emptyBoxes();
+                                        applyFilterFirst++;
+                                    }
                                     if(!options[3]){
                                         $("div.color.blue").css("background", "rgba(40, 171, 227, 1)");
                                         options[3]="property";
@@ -186,8 +195,6 @@
                                         $("div.color.blue").css("background", "rgba(40, 171, 227, 0)");
                                         options[3]="";
                                     }
-
-
                                     break;
                                 case "filter_date":
                                     console.log("date");
@@ -200,7 +207,6 @@
                                     else {
                                         $("div.color.grey").css("background", "rgba(127, 127, 127, 0)");
                                         $("#alignRight").hide();
-                                        dateSearch=false;
                                         filterFlag=false;
                                     }
 
@@ -217,7 +223,8 @@
                                 default:
                                     options = ["memoir", "photo", "article", "property"];
                                     colorBoxes();
-                                    if (dateSearch){
+                                    //check this
+                                    if (filterFlag==false){
                                         applyFilterFirst=0;
                                     }
 
@@ -229,28 +236,23 @@
                             else if (filterFlag) {
 
                                 //This must be executed only the first time when the Date option is selected.
+                                if (applyFilterFirst==0){
+                                    $("div.color.red").css("background", "rgba(240, 91, 71, 1)");
+                                    $("div.color.yellow").css("background", "rgba(253, 230, 92, 1)");
+                                    $("div.color.green").css("background", "rgba(31, 218, 154, 1)");
+                                    $("div.color.blue").css("background", "rgba(40, 171, 227, 1)");
 
-                                if (!dateSearch){
-                                    if (applyFilterFirst==0){
-//                                        var optionsAlt = ["memoir", "photo", "article", "property"];
-                                        $("div.color.red").css("background", "rgba(240, 91, 71, 1)");
-                                        $("div.color.yellow").css("background", "rgba(253, 230, 92, 1)");
-                                        $("div.color.green").css("background", "rgba(31, 218, 154, 1)");
-                                        $("div.color.blue").css("background", "rgba(40, 171, 227, 1)");
-                                    }
-
-
-                                    //filterWithDate();
+                                    options = ["memoir", "photo", "article", "property"];
+                                    filterWithDate();
+                                    applyFilterFirst++;
                                 }
-
-                                filterWithDate();
-
+                                else{
+                                    filterWithDate();
+                                }
+                                
                                 $("#ex2").on("change", function(slideEvt) {
-                                    dateSearch=true;
                                     removeAllMarkers();
                                     filterWithDate();
-
-
                                 });
                             }
                             else{

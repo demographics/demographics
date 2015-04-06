@@ -41,22 +41,21 @@
 <script>
 
     $("form[name='theme-form']").submit(function(e) {
+        console.log("dsfsd");
         $.ajax({
             url: "forum/ajax_add_theme.php",
             type: "POST",
             data:{
+
                 title:$("#theme-title-input").val(),
                 content:$("#theme-content-input").val()
             },
             success: function (data) {
                 console.log(data);
-//                var now = new Date();
-//                now.format("dd/M/yy h:mm tt");
                 var d = new Date();
-                var n = d.toString();
                 
                 $('#add-theme-modal').modal('toggle');
-                add_theme($("#theme-title-input").val(),"<?=$_SESSION['email'];?>","<?=date('Y-m-d H:i:s');?>");
+                add_theme($("#theme-title-input").val(),"<?=$_SESSION['email'];?>","");
             }
         });
         e.preventDefault();
