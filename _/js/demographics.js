@@ -1,4 +1,16 @@
 var flag = false;
+var timelineJSON={
+    "timeline":{
+        "headline":"Event's Timeline",
+        "type":"default",
+        "text":"Events in chronological order",
+        "startDate":"2012,1,26",
+        "date": [
+            {}
+        ]
+    }
+};
+
 /*
     This function creates and sends an XMLHTTP request
     asking for the markers based on the phpsqlajax_genxml.php.

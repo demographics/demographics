@@ -28,7 +28,8 @@
         <script src="_/libs/summernote/summernote.min.js"></script>
         <script src="_/js/jquery.slimscroll.min.js"></script>
         <script src="_/libs/bootstrap/tags/bootstrap-tagsinput.min.js"></script>
-
+        <script src="_/libs/timelinejs/build/js/storyjs-embed.js"></script>
+        
         <link rel="icon" type="image/ico" href="_/img/favicon.ico">
         <link href="_/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="_/libs/bootstrap-slider/css/bootstrap-slider.css" rel="stylesheet">
@@ -40,7 +41,6 @@
         <link href="_/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link href="_/libs/summernote/summernote.css" rel="stylesheet">
         <link href="_/libs/bootstrap/tags/bootstrap-tagsinput.css" rel="stylesheet">
-
     </head>
 
     <body>  
@@ -70,10 +70,10 @@
         
         <script type="text/javascript">
             var notificationTimer;
+           
             
             $(window).load(function(){
                 $(document).ready(function(){
-
                     var login_error=
                         <?php 
                             if(isset($_SESSION['errorLogin'] )){
@@ -277,23 +277,17 @@
         </script>
         <script src="_/js/timeline.js"></script>
         <link href="_/css/timeline.css" rel="stylesheet">
-        <script>
+        <script>            
             $( "#show_timeline" ).click(function () {
                 if ( $( "#timeline-embed" ).is( ":hidden" ) ) {
-                    $( "#timeline-embed" ).slideDown( "slow" );
+                    $( "#timeline-embed" ).slideDown( "fast" );
+                    
                 } else {
                     $( "#timeline-embed" ).slideUp("fast");
                 }
             });
         </script>
         
-        <script type="text/javascript">
-            var timeline_config = {
-                width: "100%",
-                height: "400",
-                source: 'timeline/example_json.json'
-            }
-        </script>
-        <script src="_/libs/timelinejs/build/js/storyjs-embed.js"></script>
+        
     </body>
 </html>

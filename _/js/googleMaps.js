@@ -8,7 +8,7 @@ var cur_event=null;
 var cur_comments=null;
 var cur_JSON=null;
 var allMarkers=[];
-
+var ajaxFlags=[];
 /*
     This function is called upon the index.php load event.
     It initializes the google map by binding the events onclick
@@ -77,8 +77,7 @@ function initialize() {
     The type is determined by making an ajax request for the json 
     object with the information of that event.
 */
-function placeMarker(eventID,location) {
-
+function placeMarker(eventID,location,ajaxIndex) {
     
     var eventJSON = null;
     var propertyType = null;
@@ -94,6 +93,55 @@ function placeMarker(eventID,location) {
         async: false,
         success: function (data) {
             eventJSON = JSON.parse(data);
+            var timelineYear;
+            var timelineMonth;
+            var timelineDay;
+            var eventDateTable=eventJSON.eventDate.split('-');
+            
+            timelineYear=eventDateTable[0];
+            timelineMonth=eventDateTable[1];
+            if(timelineMonth.charAt(0)=='0'){
+                timelineMonth=timelineMonth.substr(1);
+            }
+            timelineDay=eventDateTable[2];
+            
+            if(timelineDay.charAt(0)=='0'){
+                timelineDay=timelineDay.substr(1);
+            }
+            
+            var timelineEntry={
+                startDate:timelineYear+','+timelineMonth+','+timelineDay,
+                endDate:timelineYear+','+timelineMonth+','+timelineDay,
+                headline:eventJSON.title,
+                text:eventJSON.content,
+                asset:{
+                    media:"",
+                    credit:"",
+                    caption:""
+                }
+            };
+
+            timelineJSON.timeline.date.push(timelineEntry);
+            if(!(typeof ajaxIndex === "undefined")) {
+                ajaxFlags[ajaxIndex]=true;
+                
+            }
+            
+            var ajaxTotalFlag=true;
+            for(var j=0;j<ajaxFlags.length;j++){
+                ajaxTotalFlag=ajaxTotalFlag && ajaxFlags[j];
+            }
+            
+            if(ajaxTotalFlag){
+                console.log(timelineJSON);
+                var timeline=createStoryJS({
+                    type:       'timeline',
+                    width:      '100%',
+                    height:     '400',
+                    source:     timelineJSON,
+                    embed_id:   'timeline-embed'
+                });
+            }
         }
     });
 
@@ -193,7 +241,7 @@ function placeMarker(eventID,location) {
             $("#comment-list").html("");
             document.getElementById("comment-input").value = "";
         });
-    cur_JSON=eventJSON;
+        cur_JSON=eventJSON;
     });
 
 };
@@ -228,17 +276,21 @@ function loadMarkers() {
       
         var xml = data.responseXML;
         var markers = xml.documentElement.getElementsByTagName("marker");
+        for (var k = 0; k < markers.length; k++) {
+            ajaxFlags[k]=false;
+        }
+        
         for (var i = 0; i < markers.length; i++) {
             var location = new google.maps.LatLng(
                 markers[i].getAttribute("lat"),
                 markers[i].getAttribute("lng")
             );
-            
             var eventID = markers[i].getAttribute("eventID");
-            placeMarker(eventID,location);
+            placeMarker(eventID,location,i);
         }
     });
-
+    
+    
 };
 
 /*
