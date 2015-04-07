@@ -257,7 +257,7 @@ a.boxclose{
     margin: 0;
     padding: 0;
     position: fixed !important;
-    bottom: 40px !important;
+    bottom: 47px !important;
     width: 300px !important;
     z-index: 1000000 !important;
     right: 0px;
@@ -269,7 +269,8 @@ a.boxclose{
 }
 
 #chatbox .panel-footer{
-    height: 13%;
+    height: 15%;
+    border-radius: 0;
 }
 
 #chatbox .panel-body{

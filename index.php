@@ -281,6 +281,8 @@
         <script>            
             $( "#show_timeline" ).click(function () {
                 if ( $( "#timeline-embed" ).is( ":hidden" ) ) {
+                    $('#timeline-embed').attr('width',20);
+                //$('#timeline-embed').attr('width','100%');
                     $( "#timeline-embed" ).slideDown( "fast" );
                     
                 } else {

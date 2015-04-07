@@ -26,6 +26,7 @@
     chatZone.innerHTML+='<div class="chatmsg"><b>'+name+'</b>: '+msg+'<br/></div>';
     oldata='<div class="chatmsg"><b>'+name+'</b>: '+msg+'<br/></div>';
     this.ajaxSent();
+    $('#msg').val("").focus();
     return false;
     };
     //sending message to server
@@ -53,6 +54,8 @@
     if(oldata!=e.data){
     chatZone.innerHTML+=e.data;
     oldata = e.data;
+    var elem = document.getElementById('chatZone');
+    elem.scrollTop = elem.scrollHeight;
     }
     };
     };

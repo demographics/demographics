@@ -10,10 +10,10 @@
             <form onsubmit="chat.sendMsg(); return false;">
                 <div class="row">
                     <div class="col-xs-9">
-                        <input style="width:100%" type="text" id="msg" name="msg" autofocus="true" placeholder="Your message goes here." />
+                        <input style="width:100%" type="text" id="msg" class="form-control" autofocus="true" placeholder="Your message goes here.">
                     </div>
                     <div class="col-xs-3">
-                        <input value="Send" type="submit" />
+                        <button class="btn btn-default" type="submit">Send</button>
                     </div>
                 </div>
             </form>
@@ -29,3 +29,12 @@
     });
 </script>
 <script type="text/javascript" src="chatroom/sse/cha1.js"></script>
+
+<!--
+<div class="input-group">
+      <input style="width:100%" type="text" id="msg" class="form-control" autofocus="true" placeholder="Your message goes here.">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="submit">Send</button>
+      </span>
+    </div>
+  </div>-->
