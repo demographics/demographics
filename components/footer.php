@@ -1,3 +1,8 @@
+<?php 
+    if(isset($_SESSION['logged_in']))
+        include 'chatroom/chatbox.php';
+?>
+                
 <div id="progress-bar-background">
 
 
@@ -12,7 +17,11 @@
 <script>
     var SL=$("#ex2").slider({});
     $('#chat-button').on('click',function(){
-        $('#chatbox.panel').toggle('fast');
+        if(flag){
+            $('#chatbox.panel').toggle('fast');
+        }else{
+            swal("You are not logged in!", "You have to login to be able to chat.","warning");
+        }
     });
 </script>
 

@@ -7,6 +7,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
         
         <title>Demography-roads</title>
         
@@ -42,6 +44,7 @@
         <link href="_/libs/summernote/summernote.css" rel="stylesheet">
         <link href="_/libs/bootstrap/tags/bootstrap-tagsinput.css" rel="stylesheet">
 
+        <link rel="apple-touch-icon" href="_/img/apple-icon-114x114-precomposed.png" />
     </head>
 
     <body>  
