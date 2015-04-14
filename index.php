@@ -68,7 +68,6 @@
         <?php 
             if(isset($_SESSION['logged_in'])){
                 echo "<script>flag=true;</script>";
-                include 'chatroom/chatbox.php';
             }else{
                 echo "<script>flag=false;</script>";
             }
