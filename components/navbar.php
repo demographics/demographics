@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Demographics</a>
+            <a class="navbar-brand" href="index.php">Demographics</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -272,6 +272,19 @@
         });
 
     });
-
+    
+    var timeline_enabled=false;
+    $( "#show_timeline" ).click(function () {
+        if(timeline_enabled){
+            if ( $( "#timeline-embed" ).is( ":hidden" ) ) {
+                $('#timeline-embed').attr('width',20);
+                $( "#timeline-embed" ).slideDown( "fast" );
+            } else {
+                $( "#timeline-embed" ).slideUp("fast");
+            }
+        }else{
+            swal("Cannot do that!", "You have to be at the homepage to view the timeline.","warning");
+        }
+    });
 
 </script>

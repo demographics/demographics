@@ -141,7 +141,7 @@ function placeMarker(eventID,location,ajaxIndex) {
                     source:     timelineJSON,
                     embed_id:   'timeline-embed'
                 });
-                
+                ajaxTotalFlag=false;
             }
         }
     });

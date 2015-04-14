@@ -71,7 +71,7 @@
         
         <script type="text/javascript">
             var notificationTimer;
-           
+            timeline_enabled=true;
             
             $(window).load(function(){
                 $(document).ready(function(){
@@ -278,19 +278,6 @@
         </script>
         <script src="_/js/timeline.js"></script>
         <link href="_/css/timeline.css" rel="stylesheet">
-        <script>            
-            $( "#show_timeline" ).click(function () {
-                if ( $( "#timeline-embed" ).is( ":hidden" ) ) {
-                    $('#timeline-embed').attr('width',20);
-                //$('#timeline-embed').attr('width','100%');
-                    $( "#timeline-embed" ).slideDown( "fast" );
-                    
-                } else {
-                    $( "#timeline-embed" ).slideUp("fast");
-                }
-            });
-        </script>
-        
-        
+
     </body>
 </html>
