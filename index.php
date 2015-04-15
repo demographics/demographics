@@ -26,6 +26,7 @@
         </script>
         <script src="_/js/googleMaps.js" type="text/javascript"></script>
         <script src="_/js/search-functions.js" type="text/javascript"></script>
+        <script src="_/js/facebook-login.js" type="text/javascript"></script>
         <script src="_/js/infobubble.js"></script>
         <script src="_/libs/summernote/summernote.min.js"></script>
         <script src="_/js/jquery.slimscroll.min.js"></script>

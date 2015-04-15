@@ -1,6 +1,3 @@
-
-
-
 // Create the legend and display on the map
 function addLegend(){
     var legend = document.createElement('div');
