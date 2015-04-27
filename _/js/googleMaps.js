@@ -346,7 +346,7 @@ function placeLoaded(event,location){
     var timelineEntry={
         startDate:timelineYear+','+timelineMonth+','+timelineDay,
         endDate:timelineYear+','+timelineMonth+','+timelineDay,
-        headline:event.title,
+        headline:"<a href='#' onclick='showEvent("+event.eventID+");'>"+event.title+"</a>",
         text:event.content,
         asset:{
             media:"",

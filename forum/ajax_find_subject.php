@@ -26,10 +26,10 @@
 
    // echo $id;
     
-    $query = "SELECT * FROM $database.SUBJECT WHERE member='$id' AND datetime='$date'";
+    $query = "SELECT * FROM $database.SUBJECT WHERE member='$id' AND SUBSTRING(`datetime`,1,LENGTH(`datetime`)-3)=SUBSTRING('$date',1,LENGTH('$date')-3); ";
     $result1 = mysql_query($query); 
     
-    $tilte="";
+    $title="";
     $content="";
 
     while ($row1 = mysql_fetch_row($result1)){  

@@ -1,6 +1,6 @@
 <?php 
 
-     session_start(); 
+    session_start(); 
 
     require("phpsqlajax_dbinfo.php");
 
@@ -102,7 +102,7 @@
             $result2=mysql_query($query);
             $temp_email="";
             while ($row2 = @mysql_fetch_assoc($result2)){
-            $temp_email=$row2['email'];
+                $temp_email=$row2['email'];
             }
             echo "add_theme('$temp_title','$temp_email','$temp_time');"; 
         }
@@ -120,6 +120,37 @@
         var kume = document.getElementById('b');
         a.innerHTML="<div class='subject-wrapper row'><div class='col-md-10'><h4>"+t+"</h4></div><div class='col-md-2'><p><span class='subject_email'>"+k+"</span><br><span class='subject_date'>"+l+"</span></p></div></div>";
         kume.appendChild(a);
+        
+        $(a).on("click",function(e){
+            k=(e.currentTarget);
+            f=e.currentTarget;
+            email=(f.getElementsByClassName('subject_email')[0].innerHTML);
+            date=(f.getElementsByClassName('subject_date')[0].innerHTML);
+
+            $.ajax({
+                url: "forum/ajax_find_subject.php",
+                type: "POST",
+                data:{
+                    email:email,
+                    date:date
+                },
+
+                success: function (data) {
+
+                    var arr = data.split("#");
+                    var title=arr[0];
+                    var content=arr[1];               
+
+                $("#see-subject-modal").modal("toggle");
+
+                $('#subject-title-input').val(title);
+                $('#subject-content-input').val(content);
+
+                }
+            });
+            e.preventDefault();
+
+    });
                 
     }
       

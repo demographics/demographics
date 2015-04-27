@@ -41,23 +41,28 @@
 <script>
 
     $("form[name='theme-form']").submit(function(e) {
-        console.log("dsfsd");
+        
         $.ajax({
             url: "forum/ajax_add_theme.php",
             type: "POST",
             data:{
-
                 title:$("#theme-title-input").val(),
                 content:$("#theme-content-input").val()
             },
-            
-            success: function (data) {
-                var d = new Date();
-                
-                $('#add-theme-modal').modal('toggle');
-                add_theme($("#theme-title-input").val(),"<?=$_SESSION['email'];?>","");
-            }
+            success: function (data) {}
         });
+        
+       
+        var currentdate = new Date(); 
+        var datetime =currentdate.getFullYear() + "-"
+                + (currentdate.getMonth()+1)  + "-" 
+                + currentdate.getDate() + " "  
+                + currentdate.getHours() + ":"  
+                + currentdate.getMinutes() + ":" 
+                + currentdate.getSeconds();
+        
+        add_theme($("#theme-title-input").val(),"<?=$_SESSION['email'];?>",datetime);
+        $('#add-theme-modal').modal('toggle');
         e.preventDefault();
     });
 
