@@ -57,6 +57,10 @@ html, body, #map-canvas {
     text-align: left;
 }
 
+#road-comment-list li{
+    text-align: left;
+}
+
 .label {
     font-size:10px; 
     text-align:center; 
@@ -224,10 +228,64 @@ a.boxclose{
     color: #726204;
 }
 
+.facebook{
+    text-align: center;
+}
+
 .slider-selection {
     background: #b3d1ff;
 }
 
 #chat-button{
     padding-right: 10px;
+}
+
+.road-preview{
+    margin-bottom: 10px;
+}
+
+#timeline-embed{
+    position: absolute;
+    top: 40px;
+    background-color:rgba(248, 248, 248, 0.6) !important; 
+    display:none;
+}
+
+.timenav-interval-background,.slider-container-mask{
+    background-color:rgba(248, 248, 248, 0.6) !important; 
+}
+
+#chatbox.panel{
+    display: none;
+    height: 350px !important;
+    margin: 0;
+    padding: 0;
+    position: fixed !important;
+    bottom: 47px !important;
+    width: 300px !important;
+    z-index: 1000000 !important;
+    right: 0px;
+    border-radius: 0px;
+}
+
+.inner-chatbox{
+    height: 100%;
+}
+
+#chatbox .panel-footer{
+    height: 15%;
+    border-radius: 0;
+}
+
+#chatbox .panel-body{
+    height: 77% !important;
+    padding: 5px;
+}
+
+#chatbox .panel-heading{
+    height: 10%;
+}
+
+#chat-button{
+    font-size: 20pt;
 }

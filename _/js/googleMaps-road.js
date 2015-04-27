@@ -6,6 +6,8 @@ var road = {'markers':[]};
 var actualMarker = {'markers':[]};
 var listeners={'listeners':[]};
 
+var currentRoad;
+
 function initialize() {
     var minZoomLevel = 10;
     
@@ -97,7 +99,6 @@ function addLatLng(event) {
             clicktarget: false
         });
 
-        //label.setMap(map);
         previousPosition = event.latLng;
     }
     
@@ -110,7 +111,6 @@ function addLatLng(event) {
     });
     
     var clickListener = google.maps.event.addListener(marker,'click',function() {
-        console.log(road);
         
         var polyOptions = {
             strokeColor: '#555555',
@@ -126,6 +126,7 @@ function addLatLng(event) {
             google.maps.event.removeListener(value);
         });
         
+        $('#road-modal .road-preview').attr('src',createStaticURL(road));
         $("#road-modal").modal("toggle");
         
     });
@@ -135,8 +136,39 @@ function addLatLng(event) {
     listeners.listeners.push(clickListener);
 }
 
-function saveRoad(roadPath,roadName){
+function createStaticURL(road){
+    var STATIC_URL='https://maps.googleapis.com/maps/api/staticmap?';
+    var CENTER=""; 
+    var ZOOM="zoom=10";
+    var SIZE="size=550x350";
+    var SCALE="scale=1";
+    var FORMAT="format=PNG";
+    var MAPTYPE="maptype=roadmap";
+    var PATH="path=color:0x0000ff|weight:5";
 
+    $.each(road.markers,function(key,value){
+        PATH+="|"+value.lat+","+value.lng;
+    });
+
+    STATIC_URL+=ZOOM+"&"+SIZE+"&"+SCALE+"&"+FORMAT+"&"+MAPTYPE+"&"+PATH;
+    return STATIC_URL;
+}
+
+function saveRoad(roadPath,roadName){
+    var nextID;
+    var email;
+    
+    $.ajax({
+        url: 'roads/getNextID.php',
+        type: 'post',
+        success: function(data) {
+            console.log(data);
+            data=JSON.parse(data);
+            nextID=data.id;
+            email=data.email;
+        }
+    });
+        
     $.ajax({
         url: 'roads/phpsqlajax_store.php',
         type: 'post',
@@ -146,14 +178,13 @@ function saveRoad(roadPath,roadName){
         },
         success: function(output) {
             console.log(roadName+":\n"+output);
-            insertRoad(JSON.parse(output),roadName);
+            insertRoad(nextID,JSON.parse(output),roadName,email);
         }
     });
 
 }
 
-function insertRoad(roadPath,roadName){
-    
+function insertRoad(id,roadPath,roadName,email){
     var roadPathCoordinates = [];
     var pr=null;
     
@@ -183,8 +214,54 @@ function insertRoad(roadPath,roadName){
         strokeWeight: 2
     });
 
+    
+    google.maps.event.addListener(polyPath, 'click', function(e){
+        var temp_road = {'markers':[]};
+        polyPath.getPath().forEach(function(routePoint, index){
+            var roadMarker = {'lat':routePoint.lat(),'lng':routePoint.lng()};
+            temp_road.markers.push(roadMarker);
+        });
+        
+        loadComments(id);
+        currentRoad=JSON.parse('{"id":'+id+',"roadName":"'+roadName+'","email":"'+email+'"}');
+                
+        $('#road-header').html("<h1 id='"+id+"'>"+roadName+"</h1><p><a href='#'>"+email+"</a></p>");
+        $('#road-body').html("");
+        $('#road-body').append("<img alt='Road path on map.' height='350px' width='550px' class='road-preview'/>");
+        $('#road-view .road-preview').attr('src',createStaticURL(temp_road));
+        $('#road-view').modal('toggle');
+    });
+    
     polyPath.setMap(map);
+}
 
+function loadComments(roadID){
+    var comments;
+    
+    $.ajax({
+        url: "roads/phpsqlajax_load_comment.php",
+        type: "POST",
+        data: {
+            roadID:roadID
+        },
+        success: function (data) {
+            console.log(data);
+            comments=JSON.parse(data);
+        },
+        async: false
+    });
+    
+    $("#road-comment-list").html('');
+    
+        var index=0;
+    
+        jQuery.each(comments, function(key,value) {
+            if(index!=0){
+                //Append li element with comment in comment-list ul
+                $("#road-comment-list").append('<li class="list-group-item"><p>'+'<a href="#">'+value.user+'</a>: '+value.content+'</p><p>'+value.datePosted+'</p></li>');
+            }
+            index=index+1;
+        });
 }
 
 function loadRoads(){
@@ -193,7 +270,7 @@ function loadRoads(){
         type: 'post',
         success: function(output) {
            $.each(JSON.parse(output),function(key,value){
-                insertRoad(value.path,value.name);
+                insertRoad(value.id,value.path,value.name,value.member);
            });
         }
     });
@@ -201,3 +278,4 @@ function loadRoads(){
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
+    

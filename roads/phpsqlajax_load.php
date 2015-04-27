@@ -17,7 +17,7 @@
         die ('Can\'t use db : ' . mysql_error());
     }
 
-    $query = "SELECT * FROM $database.ROAD";
+    $query = "SELECT ROAD.id AS id, ROAD.name AS name, ROAD.path AS path, MEMBER.email AS email FROM $database.ROAD,$database.MEMBER WHERE ROAD.member=MEMBER.id";
     $result = mysql_query($query);
     if (!$result) {
         die('Invalid query: ' . mysql_error());
@@ -25,7 +25,7 @@
 
     $roads=[];
     while ($row = @mysql_fetch_assoc($result)){
-        $road=array('id' => $row['id'],'name' => $row['name'],'path' => json_decode($row['path']));
+        $road=array('id' => $row['id'],'name' => $row['name'],'path' => json_decode($row['path']),'member' => $row['email']);
         array_push($roads,$road);
     }
 

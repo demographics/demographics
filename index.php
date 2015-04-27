@@ -7,6 +7,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
         
         <title>Demography</title>
         
@@ -20,16 +22,16 @@
         <script src="_/libs/bootstrap/datepicker/js/bootstrap-datepicker.js"></script>
         <script src="_/js/demographics.js" type="text/javascript"></script>
         <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWMxUmWeNkBfkGxiaLBLLWBZSw3pxSNM0">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Q4goEGgtL02AA7wa-ZJEKc14qrAoSmU">
         </script>
         <script src="_/js/googleMaps.js" type="text/javascript"></script>
         <script src="_/js/search-functions.js" type="text/javascript"></script>
+        <script src="_/js/facebook-login.js" type="text/javascript"></script>
         <script src="_/js/infobubble.js"></script>
         <script src="_/libs/summernote/summernote.min.js"></script>
         <script src="_/js/jquery.slimscroll.min.js"></script>
         <script src="_/libs/bootstrap/tags/bootstrap-tagsinput.min.js"></script>
-
-
+        <script src="_/libs/timelinejs/build/js/storyjs-embed.js"></script>
         
         <link rel="icon" type="image/ico" href="_/img/favicon.ico">
         <link href="_/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,11 +44,13 @@
         <link href="_/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link href="_/libs/summernote/summernote.css" rel="stylesheet">
         <link href="_/libs/bootstrap/tags/bootstrap-tagsinput.css" rel="stylesheet">
-
+        
+        <link rel="apple-touch-icon" href="_/img/apple-icon-114x114-precomposed.png" />
     </head>
 
     <body>  
         <?php include 'components/navbar.php' ?>
+        <div id="timeline-embed"></div>
         
         <!--This is the main container of the map-->
         <div id="map-canvas"></div>	
@@ -72,10 +76,10 @@
         
         <script type="text/javascript">
             var notificationTimer;
+            timeline_enabled=true;
             
             $(window).load(function(){
                 $(document).ready(function(){
-
                     var login_error=
                         <?php 
                             if(isset($_SESSION['errorLogin'] )){
@@ -279,24 +283,6 @@
         </script>
         <script src="_/js/timeline.js"></script>
         <link href="_/css/timeline.css" rel="stylesheet">
-        <script>
-            function show_timeline(){
-                 $.ajax({
-                    url: "timeline/ajaxsqlphp_timeline.php",
-                    type: "POST",
-                    async: false,
-                    cache: false,
-                    success: function(data){
-                        var timeline_events=JSON.parse(data);
-                        jQuery.each(timeline_events, function(key,value) {
-                            insertEntry(value);
-                        });
-                        $("#timeline_modal").modal('toggle');
-                    },
-                    contentType: false,
-                    processData: false
-                });     	   
-            }  
-        </script>
+
     </body>
 </html>

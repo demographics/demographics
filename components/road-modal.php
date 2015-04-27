@@ -9,6 +9,8 @@
             <form id="road_post" name='road_post' action="" method="post" enctype="multipart/form-data" class="form-horizontal">
                 <fieldset>
                     <div class="modal-body">
+                        <img height="350px" width="550px" class="road-preview" alt="Road on map" title="Road on map"/>
+                        
                          <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Road name&nbsp;</span>
@@ -31,6 +33,9 @@
 </div>
 
 <script>       
+    
+
+    
     $(document).ready(function(){
     
         $("form[name='road_post']").submit(function(e) {

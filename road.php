@@ -7,6 +7,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
         
         <title>Demography-roads</title>
         
@@ -20,7 +22,7 @@
         <script src="_/libs/bootstrap/datepicker/js/bootstrap-datepicker.js"></script>
         <script src="_/js/demographics.js" type="text/javascript"></script>
         <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWMxUmWeNkBfkGxiaLBLLWBZSw3pxSNM0">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Q4goEGgtL02AA7wa-ZJEKc14qrAoSmU">
         </script>
         <script src="_/js/googleMaps-road.js" type="text/javascript"></script>
         <script src="_/js/elabel.js" type="text/javascript"></script>
@@ -42,6 +44,7 @@
         <link href="_/libs/summernote/summernote.css" rel="stylesheet">
         <link href="_/libs/bootstrap/tags/bootstrap-tagsinput.css" rel="stylesheet">
 
+        <link rel="apple-touch-icon" href="_/img/apple-icon-114x114-precomposed.png" />
     </head>
 
     <body>  
@@ -52,6 +55,7 @@
         
         <!--The main includes for the components-->
         <?php include 'components/road-modal.php' ?>
+        <?php include 'components/road-view.php' ?>
         <?php include 'components/login-modal.php' ?>
         <?php include 'components/forms/sign-up-form.php' ?>
         <?php include 'components/forms/change-password-form.php' ?>

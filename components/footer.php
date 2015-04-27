@@ -1,3 +1,8 @@
+<?php 
+    if(isset($_SESSION['logged_in']))
+        include 'chatroom/chatbox.php';
+?>
+                
 <div id="progress-bar-background">
 
 
@@ -5,12 +10,19 @@
         <input id="ex2" type="text" class="span2" value="" data-slider-min="1900" data-slider-max="2015" data-slider-step="1" data-slider-value="[1935,1974]" data-slider-handle="triangle"/>
         
     </div>
-<a class="pull-right" id="chat-button" href="chatroom/index.html"><i class="fa fa-weixin"></i></a>
+<a class="pull-right" id="chat-button" href="#"><i class="fa fa-weixin"></i></a>
 
 </div>
 
 <script>
     var SL=$("#ex2").slider({});
+    $('#chat-button').on('click',function(){
+        if(flag){
+            $('#chatbox.panel').toggle('fast');
+        }else{
+            swal("You are not logged in!", "You have to login to be able to chat.","warning");
+        }
+    });
 </script>
 
 <!--
