@@ -54,16 +54,21 @@
         <link href="_/css/community.css" rel="stylesheet">
         
         
+        
+        
     </head>
 
     <body>  
     
-       <?php include 'components/add-theme-form.php'?>
+       <?php 
+        include 'components/add-theme-form.php';
+        include 'components/see-subject-modal.php'
+        ?>
         
         <div class="container">
             <h2>Demographics Forum</h2>
             <hr>
-            <h3>Forum for <?= "$vill_name"?> Village</h3>
+            <h3>Forum of <?= "$vill_name"?> Village</h3>
             <br>
                 <nav class="navbar navbar-default">
                     
@@ -107,15 +112,47 @@
         $("#add-theme-modal").modal("toggle");
     });
     
+  1
+    
     function add_theme(t,k,l){
-        var a=document.createElement('a');
-        a.setAttribute('href','#');
+        var a=document.createElement('a');        
         a.setAttribute('class','list-group-item');
         var kume = document.getElementById('b');
-        a.innerHTML="<div class='row'><div class='col-md-10'><h4>"+t+"</h4></div><div class='col-md-2'><p>"+k+"<br>"+l+"</p></div></div>";
+        a.innerHTML="<div class='subject-wrapper row'><div class='col-md-10'><h4>"+t+"</h4></div><div class='col-md-2'><p><span class='subject_email'>"+k+"</span><br><span class='subject_date'>"+l+"</span></p></div></div>";
         kume.appendChild(a);
-    }
                 
-    
+    }
+      
+    $('.subject-wrapper').on("click",function(e){
+        k=(e.currentTarget);
+        f=e.currentTarget;
+        email=(f.getElementsByClassName('subject_email')[0].innerHTML);
+        date=(f.getElementsByClassName('subject_date')[0].innerHTML);
+              
+        $.ajax({
+            url: "forum/ajax_find_subject.php",
+            type: "POST",
+            data:{
+                email:email,
+                date:date
+            },
+            
+            success: function (data) {
+                
+                var arr = data.split("#");
+                title=arr[0];
+                content=arr[1];               
+             
+            $("#see-subject-modal").modal("toggle");
+            
+            $('#subject-title-input').val(title);
+            $('#subject-content-input').val(content);
+            
+            }
+        });
+        e.preventDefault();
+  
+                
+    });
        
 </script>
