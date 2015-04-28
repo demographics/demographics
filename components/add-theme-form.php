@@ -49,17 +49,18 @@
                 title:$("#theme-title-input").val(),
                 content:$("#theme-content-input").val()
             },
-            success: function (data) {}
+            success: function (data) {
+            }
         });
         
        
         var currentdate = new Date(); 
         var datetime =currentdate.getFullYear() + "-"
-                + (currentdate.getMonth()+1)  + "-" 
-                + currentdate.getDate() + " "  
-                + currentdate.getHours() + ":"  
-                + currentdate.getMinutes() + ":" 
-                + currentdate.getSeconds();
+                + ("0"+(currentdate.getMonth()+1)).slice(-2)  + "-" 
+                +("0"+currentdate.getDate()).slice(-2) + " "  
+                + ("0"+currentdate.getHours()).slice(-2) + ":"  
+                + ("0"+currentdate.getMinutes()).slice(-2) + ":" 
+                + ("0"+currentdate.getSeconds()).slice(-2);
         
         add_theme($("#theme-title-input").val(),"<?=$_SESSION['email'];?>",datetime);
         $('#add-theme-modal').modal('toggle');

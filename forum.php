@@ -54,15 +54,13 @@
         <link href="_/css/community.css" rel="stylesheet">
         
         
-        
-        
     </head>
 
     <body>  
-    
-       <?php 
-        include 'components/add-theme-form.php';
-        include 'components/see-subject-modal.php'
+        <?php include 'components/navbar.php' ?>
+        <?php 
+            include 'components/add-theme-form.php';
+            include 'components/see-subject-modal.php'
         ?>
         
         <div class="container">
@@ -112,8 +110,6 @@
         $("#add-theme-modal").modal("toggle");
     });
     
-  1
-    
     function add_theme(t,k,l){
         var a=document.createElement('a');        
         a.setAttribute('class','list-group-item');
@@ -139,21 +135,40 @@
 
                     var arr = data.split("#");
                     var title=arr[0];
-                    var content=arr[1];               
+                    var content=arr[1];  
+                    var subjectID=arr[2];
 
                 $("#see-subject-modal").modal("toggle");
 
                 $('#subject-title-input').val(title);
                 $('#subject-content-input').val(content);
-
+                    
+                $('.subject-id').html(subjectID);
+                    
+                $.ajax({
+                    url: "forum/ajax_comment_load.php",
+                    type: "POST",
+                    data: {
+                        subjectID:$('.subject-id').html()
+                    },
+                    async: true,
+                    success:function(data){
+                        data=JSON.parse(data);
+                        console.log(data);
+                        $.each(data,function(key,value){
+                            $('#comment-list').append('<li class="list-group-item"><p>'+'<a href="#">'+value.user+'</a>: '+value.content+'</p><p>'+value.datePosted+'</p></li>');
+                        });
+                    }
+                });
                 }
             });
             e.preventDefault();
 
-    });
+        });
                 
     }
-      
+    
+    /*  
     $('.subject-wrapper').on("click",function(e){
         k=(e.currentTarget);
         f=e.currentTarget;
@@ -185,5 +200,6 @@
   
                 
     });
+    */
        
 </script>

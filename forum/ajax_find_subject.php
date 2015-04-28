@@ -31,13 +31,15 @@
     
     $title="";
     $content="";
+    $subjectID="";
 
     while ($row1 = mysql_fetch_row($result1)){  
         $title=$row1[1];
         $content=$row1[2];
+        $subjectID=$row1[0];
     }
 
-    echo "$title#$content";
+    echo "$title#$content#$subjectID";
 
     //$row1 = mysql_fetch_row($result1); 
     //echo $row1[1];

@@ -11,12 +11,12 @@
                 <fieldset>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label class="control-label" for="event-title-preview">Event's title</label>  
+                            <label class="control-label" id="report-title" for="event-title-preview">Event's title</label>  
                                 <input id="event-title-preview" name="event-title-preview" disabled class="form-control input-md" required="" type="text">
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label" for="event-user-preview">Event's user</label>
+                            <label class="control-label" id="report-user" for="event-user-preview">Event's user</label>
                                 <input id="event-user-preview" name="event-user-preview" disabled class="form-control input-md" required="" type="email">
                         </div>
                         
