@@ -33,6 +33,7 @@
     $content="";
     $subjectID="";
 
+
     while ($row1 = mysql_fetch_row($result1)){  
         $title=$row1[1];
         $content=$row1[2];

@@ -39,7 +39,10 @@
 </div>
 
 <script>
-
+    $("#add-theme-modal").on('hide.bs.modal', function () {       
+        $("form[name='theme-form']").reset();
+    });
+        
     $("form[name='theme-form']").submit(function(e) {
         
         $.ajax({
