@@ -55,6 +55,7 @@
 
     $content=array('id'=>$replyID,'user'=>$email,'datePosted'=>$replyDate,'content'=>$comment);
     echo json_encode($content);
+    
     return;
     /*   
     if (!$result) {

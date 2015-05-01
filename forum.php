@@ -139,10 +139,13 @@
                     var subjectID=arr[2];
 
                 $("#see-subject-modal").modal("toggle");
-
+                $("#see-subject-modal").on('hide.bs.modal', function () {       
+                    $('#comment-list').html("");
+                });
                 $('#subject-title-input').val(title);
                 $('#subject-content-input').val(content);
                     
+                //valoume sto hidden koutoudin to id tou subject gia metepita xrisi
                 $('.subject-id').html(subjectID);
                     
                 $.ajax({

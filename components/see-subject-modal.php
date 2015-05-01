@@ -69,7 +69,7 @@
             $('#comment-post-btn').attr('disabled','true');
             $('#comment-input').attr('disabled','true');
          }
-
+                                              
         /*
             The ajax caller for the comment post function.
             We call the phpsqlajax_comment.php with the event ID 
