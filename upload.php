@@ -31,7 +31,7 @@
             break;
         
         case "property":
-            $eventContent='<p class="property-type">'.$_POST['property-type-input'].'</p><p class="property-description">'.$_POST['property-description-input'].'</p>';
+            $eventContent='<p class="property-type"><b>Type:</b></br> '.$_POST['property-type-string'].'</p><p class="property-description"><b>Descrition:</b></br> '.$_POST['property-description-input'].'</p>';
             break;
         
         case "article":

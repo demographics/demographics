@@ -97,6 +97,8 @@
             //Create formdata to store form's values including photos
             var formData = new FormData($(this)[0]);
             formData.append('summernote',$('#summernote').code());
+            formData.append('property-type-string',$('#property-type-input option:selected').text());
+            
             //Send data to upload.php using ajax
             $.ajax({
                 url: "upload.php",
@@ -135,7 +137,7 @@
             var eventDate = document.getElementById("event-date-input").value;  
             
             $('#memoir-content-input').removeAttr('required');
-            $('#summernote').removeAttr('required');
+            //$('#summernote').removeAttr('required');
             $('#photo-description-input').removeAttr('required');
             $('#fileInput').removeAttr('required');
             $('#property-type-input').removeAttr('required');
@@ -153,7 +155,7 @@
                     $('#memoir-content-input').attr('required','required');
                     break;
                 case 'article':
-                    $('#summernote').attr('required','required');
+                    //$('#summernote').attr('required','required');
                     break;
                 case 'photo':
                     $('#photo-description-input').attr('required','required');

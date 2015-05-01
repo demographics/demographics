@@ -13,13 +13,16 @@
         <title>Demography</title>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>       
-        <script src="_/libs/bootstrap/js/bootstrap.min.js"></script>
+        
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.6.5/summernote.min.js"></script>
+        
         <script src="_/libs/bootstrap-slider/dist/bootstrap-slider.min.js"></script>
         <script src="_/libs/bootstrap/loading/dist/spin.js"></script>
         <script src="_/libs/bootstrap/loading/dist/ladda.min.js"></script>
         <script src="_/libs/bootstrap/sweetalert/lib/sweet-alert.min.js"></script>
         <script src="_/libs/bootstrap/fileinput/js/fileinput.min.js"></script>
-        <script src="_/libs/bootstrap/datepicker/js/bootstrap-datepicker.js"></script>
         <script src="_/js/demographics.js" type="text/javascript"></script>
         <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Q4goEGgtL02AA7wa-ZJEKc14qrAoSmU">
@@ -28,21 +31,22 @@
         <script src="_/js/search-functions.js" type="text/javascript"></script>
         <script src="_/js/facebook-login.js" type="text/javascript"></script>
         <script src="_/js/infobubble.js"></script>
-        <script src="_/libs/summernote/summernote.min.js"></script>
         <script src="_/js/jquery.slimscroll.min.js"></script>
         <script src="_/libs/bootstrap/tags/bootstrap-tagsinput.min.js"></script>
         <script src="_/libs/timelinejs/build/js/storyjs-embed.js"></script>
         
         <link rel="icon" type="image/ico" href="_/img/favicon.ico">
-        <link href="_/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker3.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.6.5/summernote.min.css">
+        
         <link href="_/libs/bootstrap-slider/css/bootstrap-slider.css" rel="stylesheet">
         <link href="_/libs/bootstrap/loading/dist/ladda-themeless.min.css" rel="stylesheet">
         <link href="_/libs/bootstrap/fileinput/css/fileinput.min.css" rel="stylesheet">
         <link href="_/libs/bootstrap/sweetalert/lib/sweet-alert.css" rel="stylesheet">
-        <link href="_/libs/bootstrap/datepicker/css/datepicker3.css" rel="stylesheet">
         <link href="_/css/reset.css" rel="stylesheet">
-        <link href="_/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <link href="_/libs/summernote/summernote.css" rel="stylesheet">
         <link href="_/libs/bootstrap/tags/bootstrap-tagsinput.css" rel="stylesheet">
         
         <link rel="apple-touch-icon" href="_/img/apple-icon-114x114-precomposed.png" />
