@@ -38,6 +38,9 @@
 <?php include 'report-modal.php' ?>
 
 <script>
+    
+    
+    
     //Function for loading comments for each event
     function loadComments(){
         var index=0;
@@ -72,31 +75,34 @@
             added to the specified event's comment list.
         */
         $('#comment-post-btn').on('click',function(){
-            $.ajax({
-                url: "markers/phpsqlajax_comment.php",
-                type: "POST",
-                data: {
-                    eventID:cur_event,
-                    comment:document.getElementById('comment-input').value
-                },
-                async: false
-            });
+            var commentValue=document.getElementById('comment-input').value;
             
+            if(commentValue!=""){
+                $.ajax({
+                    url: "markers/phpsqlajax_comment.php",
+                    type: "POST",
+                    data: {
+                        eventID:cur_event,
+                        comment:document.getElementById('comment-input').value
+                    },
+                    async: false
+                }); 
                      
-            $.ajax({
-                url: "markers/phpsqlajax_load_comment.php",
-                type: "POST",
-                data: {
-                    eventID:cur_event
-                },
-                success: function (data) {
-                    cur_comments = JSON.parse(data);
-                    loadComments();
-                },
-                async: false
-            }); 
-            
-            document.getElementById("comment-input").value = "";
+                $.ajax({
+                    url: "markers/phpsqlajax_load_comment.php",
+                    type: "POST",
+                    data: {
+                        eventID:cur_event
+                    },
+                    success: function (data) {
+                        cur_comments = JSON.parse(data);
+                        loadComments();
+                    },
+                    async: false
+                }); 
+
+                document.getElementById("comment-input").value = "";
+            }
         });
      });
     

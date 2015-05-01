@@ -13,7 +13,7 @@
                          <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Title&nbsp;</span>
-                                <input pattern="[A-Za-z ]{1,30}" id="event-title-input" name="event-title-input" class="form-control" placeholder="Event's title goes here." type="text">
+                                <input required pattern="[A-Za-z ]{1,30}" id="event-title-input" name="event-title-input" class="form-control" placeholder="Event's title goes here." type="text">
                             </div>
                         </div>
                         
@@ -27,7 +27,7 @@
                         <div class="form-group">
                             <div class="input-group">
                                 <span class="input-group-addon">Date</span>
-                                <input data-provide="datepicker" pattern="[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]" id="event-date-input" name="event-date-input" class="form-control" placeholder="Pick the event's date." type="text">
+                                <input required data-provide="datepicker" pattern="[0-9][0-9]\/[0-9][0-9]\/[0-9][0-9][0-9][0-9]" id="event-date-input" name="event-date-input" class="form-control" placeholder="Pick the event's date." type="text">
                             </div>
                         </div>
 
@@ -90,6 +90,7 @@
                 
         var eventForm = document.getElementById("event-form"); 
         var currentTab = 'memoir';
+        $('#memoir-content-input').attr('required','required');
         
         //Setup the event on form submition
         $("form[name='uploader']").submit(function(e) {
@@ -132,12 +133,38 @@
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             var eventTitle = document.getElementById("event-title-input").value;       
             var eventDate = document.getElementById("event-date-input").value;  
+            
+            $('#memoir-content-input').removeAttr('required');
+            $('#summernote').removeAttr('required');
+            $('#photo-description-input').removeAttr('required');
+            $('#fileInput').removeAttr('required');
+            $('#property-type-input').removeAttr('required');
+            $('#property-description-input').removeAttr('required');
+            
             var currentTab = $(e.target).text().toLowerCase();
                     
             eventForm.reset();
             document.getElementById("event-title-input").value = eventTitle;
             document.getElementById("event-date-input").value = eventDate;
             document.getElementById('event-type-input').value = currentTab;
+            
+             switch(currentTab){
+                case 'memoir':
+                    $('#memoir-content-input').attr('required','required');
+                    break;
+                case 'article':
+                    $('#summernote').attr('required','required');
+                    break;
+                case 'photo':
+                    $('#photo-description-input').attr('required','required');
+                    $('#fileInput').attr('required','required');
+                    break;
+                case 'property':
+                    $('#property-type-input').attr('required','required');
+                    $('#property-description-input').attr('required','required');
+                    break;
+            }
+            
         });          
     });
 </script>

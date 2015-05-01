@@ -18,7 +18,7 @@
         die ('Can\'t use db : ' . mysql_error());
     }
 
-    $query = "SELECT * FROM COMMENT, MEMBER WHERE COMMENT.event=$eventID AND COMMENT.member=MEMBER.id ORDER BY COMMENT.datetime DESC";
+    $query = "SELECT * FROM $database.COMMENT, $database.MEMBER WHERE COMMENT.event=$eventID AND COMMENT.member=MEMBER.id ORDER BY COMMENT.datetime DESC";
     $result = mysql_query($query);
     if (!$result) {
         die('Invalid query: ' . mysql_error());

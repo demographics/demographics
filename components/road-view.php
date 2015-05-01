@@ -52,18 +52,22 @@
          }
          
         $('#road-comment-post-btn').on('click',function(){
-            $.ajax({
-                url: "roads/phpsqlajax_comment.php",
-                type: "POST",
-                data: {
-                    roadID:currentRoad.id,
-                    comment:document.getElementById('road-comment-input').value
-                },
-                async: false
-            });
-//            '<li class="list-group-item"><p><a href="#">'+<?=$_SESSION['email']?>+'</a>: '+comment_content+'</p><p>'+<?= date('d-m-Y H:i:s')?>+'</p></li>'
-            loadComments(currentRoad.id);
-            document.getElementById("road-comment-input").value = "";
+            var commentValue=document.getElementById('comment-input').value;
+            
+            if(commentValue!=""){
+                $.ajax({
+                    url: "roads/phpsqlajax_comment.php",
+                    type: "POST",
+                    data: {
+                        roadID:currentRoad.id,
+                        comment:document.getElementById('road-comment-input').value
+                    },
+                    async: false
+                });
+    //            '<li class="list-group-item"><p><a href="#">'+<?=$_SESSION['email']?>+'</a>: '+comment_content+'</p><p>'+<?= date('d-m-Y H:i:s')?>+'</p></li>'
+                loadComments(currentRoad.id);
+                document.getElementById("road-comment-input").value = "";
+            }
         });
      });
     

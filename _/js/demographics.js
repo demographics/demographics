@@ -37,6 +37,4 @@ function downloadUrl(url,callback) {
 */
 function idle() {}
 
-function capture(){
-   
-}
+function capture(){}
