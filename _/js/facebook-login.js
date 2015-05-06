@@ -1,4 +1,4 @@
-
+/*
     // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -105,3 +105,4 @@ function testAPI() {
             'Thanks for logging in, ' + response.name + '!';
     });
 }
+*/

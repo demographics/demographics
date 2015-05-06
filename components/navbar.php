@@ -80,9 +80,9 @@
                     function filter(){
                         jQuery.each(allData, function(key,value) {
                             for (var i = 0; i < results.length; i++) {
-                                var lng=results[i].position.D.toFixed(6);
+                                var lng=results[i].position.C.toFixed(6);
                                 var str1=value.type;
-                                if(results[i].position.k==value.lat && lng==value.lng){
+                                if(results[i].position.j==value.lat && lng==value.lng){
                                     for (var j=0; j<options.length; j++){
                                         if(str1.localeCompare(options[j])==0){
                                             results[i].setVisible(true);
@@ -100,11 +100,11 @@
                             var year=queryDate.split("-", 1);
 
                             for (var i=0; i < results.length; i++){
-                                var lng = results[i].position.D.toFixed(6);
+                                var lng = results[i].position.C.toFixed(6);
 
                                 var str1=value.type;
 
-                                if ((results[i].position.k == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1])) {
+                                if ((results[i].position.j == value.lat) && (lng == value.lng) && (year>=selectedDate[0]) && (year<=selectedDate[1])) {
                                     for (var j=0; j<options.length; j++){
                                         if(str1.localeCompare(options[j])==0){
                                             results[i].setVisible(true);
@@ -123,9 +123,9 @@
                         jQuery.each(allData, function (key, value) {
                             for (var i = 0; i < allMarkers.length; i++) {
 
-                                var lng = allMarkers[i].position.D.toFixed(6);
+                                var lng = allMarkers[i].position.C.toFixed(6);
 
-                                if (allMarkers[i].position.k == value.lat && lng == value.lng) {
+                                if (allMarkers[i].position.j == value.lat && lng == value.lng) {
                                     allMarkers[i].setVisible(true);
                                     results.push(allMarkers[i]);
                                 }
@@ -249,7 +249,7 @@
                                 else{
                                     filterWithDate();
                                 }
-                                
+
                                 $("#ex2").on("change", function(slideEvt) {
                                     removeAllMarkers();
                                     filterWithDate();
