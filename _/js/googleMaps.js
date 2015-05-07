@@ -632,6 +632,24 @@ function placeLoaded(event,location){
                                 '<br>'+event.content);
         
         $('#marker-view').modal('toggle');
+
+        //modal-title
+        switch(event.type){
+            case 'memoir':
+                //$("p").css("background-color", "yellow");
+                $(".modal-title").css("color","#FE374A");
+                break;
+            case 'property':
+                $(".modal-title").css("color","#28ABE3");
+                break;
+            case 'photo':
+                $(".modal-title").css("color","#FDE65C");
+                break;
+            case 'article':
+                $(".modal-title").css("color","#1FDA9A");
+                break;
+        }
+
         $('#marker-view').on('hide.bs.modal', function () {            
             map.setZoom(10);
             $("#comment-list").html("");
