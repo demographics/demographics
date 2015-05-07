@@ -10,7 +10,9 @@
         <input id="ex2" type="text" class="span2" value="" data-slider-min="1900" data-slider-max="2015" data-slider-step="1" data-slider-value="[1935,1974]" data-slider-handle="triangle"/>
         
     </div>
-<a class="pull-right" id="chat-button" href="#"><i class="fa fa-weixin"></i></a>
+<!--    <div id="copyrights"><p align="center">All rights reserved &copy; Copyright 2015</p></div>-->
+
+    <a class="pull-right" id="chat-button" href="#"><i class="fa fa-weixin"></i></a>
 
 </div>
 

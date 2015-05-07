@@ -284,6 +284,7 @@ function placeMarker(eventID,location,ajaxIndex) {
         async: false,
         success: function (data) {
             eventJSON = JSON.parse(data);
+          //  console.log(eventJSON);
             var timelineYear;
             var timelineMonth;
             var timelineDay;
@@ -338,18 +339,20 @@ function placeMarker(eventID,location,ajaxIndex) {
     });
 
     var icon = null;
+    //console.log(eventJSON.type);
     switch(eventJSON.type){
         case 'memoir':
-            icon = "_/img/markers/memoir.png";
+            icon = "_/img/markers/red.png";
+            //icon = "_/img/markers/red.png";
             break;
         case 'property':
-            icon = "_/img/markers/property.png";
+            icon = "_/img/markers/blue.png";
             break;
         case 'photo':
-            icon = "_/img/markers/photo.png";
+            icon = "_/img/markers/yellow.png";
             break;
         case 'article':
-            icon = "_/img/markers/article.png";
+            icon = "_/img/markers/green.png";
             break;
     }
     
@@ -551,24 +554,24 @@ function placeLoaded(event,location){
     var icon = null;
     switch(event.type){
         case 'memoir':
-            icon = "_/img/markers/memoir.png";
+            icon = "_/img/markers/red.png";
             break;
         case 'property':
-            icon = "_/img/markers/property.png";
+            icon = "_/img/markers/blue.png";
             break;
         case 'photo':
-            icon = "_/img/markers/photo.png";
+            icon = "_/img/markers/yellow.png";
             break;
         case 'article':
-            icon = "_/img/markers/article.png";
+            icon = "_/img/markers/green.png";
             break;
     }
     
      var placeMarker = new google.maps.Marker({
         position: location,
         map: map,
-        animation:google.maps.Animation.DROP//,
-        //icon:icon
+        animation:google.maps.Animation.DROP,
+        icon:icon
     });
     
     allMarkers.push(placeMarker);
