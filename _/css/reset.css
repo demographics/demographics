@@ -292,8 +292,8 @@ a.boxclose{
 #timeline-embed{
     position: absolute;
     top: 40px;
-    background-color:rgba(248, 248, 248, 0.6) !important; 
-    display:none;
+    z-index: -23;
+    
 }
 
 .timenav-interval-background,.slider-container-mask{

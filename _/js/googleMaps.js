@@ -490,16 +490,12 @@ function loadMarkers() {
                     });
                     
                 }
-                var timeline=createStoryJS({
-                    type:       'timeline',
-                    width:      '100%',
-                    height:     '400',
-                    source:     timelineJSON,
-                    embed_id:   'timeline-embed'
-                });
+                //console.log(JSON.stringify(timelineJSON));
+                       
+                $('body').append(' <script type="text/javascript">var timeline_config = {width: "100%",height: "400",source: timelineJSON};</script><script src="_/libs/timelinejs/build/js/storyjs-embed.js">'+'</scr'+'ipt>');
             }
         });
-        
+
 //        for (var i = 0; i < markers.length; i++) {
 //            var location = new google.maps.LatLng(
 //                markers[i].getAttribute("lat"),

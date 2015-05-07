@@ -27,13 +27,12 @@
         <script type="text/javascript"
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Q4goEGgtL02AA7wa-ZJEKc14qrAoSmU">
         </script>
-        <script src="_/js/googleMaps.js" type="text/javascript"></script>
-        <script src="_/js/search-functions.js" type="text/javascript"></script>
+        
         <script src="_/js/facebook-login.js" type="text/javascript"></script>
         <script src="_/js/infobubble.js"></script>
         <script src="_/js/jquery.slimscroll.min.js"></script>
         <script src="_/libs/bootstrap/tags/bootstrap-tagsinput.min.js"></script>
-        <script src="_/libs/timelinejs/build/js/storyjs-embed.js"></script>
+        
         
         <link rel="icon" type="image/ico" href="_/img/favicon.ico">
 
@@ -285,8 +284,18 @@
                 });
             });
         </script>
+<!--
         <script src="_/js/timeline.js"></script>
         <link href="_/css/timeline.css" rel="stylesheet">
-
+-->
+<!--        <script src="_/libs/timelinejs/build/js/storyjs-embed.js"></script>-->
+        <script src="_/js/googleMaps.js" type="text/javascript"></script>
+        <script src="_/js/search-functions.js" type="text/javascript"></script>
+        <script>
+            setTimeout(function() {
+                  $( "#timeline-embed" ).css('display','none');  
+                  $( "#timeline-embed" ).css('z-index','100000');
+            }, 4000);
+        </script>
     </body>
 </html>
