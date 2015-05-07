@@ -51,6 +51,14 @@
 </nav>
 
 <script>
+    
+    $('#forum_Button').on('click',function(e){
+        if(!flag){
+            swal("You are not logged in!", "You have to login to be able to post.","warning");
+            e.preventDefault();
+        }
+    });
+    
     $(document).ready(function(){
 //den ilopoiithike o elegxos ean kanei search defteri fora me ta idia dedomena
         var searchForm = document.getElementById("search_form");
