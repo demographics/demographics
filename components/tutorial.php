@@ -61,17 +61,54 @@
 </div>
 
 <script>
+    var slim_scrolled;
     $(function(){
-        $('#tutorial_modal .modal-body .col-md-9').slimScroll({
+        slim_scrolled=$('#tutorial_modal .modal-body .col-md-9').slimScroll({
             height: '540px'
-        });
+        });     
         
+        slim_scrolled.bind('scroll', function(e, pos){
+            
+            var scroll=$('#tutorial-content').scrollTop();
+            
+            $('#tutorial-content div').each(function(index){
+                //alert(index+": "+$(this).offset().top);
+                if(scroll>$(this).offset().top && scroll<=($(this).offset().top+$(this).height())){
+                    $('#tutorial-menu a.active').removeClass('active');
+                    if(index==0){
+                        $("#tutorial-menu a[href='#tutorial-0']").addClass('active');
+                    }else if(index==1){
+                        $("#tutorial-menu a[href='#tutorial-1']").addClass('active');
+                    }else if(index==2){
+                        $("#tutorial-menu a[href='#tutorial-2']").addClass('active');
+                    }else if(index==3){
+                        $("#tutorial-menu a[href='#tutorial-3']").addClass('active');
+                    }else if(index==4){
+                        $("#tutorial-menu a[href='#tutorial-4']").addClass('active');
+                    }else if(index==5){
+                        $("#tutorial-menu a[href='#tutorial-5']").addClass('active');
+                    }else if(index==6){
+                        $("#tutorial-menu a[href='#tutorial-6']").addClass('active');
+                    }else if(index==7){
+                        $("#tutorial-menu a[href='#tutorial-7']").addClass('active');
+                    }else if(index==8){
+                        $("#tutorial-menu a[href='#tutorial-8']").addClass('active');
+                    }else if(index==9){
+                        $("#tutorial-menu a[href='#tutorial-9']").addClass('active');
+                    }else if(index==10){
+                        $("#tutorial-menu a[href='#tutorial-10']").addClass('active');
+                    }else if(index==11){
+                        $("#tutorial-menu a[href='#tutorial-11']").addClass('active');
+                    }
+                }
+            });
+        });
     });
+        
+   
     
     $('#tutorial-menu a').on('click',function(e){
         $('#tutorial-menu a.active').removeClass('active');
         $(this).addClass('active');
     });
-    
-    $('tutorial-menu').scrollspy({ target: '#tutorial-menu' })
 </script>
