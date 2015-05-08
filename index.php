@@ -32,7 +32,8 @@
         <script src="_/js/infobubble.js"></script>
         <script src="_/js/jquery.slimscroll.min.js"></script>
         <script src="_/libs/bootstrap/tags/bootstrap-tagsinput.min.js"></script>
-        
+        <script type="text/javascript" charset="utf8" src="_/libs/smooth-scroll/src/jquery.smooth-scroll.js"></script>
+
         
         <link rel="icon" type="image/ico" href="_/img/favicon.ico">
 

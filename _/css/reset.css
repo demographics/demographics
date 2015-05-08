@@ -334,3 +334,7 @@ a.boxclose{
 #chat-button{
     font-size: 20pt;
 }
+
+#tutorial-content img{
+    width:100%;
+}

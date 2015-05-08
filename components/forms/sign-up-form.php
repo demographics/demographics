@@ -161,6 +161,11 @@
                       confirmButtonClass: "btn-success",
                       confirmButtonText: "Ok",
                       closeOnConfirm: true
+                    },
+                    function(isConfirm) {
+                        if (isConfirm) {
+                            $('#tutorial_modal').modal('toggle');
+                        }
                     });
                     $("#sign-up-modal").modal('toggle');
                 }
