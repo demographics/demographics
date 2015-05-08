@@ -52,6 +52,7 @@
         <link href="_/libs/bootstrap/tags/bootstrap-tagsinput.css" rel="stylesheet">
         <link href="_/libs/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link href="_/css/community.css" rel="stylesheet">
+        <link href="_/css/reset.css" rel="stylesheet">
         
         
     </head>
@@ -64,7 +65,9 @@
         ?>
         
         <div class="container">
-            <h2>Demographics Forum</h2>
+            <br>
+            <br>
+<!--            <h2>Demographics Forum</h2>-->
             <hr>
             <h3>Forum of <?= "$vill_name"?> Village</h3>
             <br>
