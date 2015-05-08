@@ -306,7 +306,7 @@ a.boxclose{
     margin: 0;
     padding: 0;
     position: fixed !important;
-    bottom: 47px !important;
+    bottom: 39px !important;
     width: 300px !important;
     z-index: 1000000 !important;
     right: 0px;
