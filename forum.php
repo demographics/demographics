@@ -46,7 +46,9 @@
         <script src="_/libs/bootstrap/js/bootstrap.min.js"></script>
         <script src="_/js/jquery.slimscroll.min.js"></script>
         <script src="_/libs/bootstrap/tags/bootstrap-tagsinput.min.js"></script>
-        
+        <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Q4goEGgtL02AA7wa-ZJEKc14qrAoSmU">
+        </script>
         <script type="text/javascript" charset="utf8" src="_/libs/smooth-scroll/src/jquery.smooth-scroll.js"></script>
         <link rel="icon" type="image/ico" href="_/img/favicon.ico">
         <link href="_/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -55,14 +57,18 @@
         <link href="_/css/community.css" rel="stylesheet">
         <link href="_/css/reset.css" rel="stylesheet">
         
-        
+        <style>
+            body{
+                background-image: url("_/img/forum-back-blur.png");
+                background-attachment: fixed;
+            }
+        </style>
     </head>
 
     <body>  
         <?php include 'components/navbar.php' ?>
         <?php include 'components/forms/change-password-form.php' ?>
         <?php include 'components/forms/edit-profile-form.php' ?>
-        
         
         <?php 
             include 'components/add-theme-form.php';
@@ -231,4 +237,6 @@
             processData: false
         });	
     });
+    
+    
 </script>
