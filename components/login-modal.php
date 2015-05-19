@@ -11,6 +11,7 @@
                     <div class="modal-body">
                         <br>
                         <div class="facebook" class="row">
+                        
 <!--                            <a href="#"><img id="fb_colored" src="_/img/fb-login.png" alt="Facebook" onclick="myLogin();" scope="public_profile, email"></a>-->
                             <a href="#"><img id="fb_colored" src="_/img/fb-login.png" alt="Facebook" onclick="" scope="public_profile, email"></a>
                         </div>
@@ -26,15 +27,15 @@
                         <br>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="email-input">Email:</label>
-                            <div class="col-md-4">
+                            <label class="col-md-4 col-xs-2 control-label" for="email-input">Email:</label>
+                            <div class="col-md-4 col-xs-4">
                                 <input id="email-input" name="email-input" placeholder="Email address" class="form-control input-md" required="" type="text">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="col-md-4 control-label" for="password-input">Password:</label>
-                            <div class="col-md-4">
+                            <label class="col-md-4 col-xs-2 control-label" for="password-input">Password:</label>
+                            <div class="col-md-4 col-xs-4">
                                 <input id="password-input" name="password-input" placeholder="Password" class="form-control input-md" required="" type="password">
                             </div>
                         </div>
@@ -43,7 +44,7 @@
                     <div class="modal-footer">
                         <div class="form-group">
                             <label class="col-md-4 control-label" for="login-btn"></label>
-                            <div class="col-md-8">
+                            <div class="col-md-8 col-xs-8">
                                 <button id="login-btn" name="login-btn"  class="btn btn-primary">Log in</button>
                                 <button id="cancel-btn" name="cancel-btn" data-dismiss="modal" class="btn btn-default">Cancel</button>
                             </div>

@@ -5,7 +5,6 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Post Subject</h4>
             </div>
-                                                <!--action="phpsqlajax_add_theme.php"-->
             <form id="theme-form" name='theme-form' method="post" action="forum/ajax_add_theme.php" enctype="multipart/form-data" class="form-horizontal">
                 <fieldset>
                     
@@ -39,11 +38,13 @@
 </div>
 
 <script>
+    
     $("#add-theme-modal").on('hide.bs.modal', function () {       
-        $("form[name='theme-form']").reset();
+        $("#theme-title-input").val("");
+        $("#theme-content-input").val("")
     });
-        
-    $("form[name='theme-form']").submit(function(e) {
+            
+    $("#theme-form").submit(function(e) {
         
         $.ajax({
             url: "forum/ajax_add_theme.php",
@@ -53,6 +54,7 @@
                 content:$("#theme-content-input").val()
             },
             success: function (data) {
+                
             }
         });
         

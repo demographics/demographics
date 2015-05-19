@@ -338,3 +338,21 @@ a.boxclose{
 #tutorial-content img{
     width:100%;
 }
+
+a:active{
+    color:pink;
+}
+@media screen and (max-width: 40.5em) {
+    #forum_Button{
+        display: none;
+    }
+    #show_timeline{
+        display:none;
+    }
+    #notification-dropdown{
+        display:none;
+    }
+    .facebook{
+        width:100% !important;
+    }
+}

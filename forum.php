@@ -60,6 +60,10 @@
 
     <body>  
         <?php include 'components/navbar.php' ?>
+        <?php include 'components/forms/change-password-form.php' ?>
+        <?php include 'components/forms/edit-profile-form.php' ?>
+        
+        
         <?php 
             include 'components/add-theme-form.php';
             include 'components/see-subject-modal.php'
@@ -68,8 +72,7 @@
         <div class="container">
             <br>
             <br>
-<!--            <h2>Demographics Forum</h2>-->
-            <hr>
+            
             <h3>Forum of <?= "$vill_name"?> Village</h3>
             <br>
                 <nav class="navbar navbar-default">
@@ -109,6 +112,12 @@
             echo "add_theme('$temp_title','$temp_email','$temp_time');"; 
         }
     ?>
+    
+    $('#sign-up-btn').hide();
+    $('#Log_Button').attr('data-toggle', "dropdown");  
+    $('#search_form').hide();
+    $('#notification-dropdown').hide();
+    $('#show_timeline').hide();
     
     $("#forum-add-btn").on("click",function(){
         $("#add-theme-modal").modal("toggle");
@@ -209,4 +218,17 @@
     });
     */
        
+    $('#LogOut_Button').on("click",function(){
+        $.ajax({
+            url: "members/login/logout.php",
+            type: "POST",
+            async: false,
+            cache: false,
+            success: function(data){
+                window.location="index.php";
+            },
+            contentType: false,
+            processData: false
+        });	
+    });
 </script>
