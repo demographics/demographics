@@ -121,10 +121,12 @@
         
         $('#marker-modal').on('shown.bs.modal', function () {
             $('#event-title-input').focus();
-            eventForm.reset();
+            document.getElementById("event-form").reset();
+            //eventForm.reset();
         });
         
-        $('#marker-modal').on('hide.bs.modal', function () {            
+        $('#marker-modal').on('hide.bs.modal', function () {  
+            
             var info = document.getElementById ("info");
             info.innerHTML = "";
             $('input[data-role="tagsinput"]').tagsinput('removeAll');
@@ -145,7 +147,7 @@
             
             var currentTab = $(e.target).text().toLowerCase();
                     
-            eventForm.reset();
+            //eventForm.reset();
             document.getElementById("event-title-input").value = eventTitle;
             document.getElementById("event-date-input").value = eventDate;
             document.getElementById('event-type-input').value = currentTab;
