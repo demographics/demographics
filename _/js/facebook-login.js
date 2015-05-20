@@ -1,4 +1,4 @@
-/*
+
     // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -9,7 +9,8 @@ function statusChangeCallback(response) {
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
         // Logged into your app and Facebook.
-        testAPI();
+        //myLogin();
+        //testAPI();
     } else if (response.status === 'not_authorized') {
         // The person is logged into Facebook, but not your app.
 
@@ -33,7 +34,7 @@ function checkLoginState() {
     });
 }
 
-//i may remove it!!
+
 function myLogin(){
     FB.login(function(response) {
         console.log("My login");
@@ -41,6 +42,26 @@ function myLogin(){
             //testAPI();
             FB.api('/me', function(response) {
                 console.log(JSON.stringify(response));
+                var str_json = JSON.stringify(response)
+                $.ajax({
+                    url: "members/phpsqlajax_facebook.php",
+                    type: "POST",
+                    data: str_json,
+                    async: false,
+                    success: function (data) {
+                        console.log("return "+data);
+                        if (data.localeCompare("NULL")==0){
+                            $("#fill-in-modal").modal("toggle");
+                            $("#login-modal").modal("hide");
+                            fbSignUp(str_json);
+                        }
+                    },
+
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+
             });
 
         } else if (response.status === 'not_authorized') {
@@ -94,6 +115,7 @@ window.fbAsyncInit = function() {
     fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
+
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 function testAPI() {
@@ -105,4 +127,3 @@ function testAPI() {
             'Thanks for logging in, ' + response.name + '!';
     });
 }
-*/

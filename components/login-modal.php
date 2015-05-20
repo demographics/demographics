@@ -56,7 +56,9 @@
     </div>
 </div>
 
+<script>
 
+</script>
 <!--<div id="login-modal" class="modal fade">-->
 <!--    <div class="modal-dialog">-->
 <!--        <div class="modal-content">-->

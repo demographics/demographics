@@ -64,10 +64,12 @@
         <?php include 'components/login-modal.php' ?>
         <?php include 'components/marker-view.php' ?>
         <?php include 'components/forms/sign-up-form.php' ?>
+        <?php include 'components/forms/fill-in-form.php' ?>
         <?php include 'components/forms/change-password-form.php' ?>
         <?php include 'components/forms/edit-profile-form.php' ?>
         <?php include 'components/footer.php' ?>
         <?php include 'timeline/timeline_modal.php'?>
+        <?php include 'components/fill-in-form.php'?>
         
         <!--Setting the flag if logged in-->
         <?php 
