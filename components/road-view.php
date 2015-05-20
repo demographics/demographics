@@ -38,7 +38,7 @@
 <?php include 'report-modal.php' ?>
 
 <script>
-        
+   
     $(function(){
         $('.comment-preview').slimScroll({
             height: '200px'

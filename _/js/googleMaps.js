@@ -611,6 +611,7 @@ function placeLoaded(event,location){
                 
         $.each(event.comments, function(key,value) {
             $("#comment-list").append('<li class="list-group-item"><p>'+'<a href="#">'+value.user+'</a>: '+value.content+'</p><p>'+value.datePosted+'</p></li>');
+            console.log(event);
         });    
     
         $.ajax({

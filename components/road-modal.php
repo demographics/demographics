@@ -34,10 +34,10 @@
 
 <script>       
     
-
-    
     $(document).ready(function(){
     
+        var roadForm= $("form[name='road_post']");
+        
         $("form[name='road_post']").submit(function(e) {
             saveRoad(road,$('#road-input').val());
             $.each(actualMarker.markers, function( index, value ) {
@@ -48,6 +48,7 @@
             actualMarker={'markers':[]};
             
             $("#road-modal").modal('toggle');
+            //roadForm.reset();
             e.preventDefault();
         });
             
@@ -58,6 +59,7 @@
         
         $('#marker-modal').on('hide.bs.modal', function () {            
             $('#road-input').val("");
+           // roadForm.reset();
         });
              
     });

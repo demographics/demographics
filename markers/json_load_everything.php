@@ -40,7 +40,7 @@
     
         $eventID=$row['id'];
         
-        $query1 = "SELECT * FROM COMMENT,EVENT,MEMBER WHERE COMMENT.event=EVENT.id AND MEMBER.id=COMMENT.member AND EVENT.id=$eventID ORDER BY COMMENT.datetime DESC";
+        $query1 = "SELECT COMMENT.content AS content, COMMENT.datetime AS datetime, MEMBER.email AS email FROM COMMENT,EVENT,MEMBER WHERE COMMENT.event=EVENT.id AND MEMBER.id=COMMENT.member AND EVENT.id=$eventID ORDER BY COMMENT.datetime DESC";
         $result1 = mysql_query($query1);
         if (!$result1) {
             die('Invalid query: ' . mysql_error());
