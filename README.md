@@ -1,4 +1,4 @@
-Demography/epl361
+Demographics
 ======
 
 How to open the first prototype:
