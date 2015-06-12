@@ -59,9 +59,7 @@
             }
 
         }
-        else{
-             echo "1";
-        }
+
         
         $stmt->close();
     }

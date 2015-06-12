@@ -5,118 +5,75 @@
         the additional information and execute the store 
         query.
     */
-    //$str_json = $_POST['str_json'];
-    $str_json = file_get_contents('php://input');
-    $json_decoded = json_decode($str_json);
 
-    //print_r($json_decoded);
-   // print_r($json_decoded->{'first_name'});
+    $data = $_POST['fbData'];
+    $json_decoded = json_decode($data);
+
 
 
     $firstname=$json_decoded->{'first_name'};
     $lastname=$json_decoded->{'last_name'};
-    $birthdate=null;
+    $birthdate=$_POST['member-date-of-birth-input'];
     $email=$json_decoded->{'email'};
-    checkMember($email);
+    $user_password=null;
 
-    function checkMember($searching_email){
-        require("../phpsqlajax_dbinfo.php");
-
-        $connection=mysql_connect ($host, $username, $password);
-
-        if (!$connection) {
-            die('Not connected : ' . mysql_error());
-        }
-
-        $db_selected = mysql_select_db($database, $connection);
-
-        if (!$db_selected) {
-            die ('Can\'t use db : ' . mysql_error());
-        }
-
-        $query = "SELECT * from $database.`member` where $database.`member`.email='$searching_email'";
-
-        $result = mysql_query($query);
-        $results=array();
-
-        if (!$result) {
-            //print_r($searching_email);
-            die('Invalid query: ' . mysql_error());
-        }
-
-        if ($row = @mysql_fetch_assoc($result)){
-            $results[] = $row;
-        }
-        else{
-            print_r("NULL");
-        }
-
-//        $quantity = count($results);
-//        print_r($quantity);
-//        if ($quantity==0){
-//            print_r($searching_email);
-//        }
-
-
-    }
+//    $firstname=$_POST['member_name_input'];
+//    $lastname=$_POST['member-surname-input'];
+//    $birthdate=$_POST['member-date-of-birth-input'];
+//    $email=$_POST['member-email-input'];
 //    $user_password_again=$_POST['member-password-input-again'];
 //    $user_password=$_POST['member-password-input'];
 
-//    $p=$_POST['member-village-b1974-input'];
-//    session_start();
-//    $_SESSION["p_vill"]=$p;
-    
-//    if (strcmp("$user_password_again","$user_password")!=0){
-//        echo "2";
-//        return;
-//    }
-//
+    //    $p=$_POST['member-village-b1974-input'];
+    //    session_start();
+    //    $_SESSION["p_vill"]=$p;
+
+
 //    $user_password = md5($user_password);
+    $gender = $json_decoded->{'gender'};
 //    $gender=$_POST['member-sex-input'];
-//
-//    if($gender==1){
-//        $gender='M';
-//    }else{
-//        $gender='F';
-//    }
-//
-//    $pre74=$_POST['member-village-b1974-input'];
-//    $post74=$_POST['member-village-a1974-input'];
-//
-//    $_SESSION["p_vill"]=$pre74;
-//    $_SESSION["n_vill"]=$post74;
-//
-//    require("../phpsqlajax_dbinfo.php");
-//
-//    $connection=mysql_connect ($host, $username, $password);
-//
-//    if (!$connection) {
-//      die('Not connected : ' . mysql_error());
-//    }
-//
-//    $db_selected = mysql_select_db($database, $connection);
-//
-//    if (!$db_selected) {
-//      die ('Can\'t use db : ' . mysql_error());
-//    }
-//
-//    $query = "SELECT * from $database.MEMBER WHERE email='$email'";
-//    $result = mysql_query($query);
-//    if(mysql_num_rows($result)==0){
-//        $query = "INSERT INTO $database.MEMBER(firstname, lastname, birthday, email, password, gender, pre74,post74) VALUES ('$firstname','$lastname',STR_TO_DATE('$birthdate', '%d/%m/%Y'),'$email','$user_password','$gender',$pre74,$post74)";
-//
-//        $result = mysql_query($query);
-//
-//        if (!$result) {
-//            die('Invalid query: ' . mysql_error());
-//        }
-//        else{
-//            echo $firstname." ".$lastname;
-//        }
-//
-//    }
-//    else{
-//         echo "1";
-//    }
+
+    if (strcmp($gender, "male") == 0) {
+        $gender='M';
+    }else{
+        $gender='F';
+    }
+
+
+    $pre74=$_POST['member-village-b1974-input'];
+    $post74=$_POST['member-village-a1974-input'];
+
+    $_SESSION["p_vill"]=$pre74;
+    $_SESSION["n_vill"]=$post74;
+
+    require("../phpsqlajax_dbinfo.php");
+
+    $connection=mysqli_connect ($host, $username, $password,$database) or die("Error " . mysqli_error($connection));
+    if($stmt = $connection->prepare("SELECT * from $database.MEMBER WHERE email=?")){
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row= $result->fetch_array(MYSQLI_ASSOC);
+
+        if($connection->affected_rows==0){
+            $query = "INSERT INTO $database.MEMBER(firstname, lastname, birthday, email, password, gender, pre74,post74) VALUES ('$firstname','$lastname',STR_TO_DATE('$birthdate', '%d/%m/%Y'),'$email','$user_password','$gender',$pre74,$post74)";
+
+            $result1 = $connection->query($query);
+
+            if (!$result1) {
+                die('Invalid query: ' . mysql_error());
+            }
+            else{
+                echo $firstname." ".$lastname;
+            }
+
+        }
+        else{
+            echo "1";
+        }
+
+        $stmt->close();
+    }
+
 
 ?>

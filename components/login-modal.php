@@ -13,7 +13,7 @@
                         <div class="facebook" class="row">
                         
 <!--                            <a href="#"><img id="fb_colored" src="_/img/fb-login.png" alt="Facebook" onclick="myLogin();" scope="public_profile, email"></a>-->
-                            <a href="#"><img id="fb_colored" src="_/img/fb-login.png" alt="Facebook" onclick="" scope="public_profile, email"></a>
+                            <a href="#"><img id="fb_colored" src="_/img/fb-login.png" alt="Facebook" onclick="myLogin()" scope="public_profile, email"></a>
                         </div>
 
                         <br>

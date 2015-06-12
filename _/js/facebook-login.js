@@ -1,4 +1,4 @@
-
+var  fbData;
     // This is called with the results from from FB.getLoginStatus().
 function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -41,7 +41,7 @@ function myLogin(){
         if (response.status === 'connected') {
             //testAPI();
             FB.api('/me', function(response) {
-                console.log(JSON.stringify(response));
+                //console.log(JSON.stringify(response));
                 var str_json = JSON.stringify(response)
                 $.ajax({
                     url: "members/phpsqlajax_facebook.php",
@@ -53,7 +53,7 @@ function myLogin(){
                         if (data.localeCompare("NULL")==0){
                             $("#fill-in-modal").modal("toggle");
                             $("#login-modal").modal("hide");
-                            fbSignUp(str_json);
+                            fbData=str_json;
                         }
                     },
 

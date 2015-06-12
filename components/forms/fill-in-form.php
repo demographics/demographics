@@ -50,7 +50,7 @@
 </div>
 
 <script>
-    function fbSignUp(fbData){
+
 
         $('#member-date-of-birth-input').datepicker({
             format: 'dd/mm/yyyy',
@@ -60,52 +60,48 @@
             $("#TC-modal").modal("toggle");
         });
 
-        console.log("from modal "+fbData);
+        //console.log("from modal "+fbData);
 
         $("form[name='sign-up-fb']").submit(function(e) {
             var formData = new FormData($(this)[0]);
             //formData.append('fb-json',$('#property-type-input option:selected').text());
-            console.log("from modal "+data);
+//            console.log("from modal "+data);
             console.log("from modal "+formData);
+            console.log(fbData);
+            formData.append("fbData", fbData);
+            $.ajax({
+                url: "members/phpsqlajax_facebook_signup.php",
+                type: "POST",
+                data: formData,
+                async: false,
+                success: function (data) {
 
-//            $.ajax({
-//                url: "members/phpsqlajax_signup.php",
-//                type: "POST",
-//                data: formData,
-//                async: false,
-//                success: function (data) {
-//                    if (data==2){
-//                        $("#password-error").removeClass("secret-combination");
-//                    }
-//                    else if (data==1){
-//                        $("#email-error").removeClass("secret-combination");
-//                    }
-//                    else{
-//                        swal({
-//                                title: "Success!",
-//                                text: data+" welcome to Demographics!",
-//                                type: "success",
-//                                showCancelButton: false,
-//                                confirmButtonClass: "btn-success",
-//                                confirmButtonText: "Ok",
-//                                closeOnConfirm: true
-//                            },
-//                            function(isConfirm) {
-//                                if (isConfirm) {
-//                                    $('#tutorial_modal').modal('toggle');
-//                                }
-//                            });
-//                        $("#sign-up-modal").modal('toggle');
-//                    }
-//                },
-//
-//                cache: false,
-//                contentType: false,
-//                processData: false
-//            });
+                    swal({
+                            title: "Success!",
+                            text: data+" welcome to Demographics!",
+                            type: "success",
+                            showCancelButton: false,
+                            confirmButtonClass: "btn-success",
+                            confirmButtonText: "Ok",
+                            closeOnConfirm: true
+                        },
+                        function(isConfirm) {
+                            if (isConfirm) {
+                                $('#tutorial_modal').modal('toggle');
+                            }
+                        });
+                    //$("#sign-up-modal").modal('toggle');
+                    $("#fill-in-modal").modal("hide");
+
+                },
+
+                cache: false,
+                contentType: false,
+                processData: false
+            });
 
             e.preventDefault();
         });
-    }
+
 
 </script>
