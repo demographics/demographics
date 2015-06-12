@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64ad4794-ae5c-429c-8a00-60d1fce13ac0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/phpsqlajax_dbinfo.php" afterPath="$PROJECT_DIR$/phpsqlajax_dbinfo.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/members/phpsqlajax_edit.php" afterPath="$PROJECT_DIR$/members/phpsqlajax_edit.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="EPL363.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -54,11 +52,11 @@
       <file leaf-file-name="phpsqlajax_edit.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/members/phpsqlajax_edit.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49930653" vertical-offset="15" max-vertical-offset="1320">
-              <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.66574204" vertical-offset="0" max-vertical-offset="721">
+              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding>
-                <marker date="1434100531000" expanded="true" signature="473:516" placeholder="SELECT * fro..." />
-                <marker date="1434100531000" expanded="true" signature="473:517" placeholder="SELECT * fro..." />
+                <marker date="1434100845000" expanded="true" signature="473:516" placeholder="SELECT * fro..." />
+                <marker date="1434100845000" expanded="true" signature="473:517" placeholder="SELECT * fro..." />
               </folding>
             </state>
           </provider>
@@ -649,8 +647,8 @@
         <state vertical-scroll-proportion="-0.48305085" vertical-offset="342" max-vertical-offset="1095">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1432156886000" expanded="true" signature="-1:-1" placeholder="SELECT * fro..." />
-            <marker date="1432156886000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
+            <marker date="1434100577000" expanded="true" signature="-1:-1" placeholder="SELECT * fro..." />
+            <marker date="1434100577000" expanded="true" signature="-1:-1" placeholder="INSERT INTO ..." />
           </folding>
         </state>
       </provider>
@@ -694,11 +692,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/members/phpsqlajax_edit.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49930653" vertical-offset="15" max-vertical-offset="1320">
-          <caret line="25" column="12" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.66574204" vertical-offset="0" max-vertical-offset="721">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding>
-            <marker date="1434100531000" expanded="true" signature="473:516" placeholder="SELECT * fro..." />
-            <marker date="1434100531000" expanded="true" signature="473:517" placeholder="SELECT * fro..." />
+            <marker date="1434100845000" expanded="true" signature="473:516" placeholder="SELECT * fro..." />
+            <marker date="1434100845000" expanded="true" signature="473:517" placeholder="SELECT * fro..." />
           </folding>
         </state>
       </provider>
