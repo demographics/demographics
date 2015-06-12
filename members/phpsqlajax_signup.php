@@ -39,35 +39,31 @@
       
     require("../phpsqlajax_dbinfo.php");   
     
-    $connection=mysql_connect ($host, $username, $password);
+    $connection=mysqli_connect ($host, $username, $password,$database) or die("Error " . mysqli_error($connection));
+    if($stmt = $connection->prepare("SELECT * from $database.MEMBER WHERE email=?")){
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row= $result->fetch_array(MYSQLI_ASSOC);
 
-    if (!$connection) {
-      die('Not connected : ' . mysql_error());
-    }
+        if($connection->affected_rows==0){
+            $query = "INSERT INTO $database.MEMBER(firstname, lastname, birthday, email, password, gender, pre74,post74) VALUES ('$firstname','$lastname',STR_TO_DATE('$birthdate', '%d/%m/%Y'),'$email','$user_password','$gender',$pre74,$post74)";
 
-    $db_selected = mysql_select_db($database, $connection);
+            $result1 = $connection->query($query);
 
-    if (!$db_selected) {
-      die ('Can\'t use db : ' . mysql_error());
-    }
+            if (!$result1) {
+                die('Invalid query: ' . mysql_error());
+            }
+            else{
+                echo $firstname." ".$lastname;
+            }
 
-    $query = "SELECT * from $database.MEMBER WHERE email='$email'";
-    $result = mysql_query($query);
-    if(mysql_num_rows($result)==0){
-        $query = "INSERT INTO $database.MEMBER(firstname, lastname, birthday, email, password, gender, pre74,post74) VALUES ('$firstname','$lastname',STR_TO_DATE('$birthdate', '%d/%m/%Y'),'$email','$user_password','$gender',$pre74,$post74)";
-
-        $result = mysql_query($query);
-
-        if (!$result) {
-            die('Invalid query: ' . mysql_error());
         }
         else{
-            echo $firstname." ".$lastname;
+             echo "1";
         }
-
-    }
-    else{
-         echo "1";
+        
+        $stmt->close();
     }
 
 ?>
