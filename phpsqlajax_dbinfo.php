@@ -7,7 +7,7 @@
     */
 
     $username="root";
-    $password="";
+    $password="uj2?ah9r";
     $database="demographics";
     $host="localhost";
 ?>
