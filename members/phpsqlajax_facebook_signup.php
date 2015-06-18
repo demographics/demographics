@@ -1,44 +1,21 @@
 <?php
-     /*
-        A test page to initialize database's member table
-        so we can test page functionality. We simply state 
-        the additional information and execute the store 
-        query.
-    */
 
     $data = $_POST['fbData'];
     $json_decoded = json_decode($data);
-
-
 
     $firstname=$json_decoded->{'first_name'};
     $lastname=$json_decoded->{'last_name'};
     $birthdate=$_POST['member-date-of-birth-input'];
     $email=$json_decoded->{'email'};
-    $user_password=null;
+    $user_password="null";
 
-//    $firstname=$_POST['member_name_input'];
-//    $lastname=$_POST['member-surname-input'];
-//    $birthdate=$_POST['member-date-of-birth-input'];
-//    $email=$_POST['member-email-input'];
-//    $user_password_again=$_POST['member-password-input-again'];
-//    $user_password=$_POST['member-password-input'];
-
-    //    $p=$_POST['member-village-b1974-input'];
-    //    session_start();
-    //    $_SESSION["p_vill"]=$p;
-
-
-//    $user_password = md5($user_password);
     $gender = $json_decoded->{'gender'};
-//    $gender=$_POST['member-sex-input'];
 
     if (strcmp($gender, "male") == 0) {
         $gender='M';
     }else{
         $gender='F';
     }
-
 
     $pre74=$_POST['member-village-b1974-input'];
     $post74=$_POST['member-village-a1974-input'];

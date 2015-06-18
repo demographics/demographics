@@ -65,9 +65,8 @@
         $("form[name='sign-up-fb']").submit(function(e) {
             var formData = new FormData($(this)[0]);
             //formData.append('fb-json',$('#property-type-input option:selected').text());
-//            console.log("from modal "+data);
-            console.log("from modal "+formData);
-            console.log(fbData);
+//            console.log("from modal "+formData);
+//            console.log(fbData);
             formData.append("fbData", fbData);
             $.ajax({
                 url: "members/phpsqlajax_facebook_signup.php",
@@ -90,7 +89,6 @@
                                 $('#tutorial_modal').modal('toggle');
                             }
                         });
-                    //$("#sign-up-modal").modal('toggle');
                     $("#fill-in-modal").modal("hide");
 
                 },

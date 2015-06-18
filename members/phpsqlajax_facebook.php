@@ -5,12 +5,10 @@
         the additional information and execute the store 
         query.
     */
-    //$str_json = $_POST['str_json'];
+    session_start();
+
     $str_json = file_get_contents('php://input');
     $json_decoded = json_decode($str_json);
-
-    //print_r($json_decoded);
-   // print_r($json_decoded->{'first_name'});
 
 
     $firstname=$json_decoded->{'first_name'};
@@ -20,103 +18,47 @@
     checkMember($email);
 
     function checkMember($searching_email){
+
+
         require("../phpsqlajax_dbinfo.php");
+        $user_password='';
+        $connection=mysqli_connect($host, $username, $password,$database) or die("Error " . mysqli_error($connection));
 
-        $connection=mysql_connect ($host, $username, $password);
 
-        if (!$connection) {
-            die('Not connected : ' . mysql_error());
+        if($stmt = $connection->prepare("SELECT * from $database.MEMBER WHERE email=? AND password=?")) {
+            $stmt->bind_param("ss", $searching_email, $user_password);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            $row = $result->fetch_array(MYSQLI_ASSOC);
+
+            $mple = 0;
+            $prasino = 0;
+            $poios = -1;
+
+            $mple = $row['pre74'];
+            $prasino = $row['post74'];
+            $poios = $row['id'];
+
+            if ($connection->affected_rows == 1) {
+                $_SESSION["email"] = $searching_email;
+                $_SESSION["password"] = $user_password;
+                $_SESSION["logged_in"] = 1;
+                $_SESSION["errorLogin"] = null;
+                $_SESSION["pre74"] = $mple;
+                $_SESSION["post74"] = $prasino;
+                $_SESSION["member"] = $poios;
+                header("location:login/login_success.php");
+            } else {
+                print_r("NULL");
+
+            }
+            ob_end_flush();
+
+            $stmt->close();
         }
-
-        $db_selected = mysql_select_db($database, $connection);
-
-        if (!$db_selected) {
-            die ('Can\'t use db : ' . mysql_error());
-        }
-
-        $query = "SELECT * from $database.`member` where $database.`member`.email='$searching_email'";
-
-        $result = mysql_query($query);
-        $results=array();
-
-        if (!$result) {
-            //print_r($searching_email);
-            die('Invalid query: ' . mysql_error());
-        }
-
-        if ($row = @mysql_fetch_assoc($result)){
-            $results[] = $row;
-        }
-        else{
-            print_r("NULL");
-        }
-
-//        $quantity = count($results);
-//        print_r($quantity);
-//        if ($quantity==0){
-//            print_r($searching_email);
-//        }
 
 
     }
-//    $user_password_again=$_POST['member-password-input-again'];
-//    $user_password=$_POST['member-password-input'];
 
-//    $p=$_POST['member-village-b1974-input'];
-//    session_start();
-//    $_SESSION["p_vill"]=$p;
-
-//    if (strcmp("$user_password_again","$user_password")!=0){
-//        echo "2";
-//        return;
-//    }
-//
-//    $user_password = md5($user_password);
-//    $gender=$_POST['member-sex-input'];
-//
-//    if($gender==1){
-//        $gender='M';
-//    }else{
-//        $gender='F';
-//    }
-//
-//    $pre74=$_POST['member-village-b1974-input'];
-//    $post74=$_POST['member-village-a1974-input'];
-//
-//    $_SESSION["p_vill"]=$pre74;
-//    $_SESSION["n_vill"]=$post74;
-//
-//    require("../phpsqlajax_dbinfo.php");
-//
-//    $connection=mysql_connect ($host, $username, $password);
-//
-//    if (!$connection) {
-//      die('Not connected : ' . mysql_error());
-//    }
-//
-//    $db_selected = mysql_select_db($database, $connection);
-//
-//    if (!$db_selected) {
-//      die ('Can\'t use db : ' . mysql_error());
-//    }
-//
-//    $query = "SELECT * from $database.MEMBER WHERE email='$email'";
-//    $result = mysql_query($query);
-//    if(mysql_num_rows($result)==0){
-//        $query = "INSERT INTO $database.MEMBER(firstname, lastname, birthday, email, password, gender, pre74,post74) VALUES ('$firstname','$lastname',STR_TO_DATE('$birthdate', '%d/%m/%Y'),'$email','$user_password','$gender',$pre74,$post74)";
-//
-//        $result = mysql_query($query);
-//
-//        if (!$result) {
-//            die('Invalid query: ' . mysql_error());
-//        }
-//        else{
-//            echo $firstname." ".$lastname;
-//        }
-//
-//    }
-//    else{
-//         echo "1";
-//    }
 
 ?>

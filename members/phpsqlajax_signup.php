@@ -13,9 +13,6 @@
     $user_password_again=$_POST['member-password-input-again'];
     $user_password=$_POST['member-password-input'];
 
-//    $p=$_POST['member-village-b1974-input'];
-//    session_start();
-//    $_SESSION["p_vill"]=$p;
     
     if (strcmp("$user_password_again","$user_password")!=0){
         echo "2";

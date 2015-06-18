@@ -39,9 +39,7 @@ function myLogin(){
     FB.login(function(response) {
         console.log("My login");
         if (response.status === 'connected') {
-            //testAPI();
             FB.api('/me', function(response) {
-                //console.log(JSON.stringify(response));
                 var str_json = JSON.stringify(response)
                 $.ajax({
                     url: "members/phpsqlajax_facebook.php",
@@ -49,12 +47,16 @@ function myLogin(){
                     data: str_json,
                     async: false,
                     success: function (data) {
-                        console.log("return "+data);
                         if (data.localeCompare("NULL")==0){
                             $("#fill-in-modal").modal("toggle");
                             $("#login-modal").modal("hide");
                             fbData=str_json;
                         }
+                        else{
+                            $("#login-modal").modal("hide");
+                            location.reload();
+                        }
+
                     },
 
                     cache: false,
